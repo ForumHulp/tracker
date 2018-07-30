@@ -12,6 +12,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Knop 2</a>
                 </li>
+				<li>
+                @if(\Auth::check())
+                    {!! \Form::open(['route' => 'logout']) !!}
+                    {!! \Form::submit('Uitloggen', ['class' => 'btn btn-danger float-right']) !!}
+                    {!! \Form::close() !!}
+                @endif
+				</li>
             </ul>
         </div>
     </div>

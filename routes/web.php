@@ -13,3 +13,5 @@
 
 //Home Page
 Route::get('/', 'HomeController@getIndex')->name('home');
+
+Auth::routes();
