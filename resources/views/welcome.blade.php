@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Youp
+                    Laravel Youp en Billy
                 </div>
 
                 <div class="links">
