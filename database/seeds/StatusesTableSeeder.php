@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StatusesUsersTableSeeder extends Seeder
+class StatusesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,20 @@ class StatusesUsersTableSeeder extends Seeder
 		DB::table('statuses')->insert([[
 					'id'	=> 1,
 					'title' => 'New',
-				],
+					'created_at' => date('Y-m-d H:i:s'),
+					'updated_at' => date('Y-m-d H:i:s'),
+			],
 				[
 					'id'	=> 2,
 					'title' => 'Assigned',
+					'created_at' => date('Y-m-d H:i:s'),
+					'updated_at' => date('Y-m-d H:i:s'),
 				],
 				[
 					'id'	=> 3,
 					'title' => 'Closed',
+					'created_at' => date('Y-m-d H:i:s'),
+					'updated_at' => date('Y-m-d H:i:s'),
 				]]
 				);
     }

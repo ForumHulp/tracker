@@ -8,10 +8,22 @@
         <div id="navbar">
             @include('includes.navbar')
         </div>
+        
+        <div class="container">
+        	<div class="row">
 
-        <div class="container-fluid" id="content">
-            @yield('content')
-        </div>
+            @if(\Auth::check())
+            <div id="dashboard" class="col-md-2">
+                @include('dashboard.sidebar')
+            </div>
+            @endif
+        
+            <div class="col-md-10" id="content">
+                @yield('content')
+            </div>
+
+			</div>
+	    </div>
 
         <div id="footer">
             @include('includes.footer')

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Status;
+use App\Priority;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class PriorityController extends Controller
 {
     public function __construct()
     {
@@ -20,10 +20,10 @@ class StatusController extends Controller
     public function getIndex()
     {
         $data = [
-            'statuses' => Status::all(),
+            'priorities' => Priority::all(),
         ];
 
-        return view('dashboard/status/index')->with($data);
+        return view('dashboard/priority/index')->with($data);
     }
 
     /**
@@ -33,7 +33,7 @@ class StatusController extends Controller
      */
     public function getCreate()
     {
-        return view('dashboard/status/create');
+        return view('dashboard/priority/create');
     }
 
     /**
@@ -50,9 +50,9 @@ class StatusController extends Controller
 
         $attributes = $request->all();
 
-        Status::create($attributes);
+        Priority::create($attributes);
 
-        return redirect()->route('status.index');
+        return redirect()->route('priority.index');
     }
 
     /**
@@ -63,17 +63,17 @@ class StatusController extends Controller
      */
     public function getEdit($id)
     {
-        $status = Status::where('id', $id)->first();
+        $priority = Priority::where('id', $id)->first();
 
-        if(is_null($status)) {
+        if(is_null($priority)) {
             abort(404);
         }
 
         $data = [
-            'status' => $status,
+            'priority' => $priority,
         ];
 
-        return view('dashboard/status/edit')->with($data);
+        return view('dashboard/priority/edit')->with($data);
     }
 
     /**
@@ -83,31 +83,30 @@ class StatusController extends Controller
      * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function postUpdate(Request $request, Status $status)
+    public function postUpdate(Request $request, Priority $priority)
     {
         $this->validate($request, [
             'id' => 'required',
             'title' => 'required',
         ]);
 
-        $status = Status::where('id', $request->get('id'))->first();
+        $priority = Priority::where('id', $request->get('id'))->first();
 
-        if(is_null($status)) {
+        if(is_null($priority)) {
             abort(404);
         }
 
         $attributes = $request->all();
-        $attributes['due_at'] = date('Y-m-d H:i:s', time());
 
-        $status->update($attributes);
+        $priority->update($attributes);
 
-        return redirect()->route('status.index');
+        return redirect()->route('priority.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Status  $status
+     * @param  \App\Priority  $priority
      * @return \Illuminate\Http\Response
      */
     public function postDestroy(Request $request)
@@ -116,7 +115,7 @@ class StatusController extends Controller
             'id' => 'required',
         ]);
 
-        $status = Status::where('id', $request->get('id'))->first();
+        $status = Priority::where('id', $request->get('id'))->first();
 
         if(is_null($status)) {
             abort(404);
@@ -124,6 +123,6 @@ class StatusController extends Controller
 
         $status->delete();
 
-        return redirect()->route('status.index');
+        return redirect()->route('priority.index');
     }
 }
