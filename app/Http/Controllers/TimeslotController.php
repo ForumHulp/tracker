@@ -19,8 +19,14 @@ class TimeslotController extends Controller
      */
     public function getIndex()
     {
+        $user_id = auth()->user()->id;
+        //Select Timeslots per current user
+        $timeslots = Timeslot::where('user_id', $user_id)->get();
+        //Select Timeslots per project
+        //$issue_id = -1;
+        //$timeslots = Timeslot::where('issue_id', $issue_id)->get();
         $data = [
-            'timeslots' => Timeslot::all(),
+            'timeslots' => $timeslots,
         ];
 
         return view('dashboard/timeslot/index')->with($data);
@@ -37,15 +43,16 @@ class TimeslotController extends Controller
         {
           for($mins=0; $mins<60; $mins+=15) // the interval for mins is '30'
           {
-
-            //echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).':'
-                            //.str_pad($mins,2,'0',STR_PAD_LEFT).'</option>';
-            $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'']= ''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
+            $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT)
+            .':'.str_pad($mins,2,'0',STR_PAD_LEFT)
+            .':'.str_pad(0,2,'0',STR_PAD_LEFT).''] = ''.str_pad($hours,2,'0',STR_PAD_LEFT)
+                                                       .':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
 
           };
         };
 
-        $default_time = '00:00';
+        //$issues = User::with('issues')->find(auth()->user()->id)->tasks,
+        $default_time = '00:00:00';
         $user_id = auth()->user()->id;
 
         $data = [
@@ -96,18 +103,16 @@ class TimeslotController extends Controller
           {
             for($mins=0; $mins<60; $mins+=15) // the interval for mins is '30'
             {
-
-              //echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).':'
-                              //.str_pad($mins,2,'0',STR_PAD_LEFT).'</option>';
-              $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'']= ''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
+              $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT)
+              .':'.str_pad($mins,2,'0',STR_PAD_LEFT)
+              .':'.str_pad(0,2,'0',STR_PAD_LEFT).''] = ''.str_pad($hours,2,'0',STR_PAD_LEFT)
+                                                         .':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
 
             };
           };
 
           $user_id = auth()->user()->id;
-          $record_time = $timeslot->time_amount;
           $data = [
-              'record_time' => $record_time,
               'timeslot'     => $timeslot,
               'time_amounts' => $time_amounts,
               'user_id'      => $user_id,

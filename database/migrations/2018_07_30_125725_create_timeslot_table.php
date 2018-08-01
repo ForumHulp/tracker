@@ -16,7 +16,9 @@ class CreateTimeslotTable extends Migration
         Schema::create('timeslots', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            //$table->unsignedInteger('issue_id');
             $table->time('time_amount');
+            $table->date('date');
             $table->timestamps();
 
 
@@ -24,6 +26,11 @@ class CreateTimeslotTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
+            //$table->foreign('issue_id')
+                //->references('id')
+                //->on('issues')
+                //->onDelete('cascade');
         });
 
         Schema::dropIfExists('timeconsumed');

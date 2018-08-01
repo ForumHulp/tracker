@@ -12,6 +12,8 @@ class Timeslot extends Model
     public $fillable = [
         'time_amount',
         'user_id',
+        //issue_id,
+        'date',
     ];
 
     public $dates = [

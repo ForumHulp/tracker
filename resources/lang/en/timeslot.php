@@ -15,11 +15,13 @@ return [
 
   'overview'      => 'Timeslot overview',
 	'add'					  => 'Add new timeslot',
-	'edit'					=> 'Edit',
+	'edit'					=> 'Change timeslot',
 	'save'					=> 'Save',
+	'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'id'					  => 'ID',
   'time_amount'		=> 'Time amout',
+  'date'		      => 'On Date',
   'user'				  => 'By user',
 	'options'				=> 'Options',
 
