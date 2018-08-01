@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Priority;
+use App\Project;
 use Illuminate\Http\Request;
 
-class PriorityController extends Controller
+class ProjectController extends Controller
 {
     public function __construct()
     {
@@ -20,10 +20,10 @@ class PriorityController extends Controller
     public function getIndex()
     {
         $data = [
-            'priorities' => Priority::all(),
+            'projects' => Project::all(),
         ];
 
-        return view('dashboard/priority/index')->with($data);
+        return view('dashboard/project/index')->with($data);
     }
 
     /**
@@ -33,7 +33,12 @@ class PriorityController extends Controller
      */
     public function getCreate()
     {
-        return view('dashboard/priority/create');
+        $data = [
+			'clientList'	=> ['client Billy', 'client Youp', 'client John'],
+			'selected'		=> 0
+        ];
+
+        return view('dashboard/project/create')->with($data);
     }
 
     /**
@@ -45,14 +50,16 @@ class PriorityController extends Controller
     public function postStore(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'client_id'		=> 'required',
+            'title'			=> 'required',
+            'description'	=> 'required',
         ]);
 
         $attributes = $request->all();
 
-        Priority::create($attributes);
+        Project::create($attributes);
 
-        return redirect()->route('priority.index');
+        return redirect()->route('project.index');
     }
 
     /**
@@ -62,44 +69,48 @@ class PriorityController extends Controller
      */
     public function getEdit($id)
     {
-        $priority = Priority::where('id', $id)->first();
+        $project = Project::where('id', $id)->first();
 
-        if(is_null($priority)) {
+        if(is_null($project)) {
             abort(404);
         }
 
         $data = [
-            'priority' => $priority,
+            'project' 		=> $project,
+			'clientList'	=> ['client Billy', 'client Youp', 'client John'],
+			'selected'		=> 2
         ];
 
-        return view('dashboard/priority/edit')->with($data);
+        return view('dashboard/project/edit')->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Priority  $priority
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function postUpdate(Request $request, Priority $priority)
+    public function postUpdate(Request $request, Project $project)
     {
         $this->validate($request, [
-            'id' => 'required',
-            'title' => 'required',
+            'id' 			=> 'required',
+            'client_id' 	=> 'required',
+            'title'			=> 'required',
+            'description'	=> 'required',
         ]);
 
-        $priority = Priority::where('id', $request->get('id'))->first();
+        $project = Project::where('id', $request->get('id'))->first();
 
-        if(is_null($priority)) {
+        if(is_null($project)) {
             abort(404);
         }
 
         $attributes = $request->all();
 
-        $priority->update($attributes);
+        $project->update($attributes);
 
-        return redirect()->route('priority.index');
+        return redirect()->route('project.index');
     }
 
     /**
@@ -113,14 +124,14 @@ class PriorityController extends Controller
             'id' => 'required',
         ]);
 
-        $priority = Priority::where('id', $request->get('id'))->first();
+        $project = Project::where('id', $request->get('id'))->first();
 
-        if(is_null($priority)) {
+        if(is_null($project)) {
             abort(404);
         }
 
-        $priority->delete();
+        $project->delete();
 
-        return redirect()->route('priority.index');
+        return redirect()->route('project.index');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>@lang('priority.overview')</h1>
-    <a href="{{ route('status.create') }}" class="btn btn-primary btn-sm float-right">@lang('priority.add')</a>
+    <a href="{{ route('priority.create') }}" class="btn btn-primary btn-sm float-right">@lang('priority.add')</a>
     <table class="table">
         <tr>
             <th>@lang('priority.title')</th>

@@ -13,13 +13,15 @@ return [
     |
     */
 
-    'dashboard'            	=> 'Dashboard',
-	'status'				=> 'Status',
-	'priority'				=> 'Priority',
-	'user'					=> 'User',
+    'overview'            	=> 'Project overview',
+	'add'					=> 'Add new project',
+	'edit'					=> 'Edit',
+	'save'					=> 'Save',
+	'dell'					=> 'Delete',
+	'update_title'			=> 'Update project',
+	'title'					=> 'Title',
 	'client'				=> 'Client',
-	'project'				=> 'Project',
-	'timeslot'				=> 'Timeslot',
-	'type'					=> 'Type',
-
+	'description'			=> 'Description',
+	'options'				=> 'Options',
+	
 ];

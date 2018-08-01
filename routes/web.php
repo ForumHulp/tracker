@@ -30,6 +30,15 @@ Route::post('/priority/destroy', 'PriorityController@postDestroy')->name('priori
 
 Route::get('/user/', 'StatusController@getIndex')->name('user.index');
 
+Route::get('/client/', 'StatusController@getIndex')->name('client.index');
+
+Route::get('/project/', 'ProjectController@getIndex')->name('project.index');
+Route::get('/project/create', 'ProjectController@getCreate')->name('project.create');
+Route::post('/project/store', 'ProjectController@postStore')->name('project.store');
+Route::get('/project/edit/{id}', 'ProjectController@getEdit')->name('project.edit');
+Route::post('/project/update', 'ProjectController@postUpdate')->name('project.update');
+Route::post('/project/destroy', 'ProjectController@postDestroy')->name('project.destroy');
+
 Route::get('/timeslot/', 'StatusController@getIndex')->name('timeslot.index');
 
 Route::get('/type/', 'StatusController@getIndex')->name('type.index');

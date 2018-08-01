@@ -13,6 +13,19 @@
 	color:white;
 }
 
+#dashboard ul .selected {list-style:none;}
+#dashboard ul li:first-child {margin-top:10px;}
+
+#dashboard ul .selected:before {
+  content: "\f054"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+  font-size:11px;
+  color:white;
+}
+
 .btn-link {
 	margin-top:-6px;
 }
