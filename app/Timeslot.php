@@ -10,7 +10,8 @@ class Timeslot extends Model
     use SoftDeletes;
 
     public $fillable = [
-        'time amount',
+        'time_amount',
+        'user_id',
     ];
 
     public $dates = [

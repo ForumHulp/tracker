@@ -40,6 +40,11 @@ Route::post('/project/update', 'ProjectController@postUpdate')->name('project.up
 Route::post('/project/destroy', 'ProjectController@postDestroy')->name('project.destroy');
 
 Route::get('/timeslot/', 'TimeslotController@getIndex')->name('timeslot.index');
+Route::get('/timeslot/create', 'TimeslotController@getCreate')->name('timeslot.create');
+Route::post('/timeslot/store', 'TimeslotController@postStore')->name('timeslot.store');
+Route::get('/timeslot/edit/{id}', 'TimeslotController@getEdit')->name('timeslot.edit');
+Route::post('/timeslot/update', 'TimeslotController@postUpdate')->name('timeslot.update');
+Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy');
 
 Route::get('/type/', 'StatusController@getIndex')->name('type.index');
 

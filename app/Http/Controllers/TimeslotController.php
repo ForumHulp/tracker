@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TimeConsumed;
+use App\Timeslot;
 use Illuminate\Http\Request;
 
 class TimeslotController extends Controller
@@ -33,7 +33,29 @@ class TimeslotController extends Controller
      */
     public function getCreate()
     {
-        return view('dashboard/timeslot/create');
+      for($hours=0; $hours<24; $hours++) // the interval for hours is '1'
+        {
+          for($mins=0; $mins<60; $mins+=15) // the interval for mins is '30'
+          {
+
+            //echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).':'
+                            //.str_pad($mins,2,'0',STR_PAD_LEFT).'</option>';
+            $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'']= ''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
+
+          };
+        };
+
+        $default_time = '00:00';
+        $user_id = auth()->user()->id;
+
+        $data = [
+            'default_time'  => $default_time,
+            'time_amounts' => $time_amounts,
+            'user_id'      => $user_id,
+        ];
+
+        //dd($data);
+        return view('dashboard/timeslot/create', $data);
     }
 
     /**
@@ -45,7 +67,8 @@ class TimeslotController extends Controller
     public function postStore(Request $request)
     {
         $this->validate($request, [
-            'time amount' => 'required',
+            'time_amount' => 'required',
+            'user_id' => 'required',
         ]);
 
         $attributes = $request->all();
@@ -69,9 +92,28 @@ class TimeslotController extends Controller
             abort(404);
         }
 
-        $data = [
-            'time amount' => $timeslot,
-        ];
+        for($hours=0; $hours<24; $hours++) // the interval for hours is '1'
+          {
+            for($mins=0; $mins<60; $mins+=15) // the interval for mins is '30'
+            {
+
+              //echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).':'
+                              //.str_pad($mins,2,'0',STR_PAD_LEFT).'</option>';
+              $time_amounts[''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'']= ''.str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT).'';
+
+            };
+          };
+
+          $user_id = auth()->user()->id;
+          $record_time = $timeslot->time_amount;
+          $data = [
+              'record_time' => $record_time,
+              'timeslot'     => $timeslot,
+              'time_amounts' => $time_amounts,
+              'user_id'      => $user_id,
+          ];
+
+          //dd($data);
 
         return view('dashboard/timeslot/edit')->with($data);
     }
@@ -80,17 +122,18 @@ class TimeslotController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Timeslot  $status
+     * @param  \App\Timeslot
      * @return \Illuminate\Http\Response
      */
-    public function postUpdate(Request $request, Status $timeslot)
+    public function postUpdate(Request $request, Timeslot $timeslot)
     {
         $this->validate($request, [
             'id' => 'required',
-            'time amount' => 'required',
+            'user_id' => 'required',
+            'time_amount' => 'required',
         ]);
 
-        $timeslot = TimeConsumed::where('id', $request->get('id'))->first();
+        $timeslot = Timeslot::where('id', $request->get('id'))->first();
 
         if(is_null($timeslot)) {
             abort(404);

@@ -25,6 +25,8 @@ class CreateTimeslotTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
         });
+
+        Schema::dropIfExists('timeconsumed');
     }
 
     /**
