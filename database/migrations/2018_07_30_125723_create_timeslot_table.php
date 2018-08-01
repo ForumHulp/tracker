@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeconsumedTable extends Migration
+class CreateTimeslotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTimeconsumedTable extends Migration
      */
     public function up()
     {
-        Schema::create('timeconsumed', function (Blueprint $table) {
+        Schema::create('timeslots', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->time('Time Amount');
+            $table->time('time_amount');
             $table->timestamps();
 
 
@@ -34,6 +34,6 @@ class CreateTimeconsumedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timeconsumed');
+        Schema::dropIfExists('timeslots');
     }
 }

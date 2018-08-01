@@ -39,7 +39,7 @@ Route::get('/project/edit/{id}', 'ProjectController@getEdit')->name('project.edi
 Route::post('/project/update', 'ProjectController@postUpdate')->name('project.update');
 Route::post('/project/destroy', 'ProjectController@postDestroy')->name('project.destroy');
 
-Route::get('/timeslot/', 'StatusController@getIndex')->name('timeslot.index');
+Route::get('/timeslot/', 'TimeslotController@getIndex')->name('timeslot.index');
 
 Route::get('/type/', 'StatusController@getIndex')->name('type.index');
 
