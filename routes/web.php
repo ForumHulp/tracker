@@ -12,7 +12,7 @@
 */
 
 //Home Page
-Route::get('/', 'HomeController@getIndex')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/status/', 'StatusController@getIndex')->name('status.index');
 Route::get('/status/create', 'StatusController@getCreate')->name('status.create');
@@ -28,7 +28,12 @@ Route::get('/priority/edit/{id}', 'PriorityController@getEdit')->name('priority.
 Route::post('/priority/update', 'PriorityController@postUpdate')->name('priority.update');
 Route::post('/priority/destroy', 'PriorityController@postDestroy')->name('priority.destroy');
 
-Route::get('/user/', 'StatusController@getIndex')->name('user.index');
+Route::get('/user/', 'UserController@getIndex')->name('user.index');
+Route::get('/user/create', 'UserController@getCreate')->name('user.create');
+Route::post('/user/store', 'UserController@postStore')->name('user.store');
+Route::get('/user/edit/{id}', 'UserController@getEdit')->name('user.edit');
+Route::post('/user/update', 'UserController@postUpdate')->name('user.update');
+Route::post('/user/destroy', 'UserController@postDestroy')->name('user.destroy');
 
 Route::get('/client/', 'StatusController@getIndex')->name('client.index');
 
@@ -39,12 +44,12 @@ Route::get('/project/edit/{id}', 'ProjectController@getEdit')->name('project.edi
 Route::post('/project/update', 'ProjectController@postUpdate')->name('project.update');
 Route::post('/project/destroy', 'ProjectController@postDestroy')->name('project.destroy');
 
-Route::get('/timeslot/', 'TimeslotController@getIndex')->name('timeslot.index');
-Route::get('/timeslot/create', 'TimeslotController@getCreate')->name('timeslot.create');
-Route::post('/timeslot/store', 'TimeslotController@postStore')->name('timeslot.store');
-Route::get('/timeslot/edit/{id}', 'TimeslotController@getEdit')->name('timeslot.edit');
-Route::post('/timeslot/update', 'TimeslotController@postUpdate')->name('timeslot.update');
-Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy');
+Route::get('/timeslot/', 'TimeslotController@getIndex')->name('timeslot.index'); 
+Route::get('/timeslot/create', 'TimeslotController@getCreate')->name('timeslot.create'); 
+Route::post('/timeslot/store', 'TimeslotController@postStore')->name('timeslot.store'); 
+Route::get('/timeslot/edit/{id}', 'TimeslotController@getEdit')->name('timeslot.edit'); 
+Route::post('/timeslot/update', 'TimeslotController@postUpdate')->name('timeslot.update'); 
+Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy'); 
 
 Route::get('/type/', 'StatusController@getIndex')->name('type.index');
 
