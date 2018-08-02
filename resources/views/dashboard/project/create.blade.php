@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('project.create_project')</h2>
     {!! \Form::open(['route' => 'project.store']) !!}
 
     <div class="form-group">

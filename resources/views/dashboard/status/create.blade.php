@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('status.create_status')</h2>
     {!! \Form::open(['route' => 'status.store']) !!}
 
     <div class="form-group">

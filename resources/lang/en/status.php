@@ -15,6 +15,8 @@ return [
 
     'overview'            	=> 'Status overview',
 	'add'					=> 'Add new status',
+	'edit_status'			=> 'Edit status',
+	'create_status'			=> 'Create new status',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
 	'dell'					=> 'Delete',

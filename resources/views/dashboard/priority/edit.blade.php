@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('priority.edit_priority')</h2>
     {!! \Form::model($priority, ['route' => 'priority.update']) !!}
     {!! \Form::hidden('id', $priority->id) !!}
     <div class="form-group">

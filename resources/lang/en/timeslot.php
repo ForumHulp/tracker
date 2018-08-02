@@ -13,16 +13,18 @@ return [
     |
     */
 
-  'overview'      => 'Timeslot overview',
-	'add'					  => 'Add new timeslot',
+	'overview'				=> 'Timeslot overview',
+	'add'					=> 'Add new timeslot',
+	'edit_timeslot'			=> 'Edit timeslot',
+	'create_timeslot'		=> 'Create new timeslot',
 	'edit'					=> 'Change timeslot',
 	'save'					=> 'Save',
 	'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
-	'id'					  => 'ID',
-  'time_amount'		=> 'Time amout',
-  'date'		      => 'On Date',
-  'user'				  => 'By user',
+	'id'					=> 'ID',
+	'time_amount'			=> 'Time amout',
+	'date'		      		=> 'On Date',
+	'user'					=> 'By user',
 	'options'				=> 'Options',
 
 ];

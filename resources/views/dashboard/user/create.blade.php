@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('user.create_user')</h2>
     {!! \Form::open(['route' => 'user.store']) !!}
 
     <div class="form-group">

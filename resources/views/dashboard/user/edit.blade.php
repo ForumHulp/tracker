@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('user.edit_user')</h2>
     {!! \Form::model($user, ['route' => 'user.update']) !!}
     {!! \Form::hidden('id', $user->id) !!}
     <div class="form-group">

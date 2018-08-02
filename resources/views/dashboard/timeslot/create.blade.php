@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('timeslot.create_timeslot')</h2>
     {!! \Form::open(['route' => 'timeslot.store']) !!}
 
     <div class="form-group">

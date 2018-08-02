@@ -15,6 +15,8 @@ return [
 
     'overview'            	=> 'Project overview',
 	'add'					=> 'Add new project',
+	'edit_project'			=> 'Edit project',
+	'create_project'		=> 'Create new project',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
 	'dell'					=> 'Delete',

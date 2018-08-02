@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('timeslot.edit_timeslot')</h2>
     {!! \Form::model($timeslot, ['route' => 'timeslot.update']) !!}
     {!! \Form::hidden('id', $timeslot->id) !!}
 

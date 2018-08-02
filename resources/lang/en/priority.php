@@ -15,6 +15,8 @@ return [
 
     'overview'            	=> 'Priority overview',
 	'add'					=> 'Add new priority',
+	'edit_priority'			=> 'Edit priority',
+	'create_priority'		=> 'Create new priority',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
 	'dell'					=> 'Delete',

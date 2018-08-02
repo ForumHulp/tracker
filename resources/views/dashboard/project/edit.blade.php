@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<h2>@lang('project.edit_project')</h2>
     {!! \Form::model($project, ['route' => 'project.update']) !!}
     {!! \Form::hidden('id', $project->id) !!}
     <div class="form-group">

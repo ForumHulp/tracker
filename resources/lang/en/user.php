@@ -15,6 +15,8 @@ return [
 
     'overview'            	=> 'User overview',
 	'add'					=> 'Add new user',
+	'edit_user'				=> 'Edit user',
+	'create_user'			=> 'Create new user',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
 	'dell'					=> 'Delete',
