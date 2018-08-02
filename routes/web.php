@@ -49,7 +49,14 @@ Route::get('/timeslot/create', 'TimeslotController@getCreate')->name('timeslot.c
 Route::post('/timeslot/store', 'TimeslotController@postStore')->name('timeslot.store'); 
 Route::get('/timeslot/edit/{id}', 'TimeslotController@getEdit')->name('timeslot.edit'); 
 Route::post('/timeslot/update', 'TimeslotController@postUpdate')->name('timeslot.update'); 
-Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy'); 
+Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy');
+
+Route::get('/client/', 'ClientController@getIndex')->name('client.index');
+Route::get('/client/create', 'ClientController@getCreate')->name('client.create');
+Route::post('/client/store', 'ClientController@postStore')->name('client.store');
+Route::get('/client/edit/{id}', 'ClientController@getEdit')->name('client.edit');
+Route::post('/client/update', 'ClientController@postUpdate')->name('client.update');
+Route::post('/client/destroy', 'ClientController@postDestroy')->name('client.destroy');
 
 Route::get('/type/', 'StatusController@getIndex')->name('type.index');
 
