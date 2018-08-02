@@ -35,7 +35,12 @@ Route::get('/user/edit/{id}', 'UserController@getEdit')->name('user.edit');
 Route::post('/user/update', 'UserController@postUpdate')->name('user.update');
 Route::post('/user/destroy', 'UserController@postDestroy')->name('user.destroy');
 
-Route::get('/client/', 'StatusController@getIndex')->name('client.index');
+Route::get('/client/', 'ClientController@getIndex')->name('client.index');
+Route::get('/client/create', 'ClientController@getCreate')->name('client.create');
+Route::post('/client/store', 'ClientController@postStore')->name('client.store');
+Route::get('/client/edit/{id}', 'ClientController@getEdit')->name('client.edit');
+Route::post('/client/update', 'ClientController@postUpdate')->name('client.update');
+Route::post('/client/destroy', 'ClientController@postDestroy')->name('client.destroy');
 
 Route::get('/project/', 'ProjectController@getIndex')->name('project.index');
 Route::get('/project/create', 'ProjectController@getCreate')->name('project.create');
@@ -49,16 +54,14 @@ Route::get('/timeslot/create', 'TimeslotController@getCreate')->name('timeslot.c
 Route::post('/timeslot/store', 'TimeslotController@postStore')->name('timeslot.store'); 
 Route::get('/timeslot/edit/{id}', 'TimeslotController@getEdit')->name('timeslot.edit'); 
 Route::post('/timeslot/update', 'TimeslotController@postUpdate')->name('timeslot.update'); 
-Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy');
+Route::post('/timeslot/destroy', 'TimeslotController@postDestroy')->name('timeslot.destroy'); 
 
-Route::get('/client/', 'ClientController@getIndex')->name('client.index');
-Route::get('/client/create', 'ClientController@getCreate')->name('client.create');
-Route::post('/client/store', 'ClientController@postStore')->name('client.store');
-Route::get('/client/edit/{id}', 'ClientController@getEdit')->name('client.edit');
-Route::post('/client/update', 'ClientController@postUpdate')->name('client.update');
-Route::post('/client/destroy', 'ClientController@postDestroy')->name('client.destroy');
-
-Route::get('/type/', 'StatusController@getIndex')->name('type.index');
+Route::get('/type/', 'TypeController@getIndex')->name('type.index');
+Route::get('/type/create', 'TypeController@getCreate')->name('type.create'); 
+Route::post('/type/store', 'TypeController@postStore')->name('type.store'); 
+Route::get('/type/edit/{id}', 'TypeController@getEdit')->name('type.edit'); 
+Route::post('/type/update', 'TypeController@postUpdate')->name('type.update'); 
+Route::post('/type/destroy', 'TypeController@postDestroy')->name('type.destroy'); 
 
 
 Auth::routes();
