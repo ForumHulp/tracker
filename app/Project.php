@@ -20,4 +20,10 @@ class Project extends Model
         'updated_at',
         'deleted_at',
     ];
+
+
+    public function clients()
+    {
+        return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
 }

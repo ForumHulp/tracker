@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Client;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -20,7 +21,7 @@ class ProjectController extends Controller
     public function getIndex()
     {
         $data = [
-            'projects' => Project::all(),
+            'projects' => Project::with('clients')->get()
         ];
 
         return view('dashboard/project/index')->with($data);
@@ -33,8 +34,14 @@ class ProjectController extends Controller
      */
     public function getCreate()
     {
+		$client = Client::select('id', 'name')->get();
+		foreach($client as $data)
+		{
+			$clients[$data->id] = $data->name;
+		}
+
         $data = [
-			'clientList'	=> ['client Billy', 'client Youp', 'client John'],
+			'clientList'	=> $clients,
 			'selected'		=> 0
         ];
 
@@ -75,10 +82,16 @@ class ProjectController extends Controller
             abort(404);
         }
 
+		$client = Client::select('id', 'name')->get();
+		foreach($client as $data)
+		{
+			$clients[$data->id] = $data->name;
+		}
+
         $data = [
             'project' 		=> $project,
-			'clientList'	=> ['client Billy', 'client Youp', 'client John'],
-			'selected'		=> 2
+			'clientList'	=> $clients,
+			'selected'		=> $project->client
         ];
 
         return view('dashboard/project/edit')->with($data);

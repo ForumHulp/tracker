@@ -10,9 +10,9 @@
             @if (auth()->user()->hasRole('manager'))<th>@lang('project.options')</th>@endif
         </tr>
         @foreach($projects as $project)
-            <tr>
+		    <tr>
                 <td>{{ $project->title }}</td>
-                <td>{{ $project->client_id }}</td>
+                <td>{{ $project->clients->name }}</td>
                 @if (auth()->user()->hasRole('manager'))
                 <td>
                     <a href="{{ route('project.edit', [$project->id]) }}" class="float-left">@lang('project.edit')</a>
