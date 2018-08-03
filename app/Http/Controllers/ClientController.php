@@ -55,7 +55,7 @@ class ClientController extends Controller
 
         $attributes = $request->all();
 
-        Priority::create($attributes);
+        Client::create($attributes);
 
         return redirect()->route('client.index');
     }
