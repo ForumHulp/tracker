@@ -35,6 +35,7 @@ class ProjectController extends Controller
     public function getCreate()
     {
 		$client = Client::select('id', 'name')->get();
+		$clients = [];
 		foreach($client as $data)
 		{
 			$clients[$data->id] = $data->name;

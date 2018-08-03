@@ -35,6 +35,7 @@ class UserController extends Controller
     public function getCreate()
     {
 		$role = Role::select('id', 'name')->get();
+		$roles = [];
 		foreach($role as $data)
 		{
 			$roles[$data->id] = $data->name;

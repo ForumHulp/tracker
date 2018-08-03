@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Issue;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $data = [
+            'issues' => Issue::with('clients', 'statuses', 'types', 'users')->get()
+        ];
+//dd($data);
+        return view('pages.home')->with($data);
+
     }
 }
