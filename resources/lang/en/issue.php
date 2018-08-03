@@ -18,6 +18,7 @@ return [
     'type'            		=> 'Type',
 	'status'				=> 'Status',
 	'priority'				=> 'Priority',
+	'project'				=> 'Project',
 	'title'					=> 'Title',
 	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',

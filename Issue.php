@@ -1,41 +1,18 @@
 <?php
+use Baum\Node;
 
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Issue extends \Baum\Node  
+/**
+* Issue
+*/
+class Issue extends Baum\Node 
 {
-	/**
-	* Table name.
-	*
-	* @var string
-	*/
-	protected $table = 'issues';
 
-    use SoftDeletes;
-
-    public $fillable = [
-        'parent',
-        'client',
-        'status',
-        'type',
-        'priority',
-        'title',
-        'description',
-        'start_date',
-        'plan_time',
-        'assigned',
-        'time',
-    ];
-
-    public $dates = [
-        'start_date',
-		'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
+  /**
+   * Table name.
+   *
+   * @var string
+   */
+  protected $table = 'issues';
 
   //////////////////////////////////////////////////////////////////////////////
 
@@ -123,29 +100,4 @@ class Issue extends \Baum\Node
   // to hook your own callbacks/observers into this events:
   // http://laravel.com/docs/5.0/eloquent#model-events
 
-
-    public function clients()
-    {
-        return $this->belongsTo(Client::class, 'client_id', 'id');
-    }
-
-    public function statuses()
-    {
-        return $this->belongsTo(Status::class, 'status_id', 'id');
-    }
-
-    public function types()
-    {
-        return $this->belongsTo(Type::class, 'type_id', 'id');
-    }
-
-    public function projects()
-    {
-        return $this->belongsTo(Project::class, 'project_id', 'id');
-    }
-
-    public function users()
-    {
-        return $this->belongsTo(User::class, 'assigned', 'id')->withDefault(['id' => 0]);
-    }
 }
