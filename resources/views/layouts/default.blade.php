@@ -13,9 +13,11 @@
         	<div class="row">
 
             @if(\Auth::check())
-            <div id="dashboard" class="col-md-2">
+            @if (auth()->user()->hasRole('manager'))
+           <div id="dashboard" class="col-md-2">
                 @include('dashboard.sidebar')
             </div>
+            @endif
             @endif
         
             <div class="@if(\Auth::check()) col-md-10 @else col-md-12 @endif" id="content">

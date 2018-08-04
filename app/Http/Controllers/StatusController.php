@@ -22,8 +22,14 @@ class StatusController extends Controller
         $data = [
             'statuses' => Status::all(),
         ];
-
-        return view('dashboard/status/index')->with($data);
+		
+		if (auth()->user()->hasRole('manager'))
+		{
+        	return view('dashboard/status/index')->with($data);
+		} else
+		{
+	        return redirect()->route('home');
+		}
     }
 
     /**
