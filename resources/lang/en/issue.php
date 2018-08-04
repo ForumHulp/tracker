@@ -22,6 +22,6 @@ return [
 	'title'					=> 'Title',
 	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
-	
+	'progress'				=> 'Progress'
 	
 ];
