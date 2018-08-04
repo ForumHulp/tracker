@@ -18,7 +18,7 @@
             </div>
             @endif
         
-            <div class="col-md-10" id="content">
+            <div class="@if(\Auth::check()) col-md-10 @else col-md-12 @endif" id="content">
                 @yield('content')
             </div>
 

@@ -18,7 +18,7 @@
             @foreach($issues as $issue)
                 <tr>
                     <td>@if ($issue->isChild())<i class="fa fa-long-arrow-right"></i> @endif{{ $issue->id }}</td>
-                    <td>{{ $issue->clients->name }}</td>
+                    <td>{{ $issue->projects->clients->name }}</td>
                     <td>{{ $issue->projects->title }}</td>
                     <td>{{ $issue->statuses->title }}</td>
                     <td>{{ $issue->types->title }}</td>

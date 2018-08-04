@@ -26,9 +26,9 @@ class HomeController extends Controller
     {
 		Issue::rebuild();
         $data = [
-            'issues' => Issue::with('clients', 'statuses', 'types', 'projects', 'users')->get()
+            'issues' => Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users')->get()
         ];
-//dd($data);
+
         return view('pages.home')->with($data);
 
     }

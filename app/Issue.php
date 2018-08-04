@@ -17,7 +17,7 @@ class Issue extends \Baum\Node
     use SoftDeletes;
 
     public $fillable = [
-        'parent',
+        'parent_id',
         'client',
         'status',
         'type',

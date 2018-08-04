@@ -43,7 +43,19 @@ class ClientsTableSeeder extends Seeder
                     'address' => 'Kerkveld 5',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
+				],
+				[
+                    'id'	=> 4,
+                    'name' => 'ForumHulp.com',
+                    'email' => 'info@forumhulp.com',
+                    'phone' => '0615296319',
+                    'country' => 'NL',
+                    'city' => 'Haanrade',
+                    'address' => 'Jan Vermeerstaraat 13',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
 				]]
+
 				);
     }
 }
