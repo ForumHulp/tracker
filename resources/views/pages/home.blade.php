@@ -69,7 +69,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    @if (auth()->check() && $issue->users->id ==  auth()->user()->id )
+                    @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
                    	<tr>
 				    {!! \Form::open(['route' => 'tracker.store']) !!}
                         {!! \Form::hidden('issue_id', $issue->id) !!}
