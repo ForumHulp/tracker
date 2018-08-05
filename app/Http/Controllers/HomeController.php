@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Issue;
+use App\Timeslot;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,16 @@ class HomeController extends Controller
     public function index()
     {
 		Issue::rebuild();
+		
+		$timeslots = Timeslot::select('id', 'time_amount')->get();
+		foreach($timeslots as $value) {
+			$timeslot[$value->id] = $value->time_amount;
+		}
+		
+		
         $data = [
-            'issues' => Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users')->get()
+            'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->get(),
+			'timeslot'	=> $timeslot
         ];
 
         return view('pages.home')->with($data);

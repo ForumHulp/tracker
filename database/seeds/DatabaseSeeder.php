@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
 		
 		$this->call(ProjectTableSeeder::class);
 		$this->call(IssueTableSeeder::class);
+		$this->call(TracksTableSeeder::class);
     }
 }

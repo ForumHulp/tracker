@@ -70,7 +70,7 @@ class IssueTableSeeder extends Seeder
 					"depth" => 1,
 				], [
 					"id" => 4,
-					"status_id" => 2,
+					"status_id" => 3,
 					"type_id" => 1,
 					"priority_id" => 3,
 					"title" => "Sub Issue 2",

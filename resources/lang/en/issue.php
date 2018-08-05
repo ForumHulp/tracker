@@ -22,6 +22,9 @@ return [
 	'title'					=> 'Title',
 	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
-	'progress'				=> 'Progress'
+	'progress'				=> 'Progress',
 	
+	'remark'				=> 'Remark',
+	'time'					=> 'Time',
+	'add_remark'			=> 'Add remark'
 ];

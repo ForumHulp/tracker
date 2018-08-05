@@ -148,4 +148,9 @@ class Issue extends \Baum\Node
     {
         return $this->belongsTo(User::class, 'assigned', 'id')->withDefault(['id' => 0]);
     }
+
+    public function tracks()
+    {
+        return $this->hasMany(Track::class, 'issue_id', 'id');
+    }
 }
