@@ -68,8 +68,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    
-                    <!-- if user -->
+                    @if (auth()->check() && $issue->users->id ==  auth()->user()->id )
                    	<tr>
 				    {!! \Form::open(['route' => 'tracker.store']) !!}
                         {!! \Form::hidden('issue_id', $issue->id) !!}
@@ -77,12 +76,12 @@
 
                    		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
                         <td>{!! Form::select('timeslot_id', $timeslot, 0, ['class' => 'form-control']) !!}</td>
-                        <td>{!! \Form::number('progress', null, ['class' => 'form-control', 'size' => 3, 'maxlength' => 3]) !!}
+                        <td><input name="progress" type="range" min="0" max="100" value="0"/>
                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
                         </td>
                     </tr>
                     {!! \Form::close() !!}
-                    <!-- endif user -->
+                    @endif
                     
 					</tbody>                	
                 </table>

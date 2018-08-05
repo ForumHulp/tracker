@@ -12,15 +12,15 @@
         <div class="container">
         	<div class="row">
 
-            @if(\Auth::check())
-            @if (auth()->user()->hasRole('manager'))
-           <div id="dashboard" class="col-md-2">
-                @include('dashboard.sidebar')
-            </div>
-            @endif
+            @if(auth()->check())
+                @if (auth()->user()->hasRole('manager'))
+               <div id="dashboard" class="col-md-2">
+                    @include('dashboard.sidebar')
+                </div>
+                @endif
             @endif
         
-            <div class="@if(\Auth::check()) col-md-10 @else col-md-12 @endif" id="content">
+            <div class="@if(auth()->check() && auth()->user()->hasRole('manager')) col-md-10 @else col-md-12 @endif" id="content">
                 @yield('content')
             </div>
 
