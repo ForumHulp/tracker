@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <h1 id="title">Issue Tracker</h1>
+        <h1 id="title">Issue Tracker</h1>@if (auth()->check())<span class="d-inline-block float-right">Welcome {{ auth()->user()->name }}</span>@endif
 
         <table class="table">
             <tr>
