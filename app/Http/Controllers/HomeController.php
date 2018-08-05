@@ -34,7 +34,7 @@ class HomeController extends Controller
 		
 		
         $data = [
-            'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->get(),
+            'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->paginate(10),
 			'timeslot'	=> $timeslot
         ];
 

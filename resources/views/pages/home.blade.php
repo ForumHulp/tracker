@@ -18,7 +18,7 @@
             </tr>
             @foreach($issues as $issue)
                 <tr>
-                    <td>@if ($issue->isChild())<a href="#i{{ $issue->id }}" data-toggle="collapse"><i class="fa fa-long-arrow-right"></i> @endif{{ $issue->id }}</a></td>
+                    <td><a href="#i{{ $issue->id }}" data-toggle="collapse">@if ($issue->isChild())<i class="fa fa-long-arrow-right"></i> @endif{{ $issue->id }}</a></td>
                     <td>{{ $issue->projects->clients->name }}</td>
                     <td>{{ $issue->projects->title }}</td>
                     <td>{{ $issue->statuses->title }}</td>
@@ -42,9 +42,10 @@
                     @endif
                     </td>
                 </tr>
-                @if ($issue->isChild())<tr id="i{{ $issue->id }}" class="collapse">
+                <tr id="i{{ $issue->id }}" class="collapse">
                 <td></td>
-                <td colspan="7">
+                <td colspan="7">{{ $issue->description }}
+                @if ($issue->isChild())
                 <table class="table table-hover table-sm">
                 	<thead>
                     <tr>
@@ -85,10 +86,12 @@
                     
 					</tbody>                	
                 </table>
-                </td>
                 @endif
+                </td>
+                </tr>
             @endforeach
         </table>
+    {{ $issues->links() }}
     </div>
 
 @endsection
