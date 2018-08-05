@@ -27,8 +27,7 @@ return [
 	'password'				=> 'Password',
 	'role'					=> 'Role',
 	'options'				=> 'Options',
-  'create'				=> 'A new user has been added!',
-  'update'				=> 'A user has been updated!',
-  'destroy'				=> 'A user has been deleted!',
-
+	'create'				=> 'A new user has been added!',
+	'update'				=> 'A user has been updated!',
+	'destroy'				=> 'A user has been deleted!',
 ];

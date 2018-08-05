@@ -23,8 +23,7 @@ return [
 	'update_title'			=> 'Update status title',
 	'title'					=> 'Title',
 	'options'				=> 'Options',
-  'create'				=> 'A new status has been added!',
-  'update'				=> 'A status has been updated!',
-  'destroy'				=> 'A status has been deleted!',
-
+	'create'				=> 'A new status has been added!',
+	'update'				=> 'A status has been updated!',
+	'destroy'				=> 'A status has been deleted!',
 ];

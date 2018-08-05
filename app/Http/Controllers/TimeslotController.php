@@ -78,19 +78,14 @@ class TimeslotController extends Controller
             'user_id' => 'required',
         ]);
 
-        $data = [
-            'message' => __('timeslot.create'),
-            'alert-class' => 'alert-success',
-        ];
-
-
-
         $attributes = $request->all();
 
         Timeslot::create($attributes);
 
-
-
+        $data = [
+            'message' => __('timeslot.create'),
+            'alert-class' => 'alert-success',
+        ];
         return redirect()->route('timeslot.index')->with($data);
     }
 
@@ -190,6 +185,6 @@ class TimeslotController extends Controller
             'alert-class' => 'alert-success',
         ];
 
-        return redirect()->route('timeslot.index')->with($data);;
+        return redirect()->route('timeslot.index')->with($data);
     }
 }

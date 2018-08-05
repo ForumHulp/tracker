@@ -55,12 +55,10 @@ class ClientController extends Controller
 
         $attributes = $request->all();
 
-
         $data = [
             'message' => __('client.create'),
             'alert-class' => 'alert-success',
         ];
-
 
         Client::create($attributes);
 
@@ -116,13 +114,13 @@ class ClientController extends Controller
 
         $client->update($attributes);
 
-
-        Client::create($attributes);
+  //      Client::create($attributes);
 
         $data = [
             'message' => __('client.update'),
             'alert-class' => 'alert-success',
         ];
+		
         return redirect()->route('client.index')->with($data);
     }
 
@@ -144,6 +142,7 @@ class ClientController extends Controller
         }
 
         $client->delete();
+		
         $data = [
             'message' => __('client.destroy'),
             'alert-class' => 'alert-success',

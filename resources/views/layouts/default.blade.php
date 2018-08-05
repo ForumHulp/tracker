@@ -8,8 +8,7 @@
         <div id="navbar">
             @include('includes.navbar')
         </div>
-
-
+        
         <div class="container content">
         	<div class="row">
 
@@ -20,9 +19,9 @@
                 </div>
                 @endif
             @endif
-
+        
             <div class="@if(auth()->check() && auth()->user()->hasRole('manager')) col-md-10 @else col-md-12 @endif" id="content">
-                @if(Session::has('message'))
+                 @if(Session::has('message'))
                     <p class="alert {{ Session::get('alert-class') }}">{{ Session::get('message') }}</p>
                 @endif
                 @yield('content')

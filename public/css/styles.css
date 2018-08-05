@@ -1,5 +1,5 @@
 .container.content{
-  padding-top: 56px;
+    padding-top: 56px;
 }
 
 #content, #message{
@@ -10,7 +10,7 @@
 	height:100%;
 	color:white;
 	background-color:black;
-  float: left;
+	float: left;
 }
 
 #dashboard a {

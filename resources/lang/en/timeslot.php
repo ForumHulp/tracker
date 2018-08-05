@@ -29,5 +29,4 @@ return [
 	'create'				=> 'A new timeslot has been added!',
 	'update'				=> 'A timeslot has been updated!',
 	'destroy'				=> 'A timeslot has been deleted!',
-
 ];

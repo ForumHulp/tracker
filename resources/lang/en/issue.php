@@ -26,5 +26,9 @@ return [
 	
 	'remark'				=> 'Remark',
 	'time'					=> 'Time',
-	'add_remark'			=> 'Add remark'
+	'add_remark'			=> 'Add remark',
+	
+	'type1'					=> 'Bug',
+	'type2'					=> 'Support',
+	'type3'					=> 'Feature',
 ];

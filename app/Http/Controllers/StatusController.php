@@ -22,7 +22,7 @@ class StatusController extends Controller
         $data = [
             'statuses' => Status::all(),
         ];
-
+		
 		if (auth()->user()->hasRole('manager'))
 		{
         	return view('dashboard/status/index')->with($data);
@@ -137,6 +137,7 @@ class StatusController extends Controller
         }
 
         $status->delete();
+
         $data = [
             'message' => __('status.destroy'),
             'alert-class' => 'alert-success',
