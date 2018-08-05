@@ -52,7 +52,11 @@ class PriorityController extends Controller
 
         Priority::create($attributes);
 
-        return redirect()->route('priority.index');
+        $data = [
+            'message' => __('priority.create'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('priority.index')->with($data);
     }
 
     /**
@@ -99,7 +103,11 @@ class PriorityController extends Controller
 
         $priority->update($attributes);
 
-        return redirect()->route('priority.index');
+        $data = [
+            'message' => __('priority.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('priority.index')->with($data);
     }
 
     /**
@@ -121,6 +129,10 @@ class PriorityController extends Controller
 
         $priority->delete();
 
-        return redirect()->route('priority.index');
+        $data = [
+            'message' => __('priority.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('priority.index')->with($data);
     }
 }

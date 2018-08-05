@@ -78,11 +78,20 @@ class TimeslotController extends Controller
             'user_id' => 'required',
         ]);
 
+        $data = [
+            'message' => __('timeslot.create'),
+            'alert-class' => 'alert-success',
+        ];
+
+
+
         $attributes = $request->all();
 
         Timeslot::create($attributes);
 
-        return redirect()->route('timeslot.index');
+
+
+        return redirect()->route('timeslot.index')->with($data);
     }
 
     /**
@@ -148,7 +157,12 @@ class TimeslotController extends Controller
 
         $timeslot->update($attributes);
 
-        return redirect()->route('timeslot.index');
+        $data = [
+            'message' => __('timeslot.update'),
+            'alert-class' => 'alert-success',
+        ];
+
+        return redirect()->route('timeslot.index')->with($data);;
     }
 
     /**
@@ -171,6 +185,11 @@ class TimeslotController extends Controller
 
         $timeslot->delete();
 
-        return redirect()->route('timeslot.index');
+        $data = [
+            'message' => __('timeslot.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+
+        return redirect()->route('timeslot.index')->with($data);;
     }
 }

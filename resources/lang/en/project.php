@@ -25,5 +25,8 @@ return [
 	'client'				=> 'Client',
 	'description'			=> 'Description',
 	'options'				=> 'Options',
-	
+  'create'				=> 'A new project has been added!',
+  'update'				=> 'A project has been updated!',
+  'destroy'				=> 'A project has been deleted!',
+
 ];

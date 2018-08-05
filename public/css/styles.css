@@ -1,12 +1,16 @@
-#content{
-    padding-top: 70px;
+.container.content{
+  padding-top: 56px;
+}
+
+#content, #message{
+    float: right;
 }
 
 #dashboard {
-    padding-top: 70px;
 	height:100%;
 	color:white;
 	background-color:black;
+  float: left;
 }
 
 #dashboard a {

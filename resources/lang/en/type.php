@@ -23,5 +23,8 @@ return [
 	'update_title'			=> 'Update type title',
 	'title'					=> 'Type',
 	'options'				=> 'Options',
-	
+  'create'				=> 'A new type has been added!',
+  'update'				=> 'A type has been updated!',
+  'destroy'				=> 'A type has been deleted!',
+
 ];

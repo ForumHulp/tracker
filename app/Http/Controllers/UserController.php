@@ -64,13 +64,19 @@ class UserController extends Controller
         ]);
 
         $attributes = $request->all();
-		
+
         $user = User::create($attributes);
 
 		$role = $request->get('role');
 	    $user->roles()->attach($role);
 
-        return redirect()->route('user.index');
+
+      $data = [
+          'message' => __('user.create'),
+          'alert-class' => 'alert-success',
+      ];
+      return redirect()->route('user.index')->with($data);
+
     }
 
     /**
@@ -85,7 +91,7 @@ class UserController extends Controller
         if(is_null($user)) {
             abort(404);
         }
-		
+
 		$role = Role::select('id', 'name')->get();
 		foreach($role as $data)
 		{
@@ -124,7 +130,7 @@ class UserController extends Controller
         }
 
         $attributes = $request->all();
-		
+
 		if (empty($request->get('password', '')))
 		{
 			$attributes = $request->except('password');
@@ -134,12 +140,18 @@ class UserController extends Controller
 		}
 
         $user->update($attributes);
-		
+
 		$role = $request->get('role');
 		$user->roles()->detach();
 	    $user->roles()->attach($role);
 
-        return redirect()->route('user.index');
+
+
+      $data = [
+          'message' => __('user.update'),
+          'alert-class' => 'alert-success',
+      ];
+      return redirect()->route('user.index')->with($data);
     }
 
     /**
@@ -162,6 +174,11 @@ class UserController extends Controller
         $user->delete();
 		$user->roles()->detach();
 
-        return redirect()->route('user.index');
+
+        $data = [
+            'message' => __('user.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('user.index')->with($data);
     }
 }

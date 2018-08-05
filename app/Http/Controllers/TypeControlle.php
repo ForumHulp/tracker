@@ -52,7 +52,11 @@ class TypeController extends Controller
 
         Type::create($attributes);
 
-        return redirect()->route('type.index');
+        $data = [
+            'message' => __('type.create'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 
     /**
@@ -99,7 +103,11 @@ class TypeController extends Controller
 
         $type->update($attributes);
 
-        return redirect()->route('type.index');
+        $data = [
+            'message' => __('type.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 
     /**
@@ -121,6 +129,10 @@ class TypeController extends Controller
 
         $type->delete();
 
-        return redirect()->route('type.index');
+        $data = [
+            'message' => __('type.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 }

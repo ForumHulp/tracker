@@ -22,7 +22,7 @@ class StatusController extends Controller
         $data = [
             'statuses' => Status::all(),
         ];
-		
+
 		if (auth()->user()->hasRole('manager'))
 		{
         	return view('dashboard/status/index')->with($data);
@@ -58,7 +58,11 @@ class StatusController extends Controller
 
         Status::create($attributes);
 
-        return redirect()->route('status.index');
+        $data = [
+            'message' => __('status.create'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 
     /**
@@ -107,7 +111,11 @@ class StatusController extends Controller
 
         $status->update($attributes);
 
-        return redirect()->route('status.index');
+        $data = [
+            'message' => __('status.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 
     /**
@@ -129,7 +137,10 @@ class StatusController extends Controller
         }
 
         $status->delete();
-
-        return redirect()->route('status.index');
+        $data = [
+            'message' => __('status.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('status.index')->with($data);
     }
 }

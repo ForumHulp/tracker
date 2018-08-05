@@ -23,5 +23,8 @@ return [
 	'update_title'			=> 'Update priority title',
 	'title'					=> 'Title',
 	'options'				=> 'Options',
-	
+  'create'				=> 'A new priority has been added!',
+  'update'				=> 'A priority has been updated!',
+  'destroy'				=> 'A priority has been deleted!',
+
 ];

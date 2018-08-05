@@ -28,5 +28,8 @@ return [
     'city'                  => 'City',
     'address'               => 'Address',
 	'options'				=> 'Options',
-	
+  'create'				=> 'A new client has been added!',
+  'update'				=> 'A client has been updated!',
+  'destroy'				=> 'A client has been deleted!',
+
 ];

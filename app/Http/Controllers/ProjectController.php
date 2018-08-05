@@ -67,7 +67,11 @@ class ProjectController extends Controller
 
         Project::create($attributes);
 
-        return redirect()->route('project.index');
+        $data = [
+            'message' => __('project.create'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('project.index')->with($data);
     }
 
     /**
@@ -124,7 +128,11 @@ class ProjectController extends Controller
 
         $project->update($attributes);
 
-        return redirect()->route('project.index');
+        $data = [
+            'message' => __('project.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('project.index')->with($data);
     }
 
     /**
@@ -146,6 +154,10 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()->route('project.index');
+        $data = [
+            'message' => __('project.destroy'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('project.index')->with($data);
     }
 }
