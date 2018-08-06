@@ -19,6 +19,7 @@ return [
 	'create_type'			=> 'Create new type',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
+    'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'update_title'			=> 'Update type title',
 	'title'					=> 'Type',

@@ -19,6 +19,7 @@ return [
 	'create_priority'		=> 'Create new priority',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
+    'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'update_title'			=> 'Update priority title',
 	'title'					=> 'Title',

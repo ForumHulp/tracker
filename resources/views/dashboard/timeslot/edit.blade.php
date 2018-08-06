@@ -7,12 +7,12 @@
 
 
     <div class="form-group">
-        <label for="time_amount">@lang('timeslot.edit')</label>
+        <label for="time_amount">@lang('timeslot.edit_time')</label>
         {!! Form::select('time_amount', $time_amounts, $timeslot->time_amount, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
-        <label for="date">@lang('timeslot.edit')</label>
+        <label for="date">@lang('timeslot.edit_date')</label>
         {{ Form::date('date', $timeslot->date, ['class' => 'form-control']) }}
     </div>
 

@@ -38,3 +38,19 @@
 .btn-link {
 	margin-top:-6px;
 }
+
+.btn-edit {
+    margin-right: 12px;
+}
+
+.btn-create {
+    margin-bottom: 12px;
+}
+
+.alert-success {
+    margin-top: 15px;
+}
+
+.alert-danger {
+    margin-top: 15px;
+}

@@ -19,6 +19,7 @@ return [
 	'create_user'			=> 'Create new user',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
+    'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'update_title'			=> 'Update user',
 	'name'					=> 'Name',

@@ -19,6 +19,7 @@ return [
 	'create_project'		=> 'Create new project',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
+    'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'update_title'			=> 'Update project',
 	'title'					=> 'Title',

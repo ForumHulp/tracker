@@ -10,6 +10,6 @@
     </div>
 
     {!! \Form::submit(__('priority.save'), ['class' => 'btn btn-small btn-primary']) !!}
-
+    <a class="btn btn-small btn-primary" href="{{ route('priority.index') }}">@lang('priority.cancel')</a>
     {!! \Form::close() !!}
 @stop

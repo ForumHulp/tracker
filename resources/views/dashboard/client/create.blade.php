@@ -2,14 +2,40 @@
 
 @section('content')
 <h2>@lang('client.create_client')</h2>
-    {!! \Form::open(['route' => 'status.store']) !!}
+    {!! \Form::open(['route' => 'client.store']) !!}
 
     <div class="form-group">
-        <label for="title">@lang('status.add')</label>
-        {!! \Form::text('title', null, ['class' => 'form-control']) !!}
+        <label for="name">@lang('client.name')</label>
+        {!! \Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 
-    {!! \Form::submit(__('status.add'), ['class' => 'btn btn-small btn-primary']) !!}
+    <div class="form-group">
+        <label for="email">@lang('client.email')</label>
+        {!! \Form::text('email', null, ['class' => 'form-control']) !!}
+    </div>
 
+    <div class="form-group">
+        <label for="phone">@lang('client.phone')</label>
+        {!! \Form::text('phone', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        <label for="country">@lang('client.country')</label>
+        {!! \Form::text('country', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        <label for="city">@lang('client.city')</label>
+        {!! \Form::text('city', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        <label for="address">@lang('client.address')</label>
+        {!! \Form::text('address', null, ['class' => 'form-control']) !!}
+    </div>
+
+
+    {!! \Form::submit(__('client.add'), ['class' => 'btn btn-small btn-primary']) !!}
+    <a class="btn btn-small btn-primary" href="{{ route('client.index') }}">@lang('client.cancel')</a>
     {!! \Form::close() !!}
 @stop

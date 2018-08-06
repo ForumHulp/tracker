@@ -25,6 +25,6 @@
     </div>
 
     {!! \Form::submit(__('user.add'), ['class' => 'btn btn-small btn-primary']) !!}
-
+    <a class="btn btn-small btn-primary" href="{{ route('user.index') }}">@lang('user.cancel')</a>
     {!! \Form::close() !!}
 @stop

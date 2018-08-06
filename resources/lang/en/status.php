@@ -19,6 +19,7 @@ return [
 	'create_status'			=> 'Create new status',
 	'edit'					=> 'Edit',
 	'save'					=> 'Save',
+    'cancel'				=> 'Cancel',
 	'dell'					=> 'Delete',
 	'update_title'			=> 'Update status title',
 	'title'					=> 'Title',

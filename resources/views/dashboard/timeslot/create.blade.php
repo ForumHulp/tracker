@@ -10,12 +10,12 @@
     </div>
 
     <div class="form-group">
-        <label for="date">@lang('timeslot.edit')</label>
-        {!! Form::date('date', \Carbon\Carbon::now()); !!}
+        <label for="date">@lang('timeslot.create_date')</label>
+        {!! Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}
     </div>
 
     {!! Form::hidden('user_id', $user_id) !!}
-    {!! \Form::submit(__('timeslot.add'), ['class' => 'btn btn-small btn-primary']) !!}
+    {!! \Form::button( __('timeslot.add'), ['type' => 'submit', 'class' => 'btn btn-small btn-primary']) !!}
     <a class="btn btn-small btn-primary" href="{{ route('timeslot.index') }}">@lang('timeslot.cancel')</a>
     {!! \Form::close() !!}
 @stop

@@ -2,7 +2,12 @@
 
 @section('content')
     <h1>@lang('client.overview')</h1>
-    @if (auth()->user()->hasRole('manager'))<a href="{{ route('client.create') }}" class="btn btn-primary btn-sm float-right">@lang('client.add')</a>@endif
+    @if (auth()->user()->hasRole('manager'))
+        <a href="{{ route('client.create') }}" class="btn btn-primary btn-sm float-right btn-create">
+            <i class="fa fa-plus"></i>
+            @lang('client.add')
+        </a>
+    @endif
     <table class="table">
         <tr>
             <th>@lang('client.name')</th>
@@ -23,12 +28,19 @@
                 <td>{{ $client->address }}</td>
                 @if (auth()->user()->hasRole('manager'))
                 <td>
-                    <a href="{{ route('client.edit', [$client->id]) }}" class="float-left">@lang('client.edit')</a>
+                    <div class="btn-group">
+                        <a href="{{ route('client.edit', [$client->id]) }}">
+                            <button class="btn btn-success btn-sm btn-edit">
+                                <i class="fa fa-pencil"></i>
+                                @lang('client.edit')
+                            </button>
+                        </a>
 
-                    {!! \Form::open(['route' => 'client.destroy', 'class' => 'float-left']) !!}
-                    {!! \Form::button( __('client.dell'), ['type' => 'submit', 'class' => 'btn btn-link']) !!}
-                    {!! \Form::hidden('id', $client->id) !!}
-                    {!! \Form::close() !!}
+                        {!! \Form::open(['route' => 'client.destroy']) !!}
+                        {!! \Form::button('<i class="fa fa-trash"></i> ' . __('client.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                        {!! \Form::hidden('id', $client->id) !!}
+                        {!! \Form::close() !!}
+                    </div>
                 </td>
                 @endif
             </tr>

@@ -20,6 +20,6 @@
     </div>
 
     {!! \Form::submit(__('project.save'), ['class' => 'btn btn-small btn-primary']) !!}
-
+    <a class="btn btn-small btn-primary" href="{{ route(project.index') }}">@lang('project.cancel')</a>
     {!! \Form::close() !!}
 @stop

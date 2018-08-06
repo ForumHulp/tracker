@@ -5,7 +5,7 @@
     {!! \Form::model($user, ['route' => 'user.update']) !!}
     {!! \Form::hidden('id', $user->id) !!}
     <div class="form-group">
-        <label for="title">@lang('user.name')</label>
+        <label for="name">@lang('user.name')</label>
         {!! \Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
     
@@ -25,6 +25,6 @@
     </div>
 
     {!! \Form::submit(__('user.save'), ['class' => 'btn btn-small btn-primary']) !!}
-
+    <a class="btn btn-small btn-primary" href="{{ route('user.index') }}">@lang('user.cancel')</a>
     {!! \Form::close() !!}
 @stop

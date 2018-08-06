@@ -10,6 +10,6 @@
     </div>
 
     {!! \Form::submit(__('type.save'), ['class' => 'btn btn-small btn-primary']) !!}
-
+    <a class="btn btn-small btn-primary" href="{{ route('type.index') }}">@lang('type.cancel')</a>
     {!! \Form::close() !!}
 @stop

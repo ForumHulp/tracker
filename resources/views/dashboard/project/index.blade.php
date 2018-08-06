@@ -2,7 +2,12 @@
 
 @section('content')
     <h1>@lang('project.overview')</h1>
-    @if (auth()->user()->hasRole('manager'))<a href="{{ route('project.create') }}" class="btn btn-primary btn-sm float-right">@lang('project.add')</a>@endif
+    @if (auth()->user()->hasRole('manager'))
+        <a href="{{ route('project.create') }}" class="btn btn-primary btn-sm float-right btn-create">
+            <i class="fa fa-plus"></i>
+            @lang('project.add')
+        </a>
+    @endif
     <table class="table">
         <tr>
             <th>@lang('project.title')</th>
@@ -15,12 +20,19 @@
                 <td>{{ $project->clients->name }}</td>
                 @if (auth()->user()->hasRole('manager'))
                 <td>
-                    <a href="{{ route('project.edit', [$project->id]) }}" class="float-left">@lang('project.edit')</a>
+                    <div class="btn-group">
+                        <a href="{{ route('project.edit', [$project->id]) }}">
+                            <button class="btn btn-success btn-sm btn-edit">
+                                <i class="fa fa-pencil"></i>
+                                @lang('project.edit')
+                            </button>
+                        </a>
 
-                    {!! \Form::open(['route' => 'project.destroy', 'class' => 'float-left']) !!}
-                    {!! \Form::button( __('project.dell'), ['type' => 'submit', 'class' => 'btn btn-link']) !!}
-                    {!! \Form::hidden('id', $project->id) !!}
-                    {!! \Form::close() !!}
+                        {!! \Form::open(['route' => 'project.destroy']) !!}
+                        {!! \Form::button('<i class="fa fa-trash"></i> ' . __('project.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                        {!! \Form::hidden('id', $project->id) !!}
+                        {!! \Form::close() !!}
+                    </div>
                 </td>
                 @endif
             </tr>

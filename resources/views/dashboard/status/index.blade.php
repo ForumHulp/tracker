@@ -2,7 +2,12 @@
 
 @section('content')
     <h1>@lang('status.overview')</h1>
-    @if (auth()->user()->hasRole('manager'))<a href="{{ route('status.create') }}" class="btn btn-primary btn-sm float-right">@lang('status.add')</a>@endif
+    @if (auth()->user()->hasRole('manager'))
+        <a href="{{ route('status.create') }}" class="btn btn-primary btn-sm float-right btn-create">
+            <i class="fa fa-plus"></i>
+            @lang('status.add')
+        </a>
+    @endif
     <table class="table">
         <tr>
             <th>@lang('status.title')</th>
@@ -13,12 +18,19 @@
                 <td>{{ $status->title }}</td>
                 @if (auth()->user()->hasRole('manager'))
                 <td>
-                    <a href="{{ route('status.edit', [$status->id]) }}" class="float-left">@lang('status.edit')</a>
+                    <div class="btn-group">
+                        <a href="{{ route('status.edit', [$status->id]) }}">
+                            <button class="btn btn-success btn-sm btn-edit">
+                                <i class="fa fa-pencil"></i>
+                                @lang('status.edit')
+                            </button>
+                        </a>
 
-                    {!! \Form::open(['route' => 'status.destroy', 'class' => 'float-left']) !!}
-                    {!! \Form::button( __('status.dell'), ['type' => 'submit', 'class' => 'btn btn-link']) !!}
-                    {!! \Form::hidden('id', $status->id) !!}
-                    {!! \Form::close() !!}
+                        {!! \Form::open(['route' => 'status.destroy']) !!}
+                        {!! \Form::button('<i class="fa fa-trash"></i> ' . __('status.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                        {!! \Form::hidden('id', $status->id) !!}
+                        {!! \Form::close() !!}
+                    </div>
                 </td>
                 @endif
             </tr>

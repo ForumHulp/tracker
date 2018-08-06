@@ -2,7 +2,12 @@
 
 @section('content')
     <h1>@lang('timeslot.overview')</h1>
-    @if (auth()->user()->hasRole('manager'))<a href="{{ route('timeslot.create') }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"> </i>@lang('timeslot.add')</a>@endif
+    @if (auth()->user()->hasRole('manager'))
+        <a href="{{ route('timeslot.create') }}" class="btn btn-primary btn-sm float-right btn-create">
+            <i class="fa fa-plus"></i>
+            @lang('timeslot.add')
+        </a>
+    @endif
     <table class="table">
         <tr>
             <th>@lang('timeslot.time_amount')</th>
@@ -22,14 +27,19 @@
                 <td>{{ date("d/m/Y", strtotime($timeslot->date)) }}</td>
                 <td>{{ $timeslot->user_id }}</td>
                 <td>
-                @if (auth()->user()->hasRole('manager'))
-                    <a href="{{ route('timeslot.edit', [$timeslot->id]) }}" class="float-left  btn btn-link"><i class="fa fa-pencil"></i></a>
-                    <a href="{{ route('timeslot.edit', [$timeslot->id]) }}" class="float-left btn btn-link">Edit</a>
-                    {!! \Form::open(['route' => 'timeslot.destroy', 'class' => 'float-left']) !!}
-                    {!! \Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-link']) !!}
-                    {!! \Form::button( __('timeslot.dell'), ['type' => 'submit', 'class' => 'btn btn-link']) !!}
-                    {!! \Form::hidden('id', $timeslot->id) !!}
-                    {!! \Form::close() !!}
+                    <div class="btn-group">
+                        @if (auth()->user()->hasRole('manager'))
+                            <a href="{{ route('timeslot.edit', [$timeslot->id]) }}">
+                                <button class="btn btn-success btn-sm btn-edit">
+                                    <i class="fa fa-pencil"></i>
+                                    @lang('timeslot.edit')
+                                </button>
+                            </a>
+                            {!! \Form::open(['route' => 'timeslot.destroy', 'class' => 'float-left']) !!}
+                            {!! \Form::button('<i class="fa fa-trash"></i> ' . __('timeslot.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                            {!! \Form::hidden('id', $timeslot->id) !!}
+                            {!! \Form::close() !!}
+                    </div>
                 @else
                 @endif
                 </td>
