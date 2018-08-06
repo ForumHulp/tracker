@@ -30,15 +30,15 @@
                     @if (!$issue->isChild() && $issue->getLeaves()->count())
                         @foreach($issue->getLeaves() as $leave)
                         @if ($leave->status_id == 3) <?php $progress++; ?> @endif
-                   
+
                         @endforeach
                         <?php $progress = ($progress / $issue->getLeaves()->count()) * 100; ?>
-                    
+
 	                    <div class="progress">
     	                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progress}}%">
             	            	<span class="sr-only">{{ $progress }}% Complete</span>
                 	    	</div>
-                    	</div> 
+                    	</div>
                     @endif
                     </td>
                 </tr>
@@ -50,6 +50,7 @@
                 	<thead>
                     <tr>
                     	<th>@lang('issue.remark')</th>
+                      <th>@lang('issue.date')</th>
                         <th>@lang('issue.time')</th>
                         <th>@lang('issue.progress')</th>
                     </tr>
@@ -65,26 +66,29 @@
     	                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ $track->progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $track->progress}}%">
             	            	<span class="sr-only">{{ $track->progress }}% Complete</span>
                 	    	</div>
-                    	</div> 
+                    	</div>
                         </td>
                     </tr>
                     @endforeach
                     @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
                    	<tr>
-				    {!! \Form::open(['route' => 'tracker.store']) !!}
+				                {!! \Form::open(['route' => 'tracker.store']) !!}
                         {!! \Form::hidden('issue_id', $issue->id) !!}
                         {!! \Form::hidden('user_id', $issue->users->id) !!}
 
                    		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
-                        <td>{!! Form::number('used_time', null, ['class' => 'form-control']) !!}</td>
+                        <td>{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</td>
+                        <td>{!! Form::time('used_time', null, ['class' => 'form-control', 'id'=>'timepicker']) !!}</td>
                         <td><input name="progress" type="range" min="0" max="100" value="0"/>
                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
                         </td>
+
                     </tr>
                     {!! \Form::close() !!}
                     @endif
-                    
-					</tbody>                	
+
+					</tbody>
+
                 </table>
                 @endif
                 </td>
@@ -92,6 +96,9 @@
             @endforeach
         </table>
     {{ $issues->links() }}
+
     </div>
+
+
 
 @endsection

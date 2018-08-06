@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Issue;
-use App\Timeslot;
 
 class HomeController extends Controller
 {
@@ -26,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
 		Issue::rebuild();
-		
+
+
         $data = [
             'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->paginate(10),
         ];
