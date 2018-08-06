@@ -5,6 +5,5 @@
 	<li @if (\Request::is('user*')) class="selected" @endif><a href="{{ route('user.index') }}">@lang('dashboard.user')</a></li>
 	<li @if (\Request::is('client*')) class="selected" @endif><a href="{{ route('client.index') }}">@lang('dashboard.client')</a></li>
 	<li @if (\Request::is('project*')) class="selected" @endif><a href="{{ route('project.index') }}">@lang('dashboard.project')</a></li>
-	<li @if (\Request::is('timeslot*')) class="selected" @endif><a href="{{ route('timeslot.index') }}">@lang('dashboard.timeslot')</a></li>
 	<li @if (\Request::is('type*')) class="selected" @endif><a href="{{ route('type.index') }}">@lang('dashboard.type')</a></li>
  </ul>

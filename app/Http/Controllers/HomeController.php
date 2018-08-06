@@ -27,15 +27,8 @@ class HomeController extends Controller
     {
 		Issue::rebuild();
 		
-		$timeslots = Timeslot::select('id', 'time_amount')->get();
-		foreach($timeslots as $value) {
-			$timeslot[$value->id] = $value->time_amount;
-		}
-		
-		
         $data = [
             'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->paginate(10),
-			'timeslot'	=> $timeslot
         ];
 
         return view('pages.home')->with($data);
