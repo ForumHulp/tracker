@@ -76,7 +76,7 @@
                         {!! \Form::hidden('user_id', $issue->users->id) !!}
 
                    		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
-                        <td>{!! Form::select('timeslot_id', $timeslot, 0, ['class' => 'form-control']) !!}</td>
+                        <td>{!! Form::number('used_time', null, ['class' => 'form-control']) !!}</td>
                         <td><input name="progress" type="range" min="0" max="100" value="0"/>
                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
                         </td>
