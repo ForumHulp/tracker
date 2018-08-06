@@ -7,9 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                <span class="nav-link">
-                @include('includes.issue_count')
-                </span>
+                	@include('includes.issue_count')
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('status.index') }}">@lang('site.dashboard')</a>
