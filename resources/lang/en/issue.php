@@ -31,4 +31,8 @@ return [
 	'type1'					=> 'Bug',
 	'type2'					=> 'Support',
 	'type3'					=> 'Feature',
+
+	'status1'				=> 'New',
+	'status2'				=> 'Assigned',
+	'status3'				=> 'Closed',
 ];
