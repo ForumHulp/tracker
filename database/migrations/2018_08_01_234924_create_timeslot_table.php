@@ -45,5 +45,18 @@ class CreateTimeslotTable extends Migration
     public function down()
     {
         Schema::dropIfExists('timeslots');
+
+        Schema::create('timeconsumed', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->time('Time Amount');
+            $table->timestamps();
+
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+        });
     }
 }
