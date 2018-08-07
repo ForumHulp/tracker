@@ -12,7 +12,7 @@
         <div class="container content">
         	<div class="row">
 
-            @if(auth()->check())
+            @if(auth()->check() && \Request::getPathInfo() != '/')
                 @if (auth()->user()->hasRole('manager'))
                <div id="dashboard" class="col-md-2">
                     @include('dashboard.sidebar')
@@ -20,11 +20,7 @@
                 @endif
             @endif
         
-            <div class="@if(auth()->check() && auth()->user()->hasRole('manager')) col-md-10 @else col-md-12 @endif" id="content">
-                 @if(Session::has('12message'))
-                    <p class="alert {{ Session::get('alert-class') }}">{{ Session::get('message') }}</p>
-                @endif
-
+            <div class="@if(auth()->check() && auth()->user()->hasRole('manager') && \Request::getPathInfo() != '/') col-md-10 @else col-md-12 @endif" id="content">
                 @yield('content')
             </div>
 

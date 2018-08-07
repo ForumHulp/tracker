@@ -29,6 +29,9 @@ return [
 	'time'					=> 'Time',
 	'add_remark'			=> 'Add remark',
 	
+	'add'					=> 'Add new issue',
+	'edit_issue'			=> 'Edit issue',
+
 	'type1'					=> 'Bug',
 	'type2'					=> 'Support',
 	'type3'					=> 'Feature',

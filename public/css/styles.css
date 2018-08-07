@@ -48,3 +48,8 @@
 
 .alert {color:red;}
 
+.btn-create_issue{
+    right: 0px;
+    position: absolute;
+    top: 30px;
+}
