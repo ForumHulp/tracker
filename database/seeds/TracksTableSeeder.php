@@ -18,6 +18,7 @@ class TracksTableSeeder extends Seeder
 				"remark" => "Dit is een remark",
 				"used_time" => 1,
 				"progress" => 20,
+				'date' => date('Y-m-d H:i:s'),
 				'created_at' => date('Y-m-d H:i:s'),
 				'updated_at' => date('Y-m-d H:i:s'),
 			], [
@@ -27,6 +28,7 @@ class TracksTableSeeder extends Seeder
 				"remark" => "Dit is remark 2",
 				"used_time" => 9,
 				"progress" => 30,
+				'date' => date('Y-m-d H:i:s'),
 				'created_at' => date('Y-m-d H:i:s'),
 				'updated_at' => date('Y-m-d H:i:s'),
 			]]

@@ -105,21 +105,11 @@
     {{ $issues->links() }}
 
     </div>
-  
 
-
-  </tbody>
-  </table>
   <script type="text/javascript">
-
   $('.timepicker').datetimepicker({
-
-  format: 'HH:mm',
-  stepping: 15,
-
+	  format: 'HH:mm',
+	  stepping: 15,
   });
-
   </script>
-
-
 @endsection
