@@ -25,6 +25,7 @@ return [
 	'progress'				=> 'Progress',
 	
 	'remark'				=> 'Remark',
+	'date'					=> 'Date',
 	'time'					=> 'Time',
 	'add_remark'			=> 'Add remark',
 	
@@ -35,4 +36,7 @@ return [
 	'status1'				=> 'New',
 	'status2'				=> 'Assigned',
 	'status3'				=> 'Closed',
+
+	'create.track'			=> 'A new track has been added!',
+
 ];

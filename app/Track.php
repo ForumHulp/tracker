@@ -14,13 +14,15 @@ class Track extends Model
         'issue_id',
         'remark',
         'used_time',
-		'progress'
+		'progress',
+		'date'
     ];
 
     public $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
+		'date'
     ];
 
     public function issues()

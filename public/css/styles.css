@@ -26,7 +26,6 @@
   display: inline-block;
   margin-left: -1.3em; /* same as padding-left set on li */
   width: 1.3em; /* same as padding-left set on li */
-  font-size:11px;
   color:white;
 }
 
@@ -47,10 +46,5 @@
     margin-bottom: 12px;
 }
 
-.alert-success {
-    margin-top: 15px;
-}
+.alert {color:red;}
 
-.alert-danger {
-    margin-top: 15px;
-}

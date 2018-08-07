@@ -49,10 +49,10 @@
                 <table class="table table-hover table-sm">
                 	<thead>
                     <tr>
-                    	<th>@lang('issue.remark')</th>
-                      <th>@lang('issue.date')</th>
-                        <th>@lang('issue.time')</th>
-                        <th>@lang('issue.progress')</th>
+                    	<th class="col-md-5">@lang('issue.remark')</th>
+                     	<th class="col-md-2">@lang('issue.date')</th>
+                        <th class="col-md-2">@lang('issue.time')</th>
+                        <th class="col-md-3">@lang('issue.progress')</th>
                     </tr>
 					</thead>
 
@@ -60,7 +60,8 @@
                     @foreach($issue->tracks as $track)
                    	<tr>
                     	<td>{{ $track->remark }}</td>
-                        <td></td>
+                        <td>{{ $track->date->format('d-m-Y') }}</td>
+                        <td>{{ $track->used_time }}</td>
                         <td>
                         <div class="progress">
     	                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ $track->progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $track->progress}}%">
@@ -72,17 +73,16 @@
                     @endforeach
                     @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
                    	<tr>
-				                {!! \Form::open(['route' => 'tracker.store']) !!}
+				        {!! \Form::open(['route' => 'tracker.store']) !!}
                         {!! \Form::hidden('issue_id', $issue->id) !!}
                         {!! \Form::hidden('user_id', $issue->users->id) !!}
 
                    		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
                         <td>{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</td>
                         <td>{!! Form::time('used_time', null, ['class' => 'form-control', 'id'=>'timepicker']) !!}</td>
-                        <td><input name="progress" type="range" min="0" max="100" value="0"/>
+                        <td><input name="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
                         </td>
-
                     </tr>
                     {!! \Form::close() !!}
                     @endif

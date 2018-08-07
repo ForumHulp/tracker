@@ -56,7 +56,7 @@ Route::get('/type/edit/{id}', 'TypeController@getEdit')->name('type.edit');
 Route::post('/type/update', 'TypeController@postUpdate')->name('type.update');
 Route::post('/type/destroy', 'TypeController@postDestroy')->name('type.destroy');
 
-Route::post('/tracker/store', 'TrackerController@postStore')->name('tracker.store');
+Route::post('/tracker/store', 'TrackController@postStore')->name('tracker.store');
 
 
 Auth::routes();
