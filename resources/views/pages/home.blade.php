@@ -86,7 +86,7 @@
 
                    		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
                         <td>{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</td>
-                        <td>{!! Form::time('used_time', null, ['class' => 'form-control', 'id'=>'timepicker']) !!}</td>
+                        <td>{!! Form::text('used_time', null, ['class' => 'form-control timepicker']) !!}</td>
                         <td><input name="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
                         </td>
@@ -105,7 +105,21 @@
     {{ $issues->links() }}
 
     </div>
+  
 
+
+  </tbody>
+  </table>
+  <script type="text/javascript">
+
+  $('.timepicker').datetimepicker({
+
+  format: 'HH:mm',
+  stepping: 15,
+
+  });
+
+  </script>
 
 
 @endsection
