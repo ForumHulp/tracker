@@ -27,11 +27,12 @@ class HomeController extends Controller
 		Issue::rebuild();
 
 
-        $data = [
-            'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->paginate(10),
-        ];
+        //$data = [
+      //      'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->paginate(10),
+      //  ];
 
-        return view('pages.home')->with($data);
+        //return view('pages.home')->with($data);
+        return view('pages.home');
 
     }
 }
