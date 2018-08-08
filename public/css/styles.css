@@ -57,3 +57,10 @@
     position: absolute;
     top: 30px;
 }
+
+.fileinput {padding:5px;background:#1027AD;border:1px solid #1027AD;position:relative;font-size:.8em;color:#fff;border-radius:2px;text-align:center;max-width:85px;cursor:pointer;}
+.hide_file {position:absolute;z-index:1000;opacity:0;cursor:pointer;right:1px;top:0;height:20px;width:55px;}
+.download {
+    display: table-cell;
+    vertical-align: bottom;
+}

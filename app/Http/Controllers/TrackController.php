@@ -100,7 +100,22 @@ class TrackController extends Controller
 			$attributes['used_time'] = $attributes['used_time'] + $extra_minutes;
 		}
 
-        Track::create($attributes);
+        $track = Track::create($attributes);
+		
+		if ($request->file('document'))
+		{
+			$docName = $track->id . '.' . $request->file('document')->getClientOriginalExtension();
+			$request->file('document')->move(base_path() . '/public/docs/', $docName);
+
+        	$track = Track::where('id', $track->id)->first();
+
+			if(is_null($track)) {
+				abort(404);
+			}
+			$attributes['attachment'] = $docName;
+
+	        $track->update($attributes);
+		}
 
         $data = [
             'message' => __('issue.create.track'),
@@ -108,4 +123,15 @@ class TrackController extends Controller
         ];
         return redirect()->route('home')->with($data);
     }
+
+    /**
+     * Download attachment.
+     *
+     * @param string  $id
+     * @return \Illuminate\Http\Response
+     */
+	public function getDownload($id)
+	{
+		return response()->download(public_path('docs/' . $id));
+	}
 }

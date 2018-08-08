@@ -59,6 +59,7 @@ Route::post('/type/destroy', 'TypeController@postDestroy')->name('type.destroy')
 Route::post('/tracker/store', 'TrackController@postStore')->name('tracker.store');
 Route::post('/tracker/edit/{id}', 'TrackController@getEdit')->name('tracker.edit');
 Route::post('/tracker/update', 'TrackController@postUpdate')->name('tracker.update');
+Route::get('/tracker/download/{id}', 'TrackController@getDownload')->name('tracker.download');
 
 
 Route::get('/issue/create', 'IssueController@getCreate')->name('issue.create');

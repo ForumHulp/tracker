@@ -3,7 +3,8 @@ $(document).ready(function(){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     $(document).on('click', '.change-remark', function() {
-        var url = $(this).data('url');
+       $('#fileinput').remove();
+       var url = $(this).data('url');
 
         $.ajax({
             type: "POST",

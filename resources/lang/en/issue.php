@@ -23,6 +23,7 @@ return [
 	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
 	'progress'				=> 'Progress',
+	'upload'				=> 'Upload document',
 	
 	'remark'				=> 'Remark',
 	'date'					=> 'Date',

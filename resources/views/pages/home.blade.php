@@ -65,8 +65,13 @@
 
 					<tbody>
                     @foreach($issue->tracks as $track)
-                   	<tr class="change-remark" data-url="/tracker/edit/{{ $track->id}}" title="@lang('issue.change.track')">
-                    	<td>{{ $track->remark }}</td>
+                   	<tr>
+                    	<td><span class="change-remark" data-url="/tracker/edit/{{ $track->id}}" title="@lang('issue.change.track')">{{ $track->remark }}</span>
+                        
+                        @if ($track->attachment)
+                         <a class="download" href="{{ route('tracker.download', $track->attachment) }}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        @endif
+                        </td>
                         <td>{{ $track->date->format('d-m-Y') }}</td>
                         <td>{{ $track->used_time }}</td>
                         <td>
@@ -79,7 +84,7 @@
                     </tr>
                     @endforeach
                     @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
-                    {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform']) !!}
+                    {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform', 'files' => true]) !!}
                    	<tr>
                         {!! \Form::hidden('issue_id', $issue->id) !!}
                         {!! \Form::hidden('user_id', $issue->users->id) !!}
@@ -88,7 +93,10 @@
                         <td>{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</td>
                         <td>{!! Form::text('used_time', null, ['class' => 'form-control timepicker', 'id' => 'timepicker']) !!}</td>
                         <td><input name="progress" id="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
-                        {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
+                            <div class="fileinput" id="fileinput">@lang('issue.upload')
+                            	<input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
+                            </div>
+                            {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
                         </td>
                     </tr>
                     {!! \Form::close() !!}

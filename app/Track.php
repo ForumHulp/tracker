@@ -15,7 +15,8 @@ class Track extends Model
         'remark',
         'used_time',
 		'progress',
-		'date'
+		'date',
+		'attachment'
     ];
 
     public $dates = [
