@@ -48,6 +48,10 @@
 
 .alert {color:red;}
 
+.change-remark {
+	cursor:pointer;	
+}
+
 .btn-create_issue{
     right: 0px;
     position: absolute;

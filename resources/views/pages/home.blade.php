@@ -65,7 +65,7 @@
 
 					<tbody>
                     @foreach($issue->tracks as $track)
-                   	<tr>
+                   	<tr class="change-remark" data-url="/tracker/edit/{{ $track->id}}" title="@lang('issue.change.track')">
                     	<td>{{ $track->remark }}</td>
                         <td>{{ $track->date->format('d-m-Y') }}</td>
                         <td>{{ $track->used_time }}</td>
@@ -79,16 +79,16 @@
                     </tr>
                     @endforeach
                     @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
+                    {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform']) !!}
                    	<tr>
-				        {!! \Form::open(['route' => 'tracker.store']) !!}
                         {!! \Form::hidden('issue_id', $issue->id) !!}
                         {!! \Form::hidden('user_id', $issue->users->id) !!}
 
-                   		<td>{!! \Form::text('remark', null, ['class' => 'form-control']) !!}</td>
+                   		<td>{!! \Form::text('remark', null, ['class' => 'form-control', 'id'=> 'remark']) !!}</td>
                         <td>{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</td>
-                        <td>{!! Form::text('used_time', null, ['class' => 'form-control timepicker']) !!}</td>
-                        <td><input name="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
-                        {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary']) !!}
+                        <td>{!! Form::text('used_time', null, ['class' => 'form-control timepicker', 'id' => 'timepicker']) !!}</td>
+                        <td><input name="progress" id="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
+                        {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
                         </td>
                     </tr>
                     {!! \Form::close() !!}
@@ -107,9 +107,9 @@
     </div>
 
   <script type="text/javascript">
-  $('.timepicker').datetimepicker({
-	  format: 'HH:mm',
-	  stepping: 15,
-  });
+ // $('.timepicker').datetimepicker({
+//	  format: 'HH:mm',
+//	  stepping: 15,
+//  });
   </script>
 @endsection

@@ -40,6 +40,7 @@ return [
 	'status2'				=> 'Assigned',
 	'status3'				=> 'Closed',
 
+	'change.track'			=> 'Change track!',
 	'create.track'			=> 'A new track has been added!',
 
 ];
