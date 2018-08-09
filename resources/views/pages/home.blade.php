@@ -73,7 +73,7 @@
                         @endif
                         </td>
                         <td>{{ $track->date->format('d-m-Y') }}</td>
-                        <td>{{ $track->used_time }}</td>
+                        <td><?php echo sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60); ?></td>
                         <td>
                         <div class="progress">
     	                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ $track->progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $track->progress}}%">

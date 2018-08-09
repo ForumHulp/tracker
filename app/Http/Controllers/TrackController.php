@@ -24,7 +24,8 @@ class TrackController extends Controller
         if(is_null($track)) {
             abort(404);
         }
-
+		
+		$track->used_time = sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60);
         if($request->wantsJson()) {
             return response()->json([
                 'track' => $track,
