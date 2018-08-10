@@ -30,7 +30,7 @@
 }
 
 .d-inline-block.float-right {
-	position:absolute;
+	position:relative;
 	right:0;
 }
 
@@ -49,7 +49,7 @@
 .alert {color:red;}
 
 .change-remark {
-	cursor:pointer;	
+	cursor:pointer;
 }
 
 .btn-create_issue{
