@@ -23,14 +23,21 @@ return [
 	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
 	'progress'				=> 'Progress',
-	'upload'				=> 'Upload document',
+	'plan_time'				=> 'Plan time',
+	'upload'				=> 'Upload',
 	
 	'remark'				=> 'Remark',
 	'date'					=> 'Date',
 	'time'					=> 'Time',
-	'add_remark'			=> 'Add remark',
+	'add_remark'			=> 'Add',
 	
 	'add'					=> 'Add new issue',
+	'create_issue'			=> 'Create a new issue',
+	'created_issue'			=> 'A new issue is added!',
+	'parent_id'				=> 'Parent issue',
+	'description'			=> 'Description',
+	'start_date'			=> 'Start date',
+	'no_record'				=> '-----',
 	'edit_issue'			=> 'Edit issue',
 
 	'type1'					=> 'Bug',
@@ -43,5 +50,6 @@ return [
 
 	'change.track'			=> 'Change track!',
 	'create.track'			=> 'A new track has been added!',
+	'updated.track'			=> 'A track has been updated!',
 
 ];

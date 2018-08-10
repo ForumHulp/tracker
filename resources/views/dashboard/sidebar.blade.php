@@ -1,4 +1,4 @@
-<ul
+<ul>
 	<li>@lang('site.dashboard')</li>   
 	<li @if (\Request::is('status*')) class="selected" @endif><a href="{{ route('status.index') }}">@lang('dashboard.status')</a></li>
 	<li @if (\Request::is('priority*')) class="selected" @endif><a href="{{ route('priority.index') }}">@lang('dashboard.priority')</a></li>

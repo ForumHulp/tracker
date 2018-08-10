@@ -17,17 +17,16 @@ class Issue extends \Baum\Node
     use SoftDeletes;
 
     public $fillable = [
-        'parent_id',
-        'client',
-        'status',
-        'type',
-        'priority',
-        'title',
-        'description',
-        'start_date',
-        'plan_time',
-        'assigned',
-        'time',
+		'project_id',
+		'parent_id',
+		'status_id',
+		'type_id',
+		'priority_id',
+		'assigned',
+		'title',
+		'description',
+		'start_date',
+		'plan_time',
     ];
 
     public $dates = [

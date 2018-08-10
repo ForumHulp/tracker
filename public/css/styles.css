@@ -18,7 +18,7 @@
 }
 
 #dashboard ul .selected {list-style:none;}
-#dashboard ul li:first-child {margin-top:10px;}
+#dashboard ul li:first-child {margin-top:10px; list-style:none;}
 
 #dashboard ul .selected:before {
   content: "\f0da"; /* FontAwesome Unicode */
@@ -46,10 +46,13 @@
     margin-bottom: 12px;
 }
 
+#btn_save {float:left;margin-left:5px;}
+
 .alert {color:red;}
 
 .change-remark {
 	cursor:pointer;
+	color: #007bff;
 }
 
 .btn-create_issue{
@@ -57,8 +60,11 @@
     position: absolute;
     top: 30px;
 }
-
-.fileinput {padding:5px;background:#1027AD;border:1px solid #1027AD;position:relative;font-size:.8em;color:#fff;border-radius:2px;text-align:center;max-width:85px;cursor:pointer;}
+.form-group label {display:block;clear:both;width:100%;}
+.select-small {float:left;width:32%;margin-right:10px;}
+.panel-collapse hr {margin-top:0;}
+#progress {float:left;}
+.fileinput {float:left;margin-left:5px;padding:5px;background:#1027AD;border:1px solid #1027AD;position:relative;font-size:.8em;color:#fff;border-radius:2px;text-align:center;max-width:85px;cursor:pointer;}
 .hide_file {position:absolute;z-index:1000;opacity:0;cursor:pointer;right:1px;top:0;height:20px;width:55px;}
 .download {
     display: table-cell;

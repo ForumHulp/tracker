@@ -64,4 +64,6 @@ Route::get('/tracker/download/{id}', 'TrackController@getDownload')->name('track
 
 Route::get('/issue/create', 'IssueController@getCreate')->name('issue.create');
 Route::post('/issue/store', 'IssueController@postStore')->name('issue.store');
+Route::post('/issue/select', 'IssueController@postSelect')->name('issue.select');
+
 Auth::routes();

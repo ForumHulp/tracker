@@ -12,7 +12,7 @@
         <div class="container content">
         	<div class="row">
 
-            @if(auth()->check() && \Request::getPathInfo() != '/')
+            @if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')
                 @if (auth()->user()->hasRole('manager'))
                <div id="dashboard" class="col-md-2">
                     @include('dashboard.sidebar')

@@ -26,6 +26,7 @@ class TrackController extends Controller
         }
 		
 		$track->used_time = sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60);
+		$track->datum = $track->date->format('d-m-Y');
         if($request->wantsJson()) {
             return response()->json([
                 'track' => $track,
@@ -61,15 +62,19 @@ class TrackController extends Controller
         $attributes = $request->all();
 		$attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
 
-		$extra_minutes = intval(15 - $attributes['used_time'] % 15);
+		$time = explode(':', $attributes['used_time']);
+		$time = (int) ($time[0] * 60) + $time[1];
+		$extra_minutes = intval(15 - $time % 15);
 		if ($extra_minutes > 0 && $extra_minutes < 15)
 		{
-			$attributes['used_time'] = $attributes['used_time'] + $extra_minutes;
+			$time = $time + $extra_minutes;
 		}
+		$attributes['used_time'] = $time;
 
-        $track->update($attributes);
+		$track->update($attributes);
+		
         $data = [
-            'message' => __('track.update'),
+            'message' => __('issue.updated.track'),
             'alert-class' => 'alert-success',
         ];
         return redirect()->route('home')->with($data);
@@ -95,11 +100,14 @@ class TrackController extends Controller
         $attributes = $request->all();
 		$attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
 
-		$extra_minutes = intval(15 - $attributes['used_time'] % 15);
+		$time = explode(':', $attributes['used_time']);
+		$time = (int) ($time[0] * 60) + $time[1];
+		$extra_minutes = intval(15 - $time % 15);
 		if ($extra_minutes > 0 && $extra_minutes < 15)
 		{
-			$attributes['used_time'] = $attributes['used_time'] + $extra_minutes;
+			$time = $time + $extra_minutes;
 		}
+		$attributes['used_time'] = $time;
 
         $track = Track::create($attributes);
 		
