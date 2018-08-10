@@ -108,7 +108,7 @@
                                           <div class="col-md-5">{!! \Form::text('remark', null, ['class' => 'form-control', 'id'=> 'remark']) !!}</div>
                                           <div class="col-md-2">{{ Form::date('date', null, ['class' => 'form-control', 'id'=>'datetimepicker']) }}</div>
                                           <div class="col-md-2 input-group bootstrap-timepicker timepicker">
-                                            <input id="timepicker{{ $track->id }}" class="form-control timepickers" data-provide="timepicker"   data-modal-backdrop="true" type="text"/>
+                                            <input id="timepicker{{ $track->id }}" class="form-control timepickers" data-provide="timepicker" data-template="default" data-minute-step="15" data-showSeconds="false" type="text"/>
                                           </div>
 
 
