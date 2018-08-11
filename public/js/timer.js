@@ -16,7 +16,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.start-timer').hide();
 		$('.stop-timer').show();
-        counter = setInterval(step, 10);
+        counter = setInterval(step, 1000);
         $('.start-timer').off('click');
     }
  
