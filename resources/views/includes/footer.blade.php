@@ -4,6 +4,7 @@
 <script src="/js/bootstrap-durationpicker.min.js"></script>
 <script src="/js/datepicker.min.js"></script>
 <script src="/js/datepicker.en.js"></script>
+<script src="/js/timer.js"></script>
 
 <script src="/js/script.js"></script>
 @if (\Auth::check() && auth()->user()->hasRole('manager'))

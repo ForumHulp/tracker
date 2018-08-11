@@ -65,7 +65,10 @@
               <div class="row">
                 <div id="i{{ $issue->id }}" class="panel-collapse collapse col-sm-12"> <!-- Start Sub Issue -->
                   <div class="col-sm-1">&nbsp;</div>
-                  <div class="col-sm-11">{{ $issue->description }}
+                  <div class="col-sm-11">
+                  @lang('issue.date'): {{ $issue->start_date->format('d-m-Y') }}, @lang('issue.plan_time'): <?php echo sprintf("%d:%02d", floor($issue->plan_time / 60), $issue->plan_time % 60); ?>
+                  <br />{{ $issue->description }}
+                           
                     @if ($issue->isChild())
                       <div class="row">
                         <div class="col-sm-12">
@@ -112,6 +115,7 @@
                                           <div class="col-md-2">{{ Form::text('date', null, ['class' => 'form-control', 'id'=>'datepicker']) }}</div>
                                           <div class="col-md-2">
                                             <input id="timepicker" name="used_time" class="form-control" value="0:0" type="text"/>
+                                            <a class="start-timer" href="#">Start</a> <a class="stop-timer" href="#">Stop</a>
                                           </div>
                                           <div class="col-md-3">
                                             <input name="progress" id="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
