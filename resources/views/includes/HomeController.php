@@ -24,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+		Issue::rebuild();
+
         $data = [
             'issues'	=> Issue::with('projects.clients', 'statuses', 'types', 'projects', 'users', 'tracks')->orderBy('lft')->paginate(10),
         ];

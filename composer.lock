@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b06135182e3361b753b2b57eae97ff59",
-    "content-hash": "c8e76baf4b354c2254614d505598ecb0",
+    "hash": "f8694d42612c7fd874a2e0f239bb2854",
+    "content-hash": "877560987c1b0042d67359bdc07b580c",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1516,6 +1516,39 @@
                 "uuid"
             ],
             "time": "2018-07-19 23:38:55"
+        },
+        {
+            "name": "swatkins/laravel-gantt",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swatkins/laravel-gantt.git",
+                "reference": "74a9d800e7af6441a7c492e22e8be648941ee7c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swatkins/laravel-gantt/zipball/74a9d800e7af6441a7c492e22e8be648941ee7c1",
+                "reference": "74a9d800e7af6441a7c492e22e8be648941ee7c1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Swatkins\\LaravelGantt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Scott Watkins",
+                    "email": "scott@swatkins.me"
+                }
+            ],
+            "description": "Laravel package to display items within a Gantt Chart.",
+            "time": "2016-10-09 01:32:27"
         },
         {
             "name": "swiftmailer/swiftmailer",

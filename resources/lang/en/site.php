@@ -16,6 +16,7 @@ return [
     'tracker'            	=> 'Tracker',
 	'issue_tracker'			=> 'Issue Tracker',
 	'dashboard'				=> 'Dashboard',
+	'planning'				=> 'Planning',
 	'logout'				=> 'Log off',
 	'login'					=> 'Log in',
 ];

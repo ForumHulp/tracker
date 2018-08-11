@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('status.index') }}">@lang('site.dashboard')</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('planning.index') }}">@lang('site.planning')</a>
+                </li>
 				<li>
                 @if(\Auth::check())
                     {!! \Form::open(['route' => 'logout']) !!}
