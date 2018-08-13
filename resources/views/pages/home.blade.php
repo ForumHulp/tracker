@@ -40,12 +40,12 @@
             @if (!$issue->isChild())<hr>@endif
               <div class="row">
                 <div class="col-sm-1"><a href="#i{{ $issue->id }}" data-toggle="collapse">@if ($issue->isChild())<i class="fa fa-long-arrow-right"></i> @endif{{ $issue->id }}</a></div>
-                <div class="col-sm-2">{{ $issue->projects->clients->name }}</div>
-                <div class="col-sm-3">{{ $issue->projects->title }}</div>
-                <div class="col-sm-1">{{ $issue->statuses->title }}</div>
-                <div class="col-sm-1">{{ $issue->types->title }}</div>
+                <div class="col-sm-2">{{ $issue->project->client->name }}</div>
+                <div class="col-sm-3">{{ $issue->project->title }}</div>
+                <div class="col-sm-1">@if($issue->user){{ $issue->status->title }}@endif</div>
+                <div class="col-sm-1">{{ $issue->type->title }}</div>
                 <div class="col-sm-2">{{ $issue->title }}</div>
-                <div class="col-sm-1">{{ $issue->users->name }}</div>
+                <div class="col-sm-1">@if($issue->user){{ $issue->user->name }}@endif</div>
                 <div class="col-sm-1">
                     <?php $progress = 0; ?>
                     @if (!$issue->isChild() && $issue->getLeaves()->count())
@@ -104,13 +104,13 @@
                               </div>
                             @endforeach
 
-                              @if (auth()->check() && $issue->status_id != 3 && $issue->users->id == auth()->user()->id )
+                              @if (auth()->check() && $issue->status_id != 3 && $issue->user->id == auth()->user()->id )
                                     <div id="s{{ $track->id }}" class="panel-collapse col-sm-12">
                                       <div class="row">
                                         {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform', 'class' => 'col-sm-12', 'files' => true]) !!}
                                         <div class="row">
                                           {!! \Form::hidden('issue_id', $issue->id) !!}
-                                          {!! \Form::hidden('user_id', $issue->users->id) !!}
+                                          {!! \Form::hidden('user_id', $issue->user->id) !!}
                                           <div class="col-md-5">{!! \Form::text('remark', null, ['class' => 'form-control', 'id'=> 'remark']) !!}</div>
                                           <div class="col-md-2">{{ Form::text('date', null, ['class' => 'form-control', 'id'=>'datepicker']) }}</div>
                                           <div class="col-md-2">
