@@ -61,6 +61,7 @@ class ClientController extends Controller
         ];
 
         Client::create($attributes);
+        \Cache::forget('clients');
 
         return redirect()->route('client.index')->with($data);
     }

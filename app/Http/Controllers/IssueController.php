@@ -26,49 +26,46 @@ class IssueController extends Controller
      */
     public function getCreate()
     {
+        $projects = \Cache::rememberForever('projects', function() {
+            return Project::all();
+        });
+
+        $clients = \Cache::rememberForever('clients', function() {
+            return Client::all();
+        });
+
+        $status = \Cache::rememberForever('status', function() {
+            return Status::all();
+        });
+
+        $types = \Cache::rememberForever('types', function() {
+            return Type::all();
+        });
+
+        $priorities = \Cache::rememberForever('priorities', function() {
+            return Priority::all();
+        });
+
+        $users = \Cache::rememberForever('users', function() {
+            return User::whereHas('roles', function($q){
+                $q->where('name', '!=', 'manager');
+            })->get();
+        });
+
+        $issues = \Cache::rememberForever('issues', function() {
+            return Issue::all()->where('parent_id', null);
+        });
+
         $data = [
-            'projects'	=> Project::all(),
-			'clients'	=> Client::all(),
-			'status'	=> Status::all(),
-			'type'		=> Type::all(),
-			'priority'	=> Priority::all(),
-			'user'		=> User::whereHas('roles', function($q){
-								$q->where('name', '!=', 'manager');
-							})->get(),
-			'issue'		=> Issue::all()->where('parent_id', null),
+            'projects' => ['' => __('issue.no_record')] + $projects->pluck('title', 'id')->toArray(),
+			'clients' => ['' => __('issue.no_record')] + $clients->pluck('name', 'id')->toArray(),
+			'status' => ['' => __('issue.no_record')] + $status->pluck('title', 'id')->toArray(),
+			'types'	=> ['' => __('issue.no_record')] + $types->pluck('title', 'id')->toArray(),
+			'priorities' => ['' => __('issue.no_record')] + $priorities->pluck('title', 'id')->toArray(),
+			'users'	=> ['' => __('issue.no_record')] + $users->pluck('name', 'id')->toArray(),
+			'issues' => ['' => __('issue.no_record')] + $issues->pluck('title', 'id')->toArray(),
         ];
 
-		$data['userList'][''] = $data['projectList'][''] = $data['clientList'][''] = $data['issueList'][''] =  __('issue.no_record');
-		foreach($data['projects'] as $projects)
-		{
-			$data['projectList'][$projects->id] = $projects->title;
-		}
-		foreach($data['clients'] as $client)
-		{
-			$data['clientList'][$client->id] = $client->name;
-		}
-		foreach($data['status'] as $status)
-		{
-			$data['statusList'][$status->id] = $status->title;
-		}
-		foreach($data['type'] as $type)
-		{
-			$data['typeList'][$type->id] = $type->title;
-		}
-		foreach($data['priority'] as $priority)
-		{
-			$data['priorityList'][$priority->id] = $priority->title;
-		}
-		foreach($data['user'] as $user)
-		{
-			$data['userList'][$user->id] = $user->name;
-		}
-		foreach($data['issue'] as $issue)
-		{
-			$data['issueList'][$issue->id] = $issue->title;
-		}
-
-		unset($data['clients'], $data['projects'], $data['status'], $data['type'], $data['user'], $data['issue'], $data['priority']);
 		$data['start_date'] = date('d-m-Y', strtotime('tomorrow 08:00'));
 
         return view('includes/create_issue')->with($data);
