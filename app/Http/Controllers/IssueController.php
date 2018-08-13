@@ -26,49 +26,74 @@ class IssueController extends Controller
      */
     public function getCreate()
     {
-        $projects = \Cache::rememberForever('projects', function() {
-            return Project::all();
-        });
-
-        $clients = \Cache::rememberForever('clients', function() {
-            return Client::all();
-        });
-
-        $status = \Cache::rememberForever('status', function() {
-            return Status::all();
-        });
-
-        $types = \Cache::rememberForever('types', function() {
-            return Type::all();
-        });
-
-        $priorities = \Cache::rememberForever('priorities', function() {
-            return Priority::all();
-        });
-
-        $users = \Cache::rememberForever('users', function() {
-            return User::whereHas('roles', function($q){
-                $q->where('name', '!=', 'manager');
-            })->get();
-        });
-
-        $issues = \Cache::rememberForever('issues', function() {
-            return Issue::all()->where('parent_id', null);
-        });
-
-        $data = [
-            'projects' => ['' => __('issue.no_record')] + $projects->pluck('title', 'id')->toArray(),
-			'clients' => ['' => __('issue.no_record')] + $clients->pluck('name', 'id')->toArray(),
-			'status' => ['' => __('issue.no_record')] + $status->pluck('title', 'id')->toArray(),
-			'types'	=> ['' => __('issue.no_record')] + $types->pluck('title', 'id')->toArray(),
-			'priorities' => ['' => __('issue.no_record')] + $priorities->pluck('title', 'id')->toArray(),
-			'users'	=> ['' => __('issue.no_record')] + $users->pluck('name', 'id')->toArray(),
-			'issues' => ['' => __('issue.no_record')] + $issues->pluck('title', 'id')->toArray(),
-        ];
-
+		$data = $this->selectBoxes();
 		$data['start_date'] = date('d-m-Y', strtotime('tomorrow 08:00'));
 
         return view('includes/create_issue')->with($data);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getEdit($id)
+    {
+        $issue = Issue::with('project.client', 'project')->where('id', $id)->first();
+
+        if(is_null($issue)) {
+            abort(404);
+        }
+
+		$issue->plan_time = sprintf("%d:%02d", floor($issue->plan_time / 60), $issue->plan_time % 60);
+		$data = $this->selectBoxes($id);		
+        $data['issue'] = $issue;
+
+        return view('includes/edit_issue')->with($data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
+    public function postUpdate(Request $request, Issue $issue)
+    {
+        $this->validate($request, [
+			'project_id'	=> 'required|not_in:0',
+	//		'parent_id'		=> 'required',
+			'status_id'		=> 'required',
+			'type_id'		=> 'required',
+			'priority_id'	=> 'required',
+			'assigned'		=> 'required',
+			'title'			=> 'required',
+			'description'	=> 'required',
+			'start_date'	=> 'required',
+			'plan_time'		=> 'required',
+        ]);
+
+        $issue = Issue::where('id', $request->get('id'))->first();
+
+        if(is_null($issue)) {
+            abort(404);
+        }
+
+        $attributes = $request->all();
+		
+//		$attributes['parent_id'] = ($attributes['parent_id'] == $request->get('id')) ? null : $attributes['parent_id'];
+		$attributes['start_date'] = date('Y-m-d H:i:s', strtotime($attributes['start_date']));
+		$plan_time = explode(':', $attributes['plan_time']);
+		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
+//dd($attributes);
+ //       $issue->update($attributes);
+
+        $data = [
+            'message' => __('issue.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('home')->with($data);
     }
 
     /**
@@ -164,4 +189,54 @@ class IssueController extends Controller
         ];
         return redirect()->route('home')->with($data);
     }
+
+    /**
+     * get selects.
+     *
+     * @return array    $data
+     */
+    private function selectBoxes($id = null)
+	{
+        $projects = \Cache::rememberForever('projects', function() {
+            return Project::all();
+        });
+
+        $clients = \Cache::rememberForever('clients', function() {
+            return Client::all();
+        });
+
+        $status = \Cache::rememberForever('status', function() {
+            return Status::all();
+        });
+
+        $types = \Cache::rememberForever('types', function() {
+            return Type::all();
+        });
+
+        $priorities = \Cache::rememberForever('priorities', function() {
+            return Priority::all();
+        });
+
+        $users = \Cache::rememberForever('users', function() {
+            return User::whereHas('roles', function($q){
+                $q->where('name', '!=', 'manager');
+            })->get();
+        });
+
+        $issues = \Cache::rememberForever('issues', function() {
+            return Issue::all()->where('parent_id', null);
+        });
+
+        $data = [
+            'projects' => ['' => __('issue.no_record')] + $projects->pluck('title', 'id')->toArray(),
+			'clients' => ['' => __('issue.no_record')] + $clients->pluck('name', 'id')->toArray(),
+			'status' => ['' => __('issue.no_record')] + $status->pluck('title', 'id')->toArray(),
+			'types'	=> ['' => __('issue.no_record')] + $types->pluck('title', 'id')->toArray(),
+			'priorities' => ['' => __('issue.no_record')] + $priorities->pluck('title', 'id')->toArray(),
+			'users'	=> ['' => __('issue.no_record')] + $users->pluck('name', 'id')->toArray(),
+			'issues' => ['' => __('issue.no_record')] + $issues->pluck('title', 'id')->toArray(),
+        ];
+		
+		return $data;
+	}
 }

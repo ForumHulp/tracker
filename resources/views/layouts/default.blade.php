@@ -13,7 +13,7 @@
         	<div class="row">
 
             @if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')
-                @if (auth()->user()->hasRole('manager'))
+                @if (auth()->user()->hasRole('manager') && !\Request::is('issue/edit*') && !\Request::is('planning*'))
                <div id="dashboard" class="col-md-2">
                     @include('dashboard.sidebar')
                 </div>

@@ -61,9 +61,12 @@ Route::post('/tracker/edit/{id}', 'TrackController@getEdit')->name('tracker.edit
 Route::post('/tracker/update', 'TrackController@postUpdate')->name('tracker.update');
 Route::get('/tracker/download/{id}', 'TrackController@getDownload')->name('tracker.download');
 
+Route::get('/planning/', 'PlanController@getIndex')->name('planning.index');
 
 Route::get('/issue/create', 'IssueController@getCreate')->name('issue.create');
 Route::post('/issue/store', 'IssueController@postStore')->name('issue.store');
 Route::post('/issue/select', 'IssueController@postSelect')->name('issue.select');
+Route::get('/issue/edit/{id}', 'IssueController@getEdit')->name('issue.edit');
+Route::post('/issue/update', 'IssueController@postUpdate')->name('issue.update');
 
 Auth::routes();
