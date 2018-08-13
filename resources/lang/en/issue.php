@@ -32,8 +32,11 @@ return [
 	'add_remark'			=> 'Add',
 	
 	'add'					=> 'Add new issue',
+	'save'					=> 'Save this issue',
 	'create_issue'			=> 'Create a new issue',
 	'created_issue'			=> 'A new issue is added!',
+	'update_issue'			=> 'Update a issue',
+	'update'				=> 'This issue is updated succesfully',
 	'parent_id'				=> 'Parent issue',
 	'description'			=> 'Description',
 	'start_date'			=> 'Start date',

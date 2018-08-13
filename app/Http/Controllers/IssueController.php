@@ -26,52 +26,74 @@ class IssueController extends Controller
      */
     public function getCreate()
     {
-        $data = [
-            'projects'	=> Project::all(),
-			'clients'	=> Client::all(),
-			'status'	=> Status::all(),
-			'type'		=> Type::all(),
-			'priority'	=> Priority::all(),
-			'user'		=> User::whereHas('roles', function($q){
-								$q->where('name', '!=', 'manager');
-							})->get(),
-			'issue'		=> Issue::all()->where('parent_id', null),
-        ];
-
-		$data['userList'][0] = $data['projectList'][0] = $data['clientList'][0] = $data['issueList'][0] =  __('issue.no_record');
-		foreach($data['projects'] as $projects)
-		{
-			$data['projectList'][$projects->id] = $projects->title;
-		}
-		foreach($data['clients'] as $client)
-		{
-			$data['clientList'][$client->id] = $client->name;
-		}
-		foreach($data['status'] as $status)
-		{
-			$data['statusList'][$status->id] = $status->title;
-		}
-		foreach($data['type'] as $type)
-		{
-			$data['typeList'][$type->id] = $type->title;
-		}
-		foreach($data['priority'] as $priority)
-		{
-			$data['priorityList'][$priority->id] = $priority->title;
-		}
-		foreach($data['user'] as $user)
-		{
-			$data['userList'][$user->id] = $user->name;
-		}
-		foreach($data['issue'] as $issue)
-		{
-			$data['issueList'][$issue->id] = $issue->title;
-		}
-
-		unset($data['clients'], $data['projects'], $data['status'], $data['type'], $data['user'], $data['issue'], $data['priority']);
+		$data = $this->selectBoxes();
 		$data['start_date'] = date('d-m-Y', strtotime('tomorrow 08:00'));
 
         return view('includes/create_issue')->with($data);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getEdit($id)
+    {
+        $issue = Issue::with('project.client', 'project')->where('id', $id)->first();
+
+        if(is_null($issue)) {
+            abort(404);
+        }
+
+		$issue->plan_time = sprintf("%d:%02d", floor($issue->plan_time / 60), $issue->plan_time % 60);
+		$data = $this->selectBoxes($id);		
+        $data['issue'] = $issue;
+
+        return view('includes/edit_issue')->with($data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
+    public function postUpdate(Request $request, Issue $issue)
+    {
+        $this->validate($request, [
+			'project_id'	=> 'required|not_in:0',
+	//		'parent_id'		=> 'required',
+			'status_id'		=> 'required',
+			'type_id'		=> 'required',
+			'priority_id'	=> 'required',
+			'assigned'		=> 'required',
+			'title'			=> 'required',
+			'description'	=> 'required',
+			'start_date'	=> 'required',
+			'plan_time'		=> 'required',
+        ]);
+
+        $issue = Issue::where('id', $request->get('id'))->first();
+
+        if(is_null($issue)) {
+            abort(404);
+        }
+
+        $attributes = $request->all();
+		
+//		$attributes['parent_id'] = ($attributes['parent_id'] == $request->get('id')) ? null : $attributes['parent_id'];
+		$attributes['start_date'] = date('Y-m-d H:i:s', strtotime($attributes['start_date']));
+		$plan_time = explode(':', $attributes['plan_time']);
+		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
+//dd($attributes);
+ //       $issue->update($attributes);
+
+        $data = [
+            'message' => __('issue.update'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('home')->with($data);
     }
 
     /**
@@ -118,12 +140,12 @@ class IssueController extends Controller
         if(is_null($json)) {
             abort(404);
         }
-		$data['selects'][] = ['key' => 0, 'value' => __('issue.no_record')];
+		$data['selects'][] = ['key' => '', 'value' => __('issue.no_record')];
 		foreach($json as $value)
 		{
 			$data['selects'][] = ['key' => $value->id, 'value' => $value->title];
 		}
-		$data['issue'][] = ['key' => 0, 'value' => __('issue.no_record')];
+		$data['issue'][] = ['key' => '', 'value' => __('issue.no_record')];
 		foreach($issue as $value)
 		{
 			$data['issue'][] = ['key' => $value->id, 'value' => $value->title];
@@ -144,7 +166,6 @@ class IssueController extends Controller
     {
         $this->validate($request, [
 			'project_id'	=> 'required|not_in:0',
-			'parent_id'		=> 'required',
 			'status_id'		=> 'required',
 			'type_id'		=> 'required',
 			'priority_id'	=> 'required',
@@ -161,7 +182,6 @@ class IssueController extends Controller
 		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
 
         Issue::create($attributes);
-		Issue::rebuild();
 
         $data = [
             'message' => __('issue.created_issue'),
@@ -169,4 +189,54 @@ class IssueController extends Controller
         ];
         return redirect()->route('home')->with($data);
     }
+
+    /**
+     * get selects.
+     *
+     * @return array    $data
+     */
+    private function selectBoxes($id = null)
+	{
+        $projects = \Cache::rememberForever('projects', function() {
+            return Project::all();
+        });
+
+        $clients = \Cache::rememberForever('clients', function() {
+            return Client::all();
+        });
+
+        $status = \Cache::rememberForever('status', function() {
+            return Status::all();
+        });
+
+        $types = \Cache::rememberForever('types', function() {
+            return Type::all();
+        });
+
+        $priorities = \Cache::rememberForever('priorities', function() {
+            return Priority::all();
+        });
+
+        $users = \Cache::rememberForever('users', function() {
+            return User::whereHas('roles', function($q){
+                $q->where('name', '!=', 'manager');
+            })->get();
+        });
+
+        $issues = \Cache::rememberForever('issues', function() {
+            return Issue::all()->where('parent_id', null);
+        });
+
+        $data = [
+            'projects' => ['' => __('issue.no_record')] + $projects->pluck('title', 'id')->toArray(),
+			'clients' => ['' => __('issue.no_record')] + $clients->pluck('name', 'id')->toArray(),
+			'status' => ['' => __('issue.no_record')] + $status->pluck('title', 'id')->toArray(),
+			'types'	=> ['' => __('issue.no_record')] + $types->pluck('title', 'id')->toArray(),
+			'priorities' => ['' => __('issue.no_record')] + $priorities->pluck('title', 'id')->toArray(),
+			'users'	=> ['' => __('issue.no_record')] + $users->pluck('name', 'id')->toArray(),
+			'issues' => ['' => __('issue.no_record')] + $issues->pluck('title', 'id')->toArray(),
+        ];
+		
+		return $data;
+	}
 }

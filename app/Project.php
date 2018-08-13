@@ -21,7 +21,7 @@ class Project extends Model
         'deleted_at',
     ];
 
-    public function clients()
+    public function client()
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }

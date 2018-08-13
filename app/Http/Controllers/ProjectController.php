@@ -21,7 +21,7 @@ class ProjectController extends Controller
     public function getIndex()
     {
         $data = [
-            'projects' => Project::with('clients')->get()
+            'projects' => Project::with('client')->get()
         ];
 
         return view('dashboard/project/index')->with($data);

@@ -17,7 +17,7 @@
         @foreach($projects as $project)
 		    <tr>
                 <td>{{ $project->title }}</td>
-                <td>{{ $project->clients->name }}</td>
+                <td>{{ $project->client->name }}</td>
                 @if (auth()->user()->hasRole('manager'))
                 <td>
                     <div class="btn-group">
