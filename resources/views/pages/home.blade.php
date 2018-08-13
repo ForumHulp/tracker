@@ -42,7 +42,7 @@
                 <div class="col-sm-1"><a href="#i{{ $issue->id }}" data-toggle="collapse">@if ($issue->isChild())<i class="fa fa-long-arrow-right"></i> @endif{{ $issue->id }}</a></div>
                 <div class="col-sm-2">{{ $issue->project->client->name }}</div>
                 <div class="col-sm-3">{{ $issue->project->title }}</div>
-                <div class="col-sm-1">@if($issue->user){{ $issue->status->title }}@endif</div>
+                <div class="col-sm-1">@if($issue->status){{ $issue->status->title }}@endif</div>
                 <div class="col-sm-1">{{ $issue->type->title }}</div>
                 <div class="col-sm-2">{{ $issue->title }}</div>
                 <div class="col-sm-1">@if($issue->user){{ $issue->user->name }}@endif</div>
