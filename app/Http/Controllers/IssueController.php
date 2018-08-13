@@ -38,7 +38,7 @@ class IssueController extends Controller
 			'issue'		=> Issue::all()->where('parent_id', null),
         ];
 
-		$data['userList'][0] = $data['projectList'][0] = $data['clientList'][0] = $data['issueList'][0] =  __('issue.no_record');
+		$data['userList'][''] = $data['projectList'][''] = $data['clientList'][''] = $data['issueList'][''] =  __('issue.no_record');
 		foreach($data['projects'] as $projects)
 		{
 			$data['projectList'][$projects->id] = $projects->title;
@@ -118,12 +118,12 @@ class IssueController extends Controller
         if(is_null($json)) {
             abort(404);
         }
-		$data['selects'][] = ['key' => 0, 'value' => __('issue.no_record')];
+		$data['selects'][] = ['key' => '', 'value' => __('issue.no_record')];
 		foreach($json as $value)
 		{
 			$data['selects'][] = ['key' => $value->id, 'value' => $value->title];
 		}
-		$data['issue'][] = ['key' => 0, 'value' => __('issue.no_record')];
+		$data['issue'][] = ['key' => '', 'value' => __('issue.no_record')];
 		foreach($issue as $value)
 		{
 			$data['issue'][] = ['key' => $value->id, 'value' => $value->title];
@@ -144,7 +144,6 @@ class IssueController extends Controller
     {
         $this->validate($request, [
 			'project_id'	=> 'required|not_in:0',
-			'parent_id'		=> 'required',
 			'status_id'		=> 'required',
 			'type_id'		=> 'required',
 			'priority_id'	=> 'required',
@@ -161,7 +160,6 @@ class IssueController extends Controller
 		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
 
         Issue::create($attributes);
-		Issue::rebuild();
 
         $data = [
             'message' => __('issue.created_issue'),
