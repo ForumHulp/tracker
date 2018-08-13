@@ -24,9 +24,9 @@ class PlanController extends Controller
      */
     public function getIndex()
     {
-        $projects = Issue::with('users')
+        $projects = Issue::with('user')
 				->selectRaw('start_date as start, start_date + INTERVAL plan_time MINUTE as end, title as label')
-				->where('status_id', '!=', 3)
+			//	->where('status_id', '!=', 3)
 				->orderBy('lft')->get();
 
 		$gantt = new \Swatkins\LaravelGantt\Gantt($projects, array(
