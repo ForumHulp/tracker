@@ -10,6 +10,13 @@
                 	@include('includes.issue_count')
                 </li>
                 <li class="nav-item">
+                	@if (\Config::get('app.locale') == 'en')
+                    <a class="nav-link" title="Schakel naar nederlands" href="{{ route('locale', 'nl') }}">NL</a>
+                    @else
+                    <a class="nav-link" title="Switch to english" href="{{ route('locale', 'en') }}">En</a>
+                    @endif
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('status.index') }}">@lang('site.dashboard')</a>
                 </li>
                 <li class="nav-item">

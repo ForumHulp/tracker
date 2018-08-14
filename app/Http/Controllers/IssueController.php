@@ -87,7 +87,7 @@ class IssueController extends Controller
 		$plan_time = explode(':', $attributes['plan_time']);
 		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
 //dd($attributes);
- //       $issue->update($attributes);
+        $issue->update($attributes);
 
         $data = [
             'message' => __('issue.update'),
@@ -214,25 +214,25 @@ class IssueController extends Controller
      */
     private function selectBoxes($id = null)
 	{
-        $projects = \Cache::rememberForever('projects', function() {
-            return Project::all();
-        });
+//        $projects = \Cache::rememberForever('projects', function() {
+            $projects = Project::all();
+//        });
 
-        $clients = \Cache::rememberForever('clients', function() {
-            return Client::all();
-        });
+  //      $clients = \Cache::rememberForever('clients', function() {
+            $clients = Client::all();
+//        });
 
-        $status = \Cache::rememberForever('status', function() {
-            return Status::all();
-        });
+ //       $status = \Cache::rememberForever('status', function() {
+            $status = Status::all();
+ //       });
 
-        $types = \Cache::rememberForever('types', function() {
-            return Type::all();
-        });
+//        $types = \Cache::rememberForever('types', function() {
+            $types =  Type::all();
+//        });
 
-        $priorities = \Cache::rememberForever('priorities', function() {
-            return Priority::all();
-        });
+//        $priorities = \Cache::rememberForever('priorities', function() {
+            $priorities =  Priority::all();
+//        });
 
         $users = \Cache::rememberForever('users', function() {
             return User::whereHas('roles', function($q){

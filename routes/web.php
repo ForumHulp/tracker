@@ -69,4 +69,11 @@ Route::post('/issue/select', 'IssueController@postSelect')->name('issue.select')
 Route::get('/issue/edit/{id}', 'IssueController@getEdit')->name('issue.edit');
 Route::post('/issue/update', 'IssueController@postUpdate')->name('issue.update');
 
+Route::get('setlocale/{locale}', function ($locale) {
+  if (in_array($locale, \Config::get('app.locales'))) {
+    Session::put('locale', $locale);
+  }
+  return redirect()->back();
+})->name('locale');
+
 Auth::routes();
