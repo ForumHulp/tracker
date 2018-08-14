@@ -46,7 +46,7 @@ class IssueController extends Controller
         }
 
 		$issue->plan_time = sprintf("%d:%02d", floor($issue->plan_time / 60), $issue->plan_time % 60);
-		$data = $this->selectBoxes($id);		
+		$data = $this->selectBoxes($issue->parent_id);		
         $data['issue'] = $issue;
 
         return view('includes/edit_issue')->with($data);
@@ -106,52 +106,69 @@ class IssueController extends Controller
     {
 		$id = $request->get('id');
 		$type = $request->get('type');
-		$json =	$issue = [];
+		$combo1 = $combo2 = $combo2select = [];
 		
 		switch($type)
 		{
 			case 'client_id':
-				$json = Project::select(DB::raw('projects.id as id, projects.title as title'));
+				$combo1 = Project::select(DB::raw('projects.id as id, projects.title as title'));
+				$combo2 = Issue::select(DB::raw('issues.id as id, issues.title as title'));
 			break;
 
 			case 'project_id':
-				$json = Project::leftJoin('clients', function($join) {
+				$combo1 = Project::leftJoin('clients', function($join) {
+						  $join->on('clients.id', '=', 'projects.client_id');
+					})
+					->select(DB::raw('clients.id as id, clients.name as title, projects.id as project_id'));
+					$type = 'projects.id';
+					
+				$combo2 = Issue::select(DB::raw('issues.id as id, issues.title as title'));
+			break;
+
+			case 'parent_id':
+				$combo1 = Project::leftJoin('issues', function($join) {
+						  $join->on('projects.id', '=', 'issues.project_id');
+					})
+					->select(DB::raw('projects.id as id, projects.title as title'));
+					$type = 'issues.id';
+			
+				$combo2 = Client::leftJoin('projects', function($join) {
 						  $join->on('clients.id', '=', 'projects.client_id');
 					})
 					->select(DB::raw('clients.id as id, clients.name as title'));
-					$type = 'projects.id';
-					
-				$issue = Issue::select(DB::raw('issues.id as id, issues.title as title'));
 			break;
 		}
 
-		if ($id)
-		{
-			$json = $json->where($type, $id);
-				
-			if ($type == 'projects.id')
-			{
-				$issue = $issue->where('project_id', $id)->where('parent_id', null);
-				$issue = $issue->get();
-			}
-		}
-		$json = $json->get();
+		$combo1 = ($id) ?  $combo1->where($type, $id)->get() : $combo1->get();
 		
-        if(is_null($json)) {
-            abort(404);
-        }
-		$data['selects'][] = ['key' => '', 'value' => __('issue.no_record')];
-		foreach($json as $value)
+		foreach($combo1 as $value){$combo2select[] = (($type != 'projects.id') ? $value->id : $value->project_id);}
+
+		$combo2 = (sizeof($combo2select) ? (($type == 'issues.id') ? $combo2->whereIn('projects.id', $combo2select)->get() : $combo2->whereIn('project_id', $combo2select)->get()) : $combo2->get());
+
+		if ($type == 'issues.id')
 		{
-			$data['selects'][] = ['key' => $value->id, 'value' => $value->title];
-		}
-		$data['issue'][] = ['key' => '', 'value' => __('issue.no_record')];
-		foreach($issue as $value)
-		{
-			$data['issue'][] = ['key' => $value->id, 'value' => $value->title];
+			$comb = $combo1;
+			$combo1 = $combo2;	
+			$combo2 = $comb;
+			unset($comb);
 		}
 
-        if($request->wantsJson()) {
+        if(is_null($combo1)) {
+            abort(404);
+        }
+
+		$data['combo1'][] = ['key' => '', 'value' => __('issue.no_record')];
+		foreach($combo1 as $value)
+		{
+			$data['combo1'][] = ['key' => $value->id, 'value' => $value->title];
+		}
+		$data['combo2'][] = ['key' => '', 'value' => __('issue.no_record')];
+		foreach($combo2 as $value)
+		{
+			$data['combo2'][] = ['key' => $value->id, 'value' => $value->title];
+		}
+
+        if ($request->wantsJson()) {
             return response()->json($data);
         }
 	}
@@ -223,9 +240,9 @@ class IssueController extends Controller
             })->get();
         });
 
-        $issues = \Cache::rememberForever('issues', function() {
-            return Issue::all()->where('parent_id', null);
-        });
+//        $issues = \Cache::rememberForever('issues', function() {
+            $issues = ($id == null) ? Issue::all()->where('parent_id', null) : Issue::where('id', $id)->first()->getDescendantsAndSelf();
+//        });
 
         $data = [
             'projects' => ['' => __('issue.no_record')] + $projects->pluck('title', 'id')->toArray(),
