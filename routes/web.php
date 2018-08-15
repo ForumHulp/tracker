@@ -68,6 +68,7 @@ Route::post('/issue/store', 'IssueController@postStore')->name('issue.store');
 Route::post('/issue/select', 'IssueController@postSelect')->name('issue.select');
 Route::get('/issue/edit/{id}', 'IssueController@getEdit')->name('issue.edit');
 Route::post('/issue/update', 'IssueController@postUpdate')->name('issue.update');
+Route::post('/issue/destroy', 'IssueController@postDestroy')->name('issue.destroy');
 
 Route::get('setlocale/{locale}', function ($locale) {
   if (in_array($locale, \Config::get('app.locales'))) {

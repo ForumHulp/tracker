@@ -36,6 +36,8 @@ return [
 	'create_issue'			=> 'Create a new issue',
 	'created_issue'			=> 'A new issue is added!',
 	'update_issue'			=> 'Update a issue',
+	'delete'				=> 'Delete issue',
+	'destroy'				=> 'Issue deleted',
 	'update'				=> 'This issue is updated succesfully',
 	'parent_id'				=> 'Parent issue',
 	'description'			=> 'Description',

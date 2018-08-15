@@ -87,12 +87,15 @@ class IssueController extends Controller
 
         $issue->update($attributes);
 		
-		\Mail::send('email.new_issue', $issue->toArray(), function ($message) {
-			$assigned = User::select('name', 'email')->where('id', \Request::get('assigned'))->first();
-            $message->to($assigned->email, $assigned->name)
-                ->subject('New issue for you');
-        });
-
+		if ($attributes['assigned'])
+		{
+			\Mail::send('email.new_issue', $issue->toArray(), function ($message) {
+				$assigned = User::select('name', 'email')->where('id', \Request::get('assigned'))->first();
+				$message->to($assigned->email, $assigned->name)
+					->subject('New issue for you');
+			});
+		}
+		
         $data = [
             'message' => __('issue.update'),
             'alert-class' => 'alert-success',
@@ -202,10 +205,45 @@ class IssueController extends Controller
 		$plan_time = explode(':', $attributes['plan_time']);
 		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
 
-        Issue::create($attributes);
+        $issue = Issue::create($attributes);
+
+		if ($attributes['assigned'])
+		{
+			\Mail::send('email.new_issue', $issue->toArray(), function ($message) {
+				$assigned = User::select('name', 'email')->where('id', \Request::get('assigned'))->first();
+				$message->to($assigned->email, $assigned->name)
+					->subject('New issue for you');
+			});
+		}
 
         $data = [
             'message' => __('issue.created_issue'),
+            'alert-class' => 'alert-success',
+        ];
+        return redirect()->route('home')->with($data);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function postDestroy(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
+
+        $issue = Issue::where('id', $request->get('id'))->first();
+
+        if(is_null($issue)) {
+            abort(404);
+        }
+
+        $issue->delete();
+
+        $data = [
+            'message' => __('issue.destroy'),
             'alert-class' => 'alert-success',
         ];
         return redirect()->route('home')->with($data);

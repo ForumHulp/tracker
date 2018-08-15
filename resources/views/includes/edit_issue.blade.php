@@ -36,7 +36,11 @@
         {!! Form::select('priority_id', $priorities, $issue->priority_id, ['class' => 'form-control select-small']) !!}
     </div>
 
-    {!! \Form::submit(__('issue.save'), ['class' => 'btn btn-small btn-primary']) !!}
+    {!! \Form::submit(__('issue.save'), ['class' => 'btn btn-small btn-primary pull-left']) !!}
     {!! \Form::close() !!}
 
+    {!! \Form::open(['route' => 'issue.destroy']) !!}
+    {!! \Form::hidden('id', $issue->id) !!}
+    {!! \Form::submit(__('issue.delete'), ['class' => 'btn btn-small btn-primary btn-delete']) !!}
+    {!! \Form::close() !!}
 @stop

@@ -46,6 +46,7 @@
     margin-bottom: 12px;
 }
 
+.btn-delete {margin-left:10px;}
 #btn_save {float:left;margin-left:5px;}
 
 .alert {color:red;}
