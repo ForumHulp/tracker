@@ -55,4 +55,9 @@ return [
 	'create.track'			=> 'A new track has been added!',
 	'updated.track'			=> 'A track has been updated!',
 
+	//email
+	'issue_added'			=> 'is added to your issuelist.',
+	'should'				=> 'You should start on',
+	'have'					=> 'and you have',
+	'hours_minutes'			=> 'hours and minutes for this issue.'
 ];

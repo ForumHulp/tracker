@@ -54,5 +54,10 @@ return [
 	'change.track'			=> 'Change track!',
 	'create.track'			=> 'A new track has been added!',
 	'updated.track'			=> 'A track has been updated!',
-
+	
+	//email
+	'issue_added'			=> 'is toegevoegd aan je issuelijst.',
+	'should'				=> 'Je start op',
+	'have'					=> 'en je hebt',
+	'hours_minutes'			=> 'uren en minuten voor dit issue.'
 ];

@@ -63,7 +63,6 @@ class IssueController extends Controller
     {
         $this->validate($request, [
 			'project_id'	=> 'required|not_in:0',
-	//		'parent_id'		=> 'required',
 			'status_id'		=> 'required',
 			'type_id'		=> 'required',
 			'priority_id'	=> 'required',
@@ -82,12 +81,17 @@ class IssueController extends Controller
 
         $attributes = $request->all();
 		
-//		$attributes['parent_id'] = ($attributes['parent_id'] == $request->get('id')) ? null : $attributes['parent_id'];
 		$attributes['start_date'] = date('Y-m-d H:i:s', strtotime($attributes['start_date']));
 		$plan_time = explode(':', $attributes['plan_time']);
 		$attributes['plan_time'] = ($plan_time[0] * 60) + $plan_time[1];
-//dd($attributes);
+
         $issue->update($attributes);
+		
+		\Mail::send('email.new_issue', $issue->toArray(), function ($message) {
+			$assigned = User::select('name', 'email')->where('id', \Request::get('assigned'))->first();
+            $message->to($assigned->email, $assigned->name)
+                ->subject('New issue for you');
+        });
 
         $data = [
             'message' => __('issue.update'),
