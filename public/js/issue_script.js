@@ -15,12 +15,12 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				$('#project_id').empty(); // remove old options
 				$.each(json.combo1, function(key, value) {
 				  $('#project_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
 				$('#parent_id').empty(); // remove old options
 				$.each(json.combo2, function(key, value) {
 				  $('#parent_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
             },
             dataType: 'json',
@@ -42,13 +42,13 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				$('#client_id').empty(); // remove old options
 				$.each(json.combo1, function(key, value) {
 				  $('#client_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
 				$('#client_id option:eq(1)').attr('selected', 'selected');
 				$('#parent_id').empty(); // remove old options
 				$.each(json.combo2, function(key, value) {
 				  $('#parent_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
             },
             dataType: 'json',
@@ -70,13 +70,13 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				$('#client_id').empty(); // remove old options
 				$.each(json.combo1, function(key, value) {
 				  $('#client_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
 				$('#client_id option:eq(1)').attr('selected', 'selected');
 				$('#project_id').empty(); // remove old options
 				$.each(json.combo2, function(key, value) {
 				  $('#project_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
 				$('#project_id option:eq(1)').attr('selected', 'selected');
             },

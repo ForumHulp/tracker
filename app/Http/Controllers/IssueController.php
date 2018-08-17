@@ -164,16 +164,10 @@ class IssueController extends Controller
             abort(404);
         }
 
-		$data['combo1'][] = ['key' => '', 'value' => __('issue.no_record')];
-		foreach($combo1 as $value)
-		{
-			$data['combo1'][] = ['key' => $value->id, 'value' => $value->title];
-		}
-		$data['combo2'][] = ['key' => '', 'value' => __('issue.no_record')];
-		foreach($combo2 as $value)
-		{
-			$data['combo2'][] = ['key' => $value->id, 'value' => $value->title];
-		}
+        $data = [
+            'combo1' => [0 => __('issue.no_record')] + $combo1->pluck('title', 'id')->toArray(),
+			'combo2' => [0 => __('issue.no_record')] + $combo2->pluck('title', 'id')->toArray(),
+		];
 
         if ($request->wantsJson()) {
             return response()->json($data);
