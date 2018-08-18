@@ -127,7 +127,7 @@
                                                     <tr class="row">
                                                       <td class="col-sm-1"></td>
                                                       <td class="col-sm-4">
-                                                        <span class="change-remark" data-url="/tracker/edit/{{ $track->id}}" title="@lang('issue.change.track')">{{ $track->remark }}</span>
+                                                        <span class="change-remark" id="tr{{$track->id}}" data-url="/tracker/edit/{{ $track->id}}" title="@lang('issue.change.track')">{{ $track->remark }}</span>
                                                         @if ($track->attachment)
                                                          <a class="download" href="{{ route('tracker.download', $track->attachment) }}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                                                         @endif
@@ -142,40 +142,39 @@
                                                         </div>
                                                       </td>
                                                     </tr>
+                                                    @if (auth()->check() && $subissue->status_id != 3 && $subissue->user->id == auth()->user()->id )
+                                                       <tr class="row">
+                                                          <td id="s{{ $track->id }}" class="panel-collapse col-sm-12">
+                                                            <tr class="row" id="str{{ $track->id }}">
+                                                                {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform-tr' . $track->id, 'class' => 'trackinfo col-sm-12', 'files' => true]) !!}
+                                                                {!! \Form::hidden('issue_id', $subissue->id) !!}
+                                                                {!! \Form::hidden('user_id', $subissue->user->id) !!}
+                                                                <td class="col-sm-1"></td>
+                                                                <td class="col-sm-4 remarks">{!! \Form::text('remark', null, ['class' => 'form-control remark', 'id'=> 'remark']) !!}</td>
+                                                                <td class="col-sm-2 datepickers">{{ Form::text('date', null, ['class' => 'form-control datepicker', 'id'=>'datepicker']) }}</td>
+                                                                <td class="col-sm-1 timepickers">
+                                                                  <input id="timepicker" name="used_time" class="form-control timepicker" value="0:0" type="text"/>
+                                                                  <a class="start-timer" href="#">Start</a> <a class="stop-timer" href="#">Stop</a>
+                                                                </td>
+                                                                <td class="col-sm-4 progresses">
+                                                                  <input name="progress" class="progress" id="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
+                                                                  <div class="fileinput" id="fileinput">@lang('issue.upload')
+                                                                    <input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
+                                                                  </div>
+                                                                    {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
+                                                                </td>
+                                                                {!! \Form::close() !!}
+                                                            </tr>
+                                                          </td>
+                                                        </tr>
+                                                    @endif
                                            <!--       </a> -->
                                               <hr>
                                             </td>
                                             @endforeach
                                          </tr>
 
-                                         @if (auth()->check() && $subissue->status_id != 3 && $subissue->user->id == auth()->user()->id )
-                                            <tr class="row">
-                                               <td id="s{{ $track->id }}" class="panel-collapse col-sm-12">
-                                                 <tr class="row">
-                                                   {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform', 'class' => 'col-sm-12', 'files' => true]) !!}
-                                                   <tr class="row">
-                                                     {!! \Form::hidden('issue_id', $subissue->id) !!}
-                                                     {!! \Form::hidden('user_id', $subissue->user->id) !!}
-                                                     <td class="col-sm-1"></td>
-                                                     <td class="col-sm-4">{!! \Form::text('remark', null, ['class' => 'form-control', 'id'=> 'remark']) !!}</td>
-                                                     <td class="col-sm-2">{{ Form::text('date', null, ['class' => 'form-control', 'id'=>'datepicker']) }}</td>
-                                                     <td class="col-sm-1">
-                                                       <input id="timepicker" name="used_time" class="form-control" value="0:0" type="text"/>
-                                                       <a class="start-timer" href="#">Start</a> <a class="stop-timer" href="#">Stop</a>
-                                                     </td>
-                                                     <td class="col-sm-4">
-                                                       <input name="progress" id="progress" type="range" min="0" max="100" value="0" style="width:75px;" />
-                                                       <div class="fileinput" id="fileinput">@lang('issue.upload')
-                                                         <input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
-                                                       </div>
-                                                         {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
-                                                     </td>
-                                                   </tr>
-                                                   {!! \Form::close() !!}
-                                                 </tr>
-                                               </td>
-                                             </tr>
-                                         @endif
+
                                          </tbody>
                                        </table>
                                      </td>

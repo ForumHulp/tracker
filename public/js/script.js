@@ -3,9 +3,11 @@ $(document).ready(function(){
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
     $(document).on('click', '.change-remark', function() {
+
        $('#fileinput').remove();
        var url = $(this).data('url');
-
+       var track_ids = '#s' + this.id;
+       //alert(track_id);
         $.ajax({
             type: "POST",
             url: url,
@@ -13,15 +15,14 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				_token: CSRF_TOKEN,
 				},
             success: function(json) {
-                $('#remark').val(json.track.remark);
-                $('#datepicker').val(json.track.datum);
-                $('#timepicker').val(json.track.used_time);
-                $('#progress').val(json.track.progress);
-				$('#track_id').remove();
-				$('<input>').attr({type: 'hidden',id: 'track_id',name: 'track_id', value: json.track.id}).appendTo('#trackform');
-				$('#trackform').attr('action', json.route);
-
-                $('#btn_save').val('Save again');
+              $(track_ids).find('.remark').val(json.track.remark);
+              $(track_ids).find('.datepicker').val(json.track.datum);
+              $(track_ids).find('.timepicker').val(json.track.used_time);
+              $(track_ids).find('.progress').val(json.track.progress);
+              
+              //$('<input>').attr({type: 'hidden', id: 'track_id', name: 'track_id', value: json.track.id}).appendTo(track_ids).find('.trackinfo');
+              $(track_ids).find('.trackinfo').attr('action', json.route);
+              $(track_ids).find('.trackinfo #btn_save').val('Save again');
             },
             dataType: 'json',
         });
