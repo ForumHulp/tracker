@@ -26,7 +26,8 @@ class HomeController extends Controller
     {
 	//	Issue::rebuild();
         $data = [
-            'issues'	=> Issue::with('project.client', 'status', 'type', 'project', 'user', 'tracks')->orderBy('lft')->paginate(20),
+            'issues'	=> Issue::with('project.client', 'status', 'type', 'project', 'user', 'tracks')->where('parent_id', null)->orderBy('lft')->paginate(20),
+            'subissues'	=> Issue::with('project.client', 'status', 'type', 'project', 'user', 'tracks')->whereNotNull('parent_id')->orderBy('lft')->paginate(20),
         ];
 
         return view('pages.home')->with($data);
