@@ -24,7 +24,7 @@ class TrackController extends Controller
         if(is_null($track)) {
             abort(404);
         }
-		
+
 		$track->used_time = sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60);
 		$track->datum = $track->date->format('d-m-Y');
         if($request->wantsJson()) {
@@ -54,7 +54,6 @@ class TrackController extends Controller
         ]);
 
         $track = Track::where('id', $request->get('track_id'))->first();
-
         if(is_null($track)) {
             abort(404);
         }
@@ -72,7 +71,7 @@ class TrackController extends Controller
 		$attributes['used_time'] = $time;
 
 		$track->update($attributes);
-		
+
         $data = [
             'message' => __('issue.updated.track'),
             'alert-class' => 'alert-success',
@@ -110,7 +109,7 @@ class TrackController extends Controller
 		$attributes['used_time'] = $time;
 
         $track = Track::create($attributes);
-		
+
 		if ($request->file('document'))
 		{
 			$docName = $track->id . '.' . $request->file('document')->getClientOriginalExtension();
