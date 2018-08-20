@@ -30,7 +30,8 @@ return [
 	'date'					=> 'Datum',
 	'time'					=> 'Teid',
 	'add_remark'			=> 'Toevoegen',
-	
+
+    'overview'            	=> 'Issue overzicht',
 	'add'					=> 'Add new issue',
 	'save'					=> 'Save this issue',
 	'create_issue'			=> 'Create a new issue',

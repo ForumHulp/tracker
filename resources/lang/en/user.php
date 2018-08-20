@@ -27,6 +27,7 @@ return [
 	'registered'			=> 'Registered',
 	'password'				=> 'Password',
 	'role'					=> 'Role',
+	'image'					=> 'Image',
 	'options'				=> 'Options',
 	'create'				=> 'A new user has been added!',
 	'update'				=> 'A user has been updated!',

@@ -67,6 +67,21 @@ class UserController extends Controller
 		
         $user = User::create($attributes);
 
+        if ($request->file('image'))
+        {
+            $imgName = $user->name . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/images/avatar/', $imgName);
+
+            $user = User::where('id', $user->id)->first();
+
+            if(is_null($user)) {
+                abort(404);
+            }
+            $attributes['attachment'] = $imgName;
+
+            $user->update($attributes);
+        }
+
 		$role = $request->get('role');
 	    $user->roles()->attach($role);
 
@@ -128,7 +143,7 @@ class UserController extends Controller
         }
 
         $attributes = $request->all();
-		
+
 		if (empty($request->get('password', '')))
 		{
 			$attributes = $request->except('password');

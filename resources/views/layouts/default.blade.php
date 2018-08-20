@@ -1,35 +1,32 @@
 <!doctype html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
     @include('includes.head')
 </head>
     <body>
 
-        <div id="navbar">
+
+        {{--@if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')--}}
+            {{--@if (auth()->user()->hasRole('manager') && !\Request::is('issue/edit*') && !\Request::is('planning*'))--}}
+
+                    @include('includes.sidebar')
+
+            {{--@endif--}}
+        {{--@endif--}}
+
+        <div id="right-panel" class="right-panel">
+
             @include('includes.navbar')
-        </div>
-        
-        <div class="container content">
-        	<div class="row">
 
-            @if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')
-                @if (auth()->user()->hasRole('manager') && !\Request::is('issue/edit*') && !\Request::is('planning*'))
-               <div id="dashboard" class="col-md-2">
-                    @include('dashboard.sidebar')
-                </div>
-                @endif
-            @endif
-        
-            <div class="@if(auth()->check() && auth()->user()->hasRole('manager') && \Request::getPathInfo() != '/') col-md-10 @else col-md-12 @endif" id="content">
-                @yield('content')
-            </div>
+            @yield('content')
 
-			</div>
-	    </div>
+        </div><!-- /#right-panel -->
 
-        <div id="footer">
-            @include('includes.footer')
-        </div>
+
+        @include('includes.footer')
 
     @if( Session::has('message') || $errors->any())
 	<script type="text/javascript">
@@ -70,3 +67,30 @@
     @endif 
     </body>
 </html>
+
+{{--<!doctype html>--}}
+{{--<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->--}}
+{{--<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->--}}
+{{--<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->--}}
+{{--<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->--}}
+{{--<head>--}}
+    {{--@include('includes.head')--}}
+{{--</head>--}}
+{{--<body>--}}
+
+{{--@include('includes.sidebar')--}}
+
+
+{{--<div id="right-panel" class="right-panel">--}}
+
+    {{--@include('includes.navbar')--}}
+
+    {{--@yield('content')--}}
+
+{{--</div><!-- /#right-panel -->--}}
+
+{{--@include('includes.footer')--}}
+
+{{--</body>--}}
+{{--</html>--}}
+

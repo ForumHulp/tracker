@@ -24,13 +24,13 @@ class TrackController extends Controller
         if(is_null($track)) {
             abort(404);
         }
-		
-		$track->used_time = sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60);
-		$track->datum = $track->date->format('d-m-Y');
+
+        $track->used_time = sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60);
+        $track->datum = $track->date->format('d-m-Y');
         if($request->wantsJson()) {
             return response()->json([
                 'track' => $track,
-				'route'	=> route('tracker.update')
+                'route'	=> route('tracker.update')
             ]);
         }
     }
@@ -54,25 +54,24 @@ class TrackController extends Controller
         ]);
 
         $track = Track::where('id', $request->get('track_id'))->first();
-
         if(is_null($track)) {
             abort(404);
         }
 
         $attributes = $request->all();
-		$attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
+        $attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
 
-		$time = explode(':', $attributes['used_time']);
-		$time = (int) ($time[0] * 60) + $time[1];
-		$extra_minutes = intval(15 - $time % 15);
-		if ($extra_minutes > 0 && $extra_minutes < 15)
-		{
-			$time = $time + $extra_minutes;
-		}
-		$attributes['used_time'] = $time;
+        $time = explode(':', $attributes['used_time']);
+        $time = (int) ($time[0] * 60) + $time[1];
+        $extra_minutes = intval(15 - $time % 15);
+        if ($extra_minutes > 0 && $extra_minutes < 15)
+        {
+            $time = $time + $extra_minutes;
+        }
+        $attributes['used_time'] = $time;
 
-		$track->update($attributes);
-		
+        $track->update($attributes);
+
         $data = [
             'message' => __('issue.updated.track'),
             'alert-class' => 'alert-success',
@@ -98,33 +97,33 @@ class TrackController extends Controller
         ]);
 
         $attributes = $request->all();
-		$attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
+        $attributes['date'] = date('Y-m-d H:i:s', strtotime($attributes['date']));
 
-		$time = explode(':', $attributes['used_time']);
-		$time = (int) ($time[0] * 60) + $time[1];
-		$extra_minutes = intval(15 - $time % 15);
-		if ($extra_minutes > 0 && $extra_minutes < 15)
-		{
-			$time = $time + $extra_minutes;
-		}
-		$attributes['used_time'] = $time;
+        $time = explode(':', $attributes['used_time']);
+        $time = (int) ($time[0] * 60) + $time[1];
+        $extra_minutes = intval(15 - $time % 15);
+        if ($extra_minutes > 0 && $extra_minutes < 15)
+        {
+            $time = $time + $extra_minutes;
+        }
+        $attributes['used_time'] = $time;
 
         $track = Track::create($attributes);
-		
-		if ($request->file('document'))
-		{
-			$docName = $track->id . '.' . $request->file('document')->getClientOriginalExtension();
-			$request->file('document')->move(base_path() . '/public/docs/', $docName);
 
-        	$track = Track::where('id', $track->id)->first();
+        if ($request->file('document'))
+        {
+            $docName = $track->id . '.' . $request->file('document')->getClientOriginalExtension();
+            $request->file('document')->move(base_path() . '/public/docs/', $docName);
 
-			if(is_null($track)) {
-				abort(404);
-			}
-			$attributes['attachment'] = $docName;
+            $track = Track::where('id', $track->id)->first();
 
-	        $track->update($attributes);
-		}
+            if(is_null($track)) {
+                abort(404);
+            }
+            $attributes['attachment'] = $docName;
+
+            $track->update($attributes);
+        }
 
         $data = [
             'message' => __('issue.create.track'),
@@ -139,8 +138,8 @@ class TrackController extends Controller
      * @param string  $id
      * @return \Illuminate\Http\Response
      */
-	public function getDownload($id)
-	{
-		return response()->download(public_path('docs/' . $id));
-	}
+    public function getDownload($id)
+    {
+        return response()->download(public_path('docs/' . $id));
+    }
 }

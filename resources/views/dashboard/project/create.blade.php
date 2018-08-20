@@ -1,25 +1,47 @@
 @extends('layouts.default')
 
 @section('content')
-<h2>@lang('project.create_project')</h2>
-    {!! \Form::open(['route' => 'project.store']) !!}
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>@lang('project.create_project')</strong>
+            </div>
+            <div class="card-body card-block">
+                {!! \Form::open(['route' => 'project.store', 'class' => 'form-horizontal']) !!}
 
-    <div class="form-group">
-        <label for="title">@lang('project.title')</label>
-        {!! \Form::text('title', null, ['class' => 'form-control']) !!}
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="title">@lang('project.title')</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        {!! \Form::text('title', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="description">@lang('project.description')</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        {!! \Form::text('description', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="client_id">@lang('project.client')</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        {!! Form::select('client_id', $clientList, $selected, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                {!! \Form::submit(__('project.add'), ['class' => 'btn btn-small btn-primary']) !!}
+                <a class="btn btn-small btn-primary" href="{{ route('project.index') }}">@lang('project.cancel')</a>
+            </div>
+            {!! \Form::close() !!}
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="description">@lang('project.description')</label>
-        {!! \Form::text('description', null, ['class' => 'form-control']) !!}
-    </div>
-
-    <div class="form-group">
-        <label for="client_id">@lang('project.client')</label>
-        {!! Form::select('client_id', $clientList, $selected, ['class' => 'form-control']) !!}
-    </div>
-
-    {!! \Form::submit(__('project.add'), ['class' => 'btn btn-small btn-primary']) !!}
-    <a class="btn btn-small btn-primary" href="{{ route('project.index') }}">@lang('project.cancel')</a>
-    {!! \Form::close() !!}
 @stop

@@ -20,7 +20,6 @@ return [
 	'priority'				=> 'Priority',
 	'project'				=> 'Project',
 	'title'					=> 'Title',
-	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
 	'progress'				=> 'Progress',
 	'plan_time'				=> 'Plan time',
@@ -30,7 +29,8 @@ return [
 	'date'					=> 'Date',
 	'time'					=> 'Time',
 	'add_remark'			=> 'Add',
-	
+
+    'overview'            	=> 'Issue overview',
 	'add'					=> 'Add new issue',
 	'save'					=> 'Save this issue',
 	'create_issue'			=> 'Create a new issue',
