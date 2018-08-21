@@ -55,7 +55,10 @@
             <div class="user-area dropdown float-right">
                 @if(\Auth::check())
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="/images/avatar/{{ auth()->user()->attachment }}" alt="User Avatar">
+                         @if (auth()->user()->attachment)<img class="user-avatar rounded-circle" src="/images/avatar/{{ auth()->user()->attachment }}" alt="User Avatar">
+                         @else
+                         <img class="user-avatar rounded-circle" src="/images/avatar/no_avatar.jpg" alt="User Avatar">
+                         @endif
                     </a>
 
                     <div class="user-menu dropdown-menu">

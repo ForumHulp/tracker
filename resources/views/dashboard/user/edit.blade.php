@@ -53,6 +53,7 @@
                     </div>
                     <div class="col-12 col-md-9">
                         {!! Form::file('image', null, ['class' => 'form-control', 'accept' => '.jpg']) !!}
+                        @if ($user->attachment)<img class="user-avatar rounded-circle pull-right" src="/images/avatar/{{ $user->attachment }}" alt="User Avatar">@endif
                     </div>
                 </div>
 
