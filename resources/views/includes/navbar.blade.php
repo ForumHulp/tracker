@@ -39,15 +39,20 @@
     <div class="header-menu">
 
         <div class="col-sm-7">
-            <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+            @if (auth()->check())
+                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+            @endif
             <div class="header-left">
-                @if (auth()->check())<span class="d-inline-block">Welcome {{ auth()->user()->name }}</span>@endif
+                @if (auth()->check())<span class="d-inline-block">Welcome {{ auth()->user()->name }}</span>
                 {{--<a class="btn btn-link" href="{{ route('status.index') }}"><i class="fa fa-tachometer"></i> @lang('site.dashboard')</a>--}}
                 {{--@if (Auth::guest())--}}
                     {{--<a class="btn btn-small btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
                 {{--@endif--}}
 
                 {{--<a class="btn btn-link" href="#"><i class="fa fa-tachometer"></i>&nbsp; Dashboard</a>--}}
+                    @else
+                        <a class="navbar-brand" href="./">Issue Tracker</a>
+                @endif
             </div>
         </div>
 
