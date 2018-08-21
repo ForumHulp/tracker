@@ -40,7 +40,7 @@
                                                     </a>
 
                                                     {!! \Form::open(['route' => 'type.destroy']) !!}
-                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('type.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('type.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm delete']) !!}
                                                     {!! \Form::hidden('id', $type->id) !!}
                                                     {!! \Form::close() !!}
                                                 </div>

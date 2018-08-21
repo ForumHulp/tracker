@@ -42,7 +42,7 @@
                                                     </a>
 
                                                     {!! \Form::open(['route' => 'project.destroy']) !!}
-                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('project.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('project.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm delete']) !!}
                                                     {!! \Form::hidden('id', $project->id) !!}
                                                     {!! \Form::close() !!}
                                                 </div>

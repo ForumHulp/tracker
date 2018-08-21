@@ -158,6 +158,11 @@ class ProjectController extends Controller
             'message' => __('project.destroy'),
             'alert-class' => 'alert-success',
         ];
+
+        if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
         return redirect()->route('project.index')->with($data);
     }
 }

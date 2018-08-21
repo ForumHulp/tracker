@@ -198,6 +198,11 @@ class UserController extends Controller
             'message' => __('user.destroy'),
             'alert-class' => 'alert-success',
         ];
+
+        if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
         return redirect()->route('user.index')->with($data);
     }
 }

@@ -34,6 +34,7 @@
 		$('#myModal').modal();
 	});
     </script>
+    @endif 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -64,7 +65,6 @@
             </div>
         </div>
     </div>
-    @endif 
     </body>
 </html>
 
