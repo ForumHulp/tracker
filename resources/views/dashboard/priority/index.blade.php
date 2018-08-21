@@ -40,7 +40,7 @@
                                                     </a>
 
                                                     {!! \Form::open(['route' => 'priority.destroy']) !!}
-                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('priority.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('priority.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm delete']) !!}
                                                     {!! \Form::hidden('id', $priority->id) !!}
                                                     {!! \Form::close() !!}
                                                 </div>

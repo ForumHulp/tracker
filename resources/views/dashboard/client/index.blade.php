@@ -50,7 +50,7 @@
                                                     </a>
 
                                                     {!! \Form::open(['route' => 'client.destroy']) !!}
-                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('client.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                                                    {!! \Form::button('<i class="fa fa-trash"></i> ' . __('client.dell'), ['type' => 'submit', 'class' => 'btn btn-danger btn-sm delete']) !!}
                                                     {!! \Form::hidden('id', $client->id) !!}
                                                     {!! \Form::close() !!}
                                                 </div>

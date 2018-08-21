@@ -29,6 +29,7 @@
   color:white;
 }
 
+.modal {display:none;}
 .d-inline-block.float-right {
 	position:relative;
 	right:0;

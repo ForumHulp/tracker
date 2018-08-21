@@ -29,6 +29,28 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         return false;
     });
 
+    $(document).on('click', '.delete', function(element) {
+		element.preventDefault();
+		var url = $(this).closest("form").attr('action');
+		var tr = $(this).closest('tr');
+		tr.remove();
+        $.ajax({
+            type: "POST",
+            url: url,
+			data: {
+				_token: CSRF_TOKEN,
+				id: $(this).closest('form').find(':input[name=id]').val()
+				},
+            success: function(json) {
+				$('.modal-body').html(json.message);
+				$('#myModal').modal("show");
+            },
+            dataType: 'json',
+        });
+
+        return false;
+    });
+
 	var startDate = new Date();
 	$('.timepicker').durationpicker();
 	$('.datepicker').datepicker({

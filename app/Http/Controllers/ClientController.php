@@ -148,6 +148,11 @@ class ClientController extends Controller
             'message' => __('client.destroy'),
             'alert-class' => 'alert-success',
         ];
+
+        if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
         return redirect()->route('client.index')->with($data);
     }
 }
