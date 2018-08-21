@@ -8,7 +8,7 @@
                 <strong>@lang('user.edit_user')</strong>
             </div>
             <div class="card-body card-block">
-                {!! \Form::model($user, ['route' => 'user.update', 'class' => 'form-horizontal']) !!}
+                {!! \Form::model($user, ['route' => 'user.update', 'files' => true, 'class' => 'form-horizontal']) !!}
                 {!! \Form::hidden('id', $user->id) !!}
 
                 <div class="form-group row">

@@ -64,12 +64,13 @@ class UserController extends Controller
         ]);
 
         $attributes = $request->all();
-		
+		$attributes['password'] = bcrypt($attributes['password']);
+
         $user = User::create($attributes);
 
         if ($request->file('image'))
         {
-            $imgName = $user->name . '.' . $request->file('image')->getClientOriginalExtension();
+            $imgName = $user->id . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(base_path() . '/public/images/avatar/', $imgName);
 
             $user = User::where('id', $user->id)->first();
@@ -151,6 +152,14 @@ class UserController extends Controller
 		{
 			$attributes['password'] = bcrypt($attributes['password']);
 		}
+
+        if ($request->file('image'))
+        {
+            $imgName = $user->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/images/avatar/', $imgName);
+
+            $attributes['attachment'] = $imgName;
+        }
 
         $user->update($attributes);
 		

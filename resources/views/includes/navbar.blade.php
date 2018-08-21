@@ -51,15 +51,11 @@
             </div>
         </div>
 
-
         <div class="col-sm-5">
             <div class="user-area dropdown float-right">
-                @if (Auth::guest())
-                    <a class="btn btn-small btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
-                @endif
                 @if(\Auth::check())
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="/images/avatar/{{ auth()->user()->name }}.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="/images/avatar/{{ auth()->user()->attachment }}" alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">
@@ -71,6 +67,8 @@
                         {!! \Form::submit(__('site.logout'), ['class' => 'btn btn-small btn-primary']) !!}
                         {!! \Form::close() !!}
                     </div>
+                @else
+                    <a class="btn btn-small btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                 @endif
 
             </div>
