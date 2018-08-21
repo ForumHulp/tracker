@@ -35,6 +35,7 @@
 body {
     background: $container-bg;
     display: table;
+    table-layout: fixed !important;
     font-family: 'Open Sans' sans-serif !important;
     font-size: 16px;
     width: 100%
@@ -437,6 +438,7 @@ body.open {
 
 .right-panel {
     display: table-cell;
+    width: 100% !important;
     padding-left: 0 !important;
 
     -webkit-transition: all .35s ease;

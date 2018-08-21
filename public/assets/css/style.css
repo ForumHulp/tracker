@@ -35,6 +35,7 @@
 body {
   background: #f1f2f7;
   display: table;
+  table-layout: fixed !important;
   font-family: 'Open Sans' sans-serif;
   font-size: 16px;
   width: 100%; }
@@ -344,6 +345,7 @@ body.open .navbar .navbar-brand.hidden {
 /* Right panel */
 .right-panel {
   display: table-cell;
+  width: 100% !important;
   padding-left: 0 !important;
   -webkit-transition: all .35s ease;
   -moz-transition: all .35s ease;
