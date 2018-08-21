@@ -1,21 +1,12 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html class="no-js" lang="">
 <head>
     @include('includes.head')
 </head>
     <body>
 
 
-        {{--@if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')--}}
-            {{--@if (auth()->user()->hasRole('manager') && !\Request::is('issue/edit*') && !\Request::is('planning*'))--}}
-
                     @include('includes.sidebar')
-
-            {{--@endif--}}
-        {{--@endif--}}
 
         <div id="right-panel" class="right-panel">
 
@@ -68,29 +59,5 @@
     </body>
 </html>
 
-{{--<!doctype html>--}}
-{{--<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->--}}
-{{--<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->--}}
-{{--<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->--}}
-{{--<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->--}}
-{{--<head>--}}
-    {{--@include('includes.head')--}}
-{{--</head>--}}
-{{--<body>--}}
 
-{{--@include('includes.sidebar')--}}
-
-
-{{--<div id="right-panel" class="right-panel">--}}
-
-    {{--@include('includes.navbar')--}}
-
-    {{--@yield('content')--}}
-
-{{--</div><!-- /#right-panel -->--}}
-
-{{--@include('includes.footer')--}}
-
-{{--</body>--}}
-{{--</html>--}}
 

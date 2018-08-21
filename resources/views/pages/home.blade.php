@@ -10,7 +10,6 @@
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">@lang('issue.overview')</strong>
-                            {{--@if (auth()->check())<span class="d-inline-block float-right">Welcome {{ auth()->user()->name }}</span>@endif--}}
                             @if (auth()->check())
                                 @if (auth()->user()->hasRole('manager'))
                                     <a href="{{ route('issue.create') }}" class="btn btn-primary btn-sm float-right btn-create_issue">

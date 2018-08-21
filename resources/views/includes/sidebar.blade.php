@@ -9,7 +9,6 @@
             <a class="navbar-brand" href="./">Issue Tracker</a>
             <a class="navbar-brand hidden" href="./">IT</a>
         </div>
-        {{--@if(\Auth::check())--}}
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title"><i class="menu-icon fa fa-tachometer"></i> &nbsp; @lang('site.dashboard')</h3>
@@ -23,7 +22,6 @@
                     <li @if (\Request::is('planning*')) class="active" @endif><a href="{{ route('planning.index') }}"><i class="menu-icon fa fa-calendar"></i>@lang('site.planning')</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
-        {{--@endif--}}
     </nav>
 
 </aside><!-- /#left-panel -->
