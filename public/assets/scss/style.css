@@ -757,9 +757,7 @@ body {
   font-family: 'Open Sans' sans-serif !important;
   font-size: 16px;
   width: 100%;
-  padding: 0 10px;
-  margin: 0 auto;	
-  max-width:1000px; }
+ }
 
 div[class*="col-"] {
   float: left; }
@@ -835,7 +833,7 @@ aside.left-panel {
   min-height: 100%;
   padding: 0 25px;
   vertical-align: top;
-  width: 180px;
+  width: 220px;
   transition: width 0.3s ease; }
 
 .navbar {

@@ -38,9 +38,8 @@ body {
   table-layout: fixed !important;
   font-family: 'Open Sans' sans-serif;
   font-size: 16px;
-  padding: 0 10px;
-  margin: 0 auto;	
-  max-width:1000px; }
+  width: 100%;
+}
 
 div[class*="col-"] {
   float: left; }
