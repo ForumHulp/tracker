@@ -4,10 +4,9 @@
 
     <div class="content mt-3">
         <div class="animated fadeIn">
-            <div class="row">
 
                 <div class="col-md-12">
-                    <div class="card row">
+                    <div class="card">
                         <div class="card-header col-md-12">
                             <strong class="card-title">@lang('issue.overview')</strong>
                             {{--@if (auth()->check())<span class="d-inline-block float-right">Welcome {{ auth()->user()->name }}</span>@endif--}}
@@ -24,34 +23,33 @@
                             <table id="bootstrap-data-table" class="table table-striped table-bordered row">
 
                                 <thead class="col-md-12">
-                                  <tr class="row">
-                                      <th class="col-md-1">@lang('issue.number')</th>
-                                      <th class="col-md-2">@lang('issue.client')</th>
-                                      <th class="col-md-2">@lang('issue.project')</th>
-                                      <th class="col-md-1">@lang('issue.status')</th>
-                                      <th class="col-md-1">@lang('issue.type')</th>
-                                      <th class="col-md-1">@lang('issue.title')</th>
-                                      <th class="col-md-1">@lang('issue.assigned')</th>
-                                      <th class="col-md-1">@lang('issue.progress')</th>
+                                  <tr class="">
+                                      <th class="md-1">@lang('issue.number')</th>
+                                      <th class="md-2">@lang('issue.client')</th>
+                                      <th class="md-2">@lang('issue.project')</th>
+                                      <th class="md-1">@lang('issue.status')</th>
+                                      <th class="md-1">@lang('issue.type')</th>
+                                      <th class="md-3">@lang('issue.title')</th>
+                                      <th class="md-1">@lang('issue.assigned')</th>
+                                      <th class="md-1">@lang('issue.progress')</th>
                                   </tr>
                                 </thead>
 
                                 <tbody  class="col-md-12">
                                 @foreach($issues as $issue)
-                                    <tr style="border-top:1px black solid;"></tr>
-                                    <tr class="issue-main row">
-                                        <td class="col-md-1"><a href="#i{{ $issue->id }}" data-toggle="collapse">{{ $issue->id }}</a></td>
-                                        <td class="col-md-2">
+                                    <tr class="issue-main" style="border-top:1px black solid;">
+                                        <td><a href="#i{{ $issue->id }}" data-toggle="collapse">{{ $issue->id }}</a></td>
+                                        <td>
                                             @if (auth()->check() && auth()->user()->hasRole('manager'))
                                                 <a href="{{ route('issue.edit', $issue->id) }}" title="Update issue">{{ $issue->project->client->name }}</a>@else{{ $issue->project->client->name }}
                                             @endif
                                         </td>
-                                        <td class="col-md-2">{{ $issue->project->title }}</td>
-                                        <td class="col-md-1">{{ $issue->status->title }}</td>
-                                        <td class="col-md-1">{{ $issue->type->title }}</td>
-                                        <td class="col-md-1">{{ $issue->title }}</td>
-                                        <td class="col-md-1">@if($issue->user){{ $issue->user->name }}@endif</td>
-                                        <td class="col-md-1">
+                                        <td>{{ $issue->project->title }}</td>
+                                        <td>{{ $issue->status->title }}</td>
+                                        <td>{{ $issue->type->title }}</td>
+                                        <td>{{ $issue->title }}</td>
+                                        <td>@if($issue->user){{ $issue->user->name }}@endif</td>
+                                        <td>
                                             <?php $progress = 0; ?>
                                             @if (!$issue->isChild() && $issue->getLeaves()->count())
                                                 @foreach($issue->getLeaves() as $leave)
@@ -63,10 +61,12 @@
                                                         <span class="sr-only">{{ $progress }}% Complete</span>
                                                     </div>
                                                 </div>
+                                            @else
+                                            &nbsp;
                                             @endif
                                         </td>
                                     </tr>
-
+@if (1 == 0)
                                     <tr id="i{{ $issue->id }}" class="issue-info row panel-collapse collapse">
                                         <td  class=" col-md-12">
                                             <table class="issues-sub row">
@@ -79,6 +79,7 @@
                                                         <br />{{ $issue->description }}
                                                     </td>
                                                 </tr>
+
 
                                               @foreach($subissues as $subissue)
                                                   @if ($subissue->parent_id == $issue->id)
@@ -122,6 +123,9 @@
                                                               </div>
                                                           </div>
                                                       </td>
+
+
+
                                                   @if (auth()->check() && $subissue->status_id != 3 && $subissue->user->id == auth()->user()->id )
 
                                                                 {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform-tr' . $track->id, 'class' => 'trackinfo col-sm-12', 'files' => true]) !!}
@@ -143,23 +147,23 @@
                                                                 </td>
                                                                 {!! \Form::close() !!}
                                                   @endif
+
                                                 @endforeach <!-- Tracks -->
                                               </tr>
 
                                                   @endif
                                               @endforeach <!-- Sub-Issues -->
-
                                                 </tbody>
                                             </table>
                                         </td>
                                     </tr>
+@endif
                                 @endforeach <!-- Issues -->
                                 </tbody>
                             </table> <!-- End Issues-Table -->
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
