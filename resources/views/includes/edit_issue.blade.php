@@ -70,12 +70,12 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="card-footer">
-                {!! \Form::submit(__('issue.save'), ['class' => 'btn btn-small btn-primary']) !!}
-                <a class="btn btn-small btn-primary" href="{{ route('home') }}">@lang('issue.cancel')</a>
-                {!! \Form::close() !!}
-            </div>
+                <div class="card-footer">
+                    {!! \Form::submit(__('issue.save'), ['class' => 'btn btn-small btn-primary']) !!}
+                    <a class="btn btn-small btn-primary" href="{{ route('home') }}">@lang('issue.cancel')</a>
+                </div>
+            {!! \Form::close() !!}
+			</div>
             <div class="card-footer">
                 {!! \Form::open(['route' => 'issue.destroy']) !!}
                 {!! \Form::hidden('id', $issue->id) !!}

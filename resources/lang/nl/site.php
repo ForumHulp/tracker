@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'welcome'				=> 'Welkom',
     'tracker'            	=> 'Tracker',
 	'issue_tracker'			=> 'Issue Tracker',
 	'dashboard'				=> 'Dashboard',

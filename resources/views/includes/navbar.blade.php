@@ -4,15 +4,18 @@
 
         <div class="col-sm-7">
             @if (auth()->check())
-                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                @if (auth()->user()->hasRole('manager'))
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                @endif
             @endif
             <div class="header-left">
                 @if (auth()->check())
-                    <span class="d-inline-block">Welcome {{ auth()->user()->name }}</span>
+                    <span class="d-inline-block">@lang('site.welcome') {{ auth()->user()->name }}</span>
                 @else
                         <a class="navbar-brand" href="./">Issue Tracker</a>
                 @endif
             </div>
+            <span>@include('includes.issue_count')</span>
         </div>
 
         <div class="col-sm-5">
@@ -27,7 +30,6 @@
 
                     <div class="user-menu dropdown-menu">
                         <span>{{ auth()->user()->name }}</span>
-                        <span>@include('includes.issue_count')</span>
 
                         {!! \Form::open(['route' => 'logout']) !!}
                         {!! \Form::submit(__('site.logout'), ['class' => 'btn btn-small btn-primary']) !!}

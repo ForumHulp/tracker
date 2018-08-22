@@ -1,6 +1,18 @@
 $(document).ready(function(){
 'use strict';
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	if (Boolean(sessionStorage.getItem("sidebar-toggle-collapsed"))) {
+		$("body").removeClass('open')
+	}
+	
+	$('#menuToggle').click(function() {
+		event.preventDefault();
+		if (Boolean(sessionStorage.getItem("sidebar-toggle-collapsed"))) {
+			sessionStorage.setItem("sidebar-toggle-collapsed", "");
+		} else {
+			sessionStorage.setItem("sidebar-toggle-collapsed", "1");
+		}
+	});
 
     $(document).on('click', '.change-remark', function() {
        var url = $(this).data('url');

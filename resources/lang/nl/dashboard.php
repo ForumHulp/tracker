@@ -15,11 +15,11 @@ return [
 
     'dashboard'            	=> 'Dashboard',
 	'status'				=> 'Status',
-	'priority'				=> 'Priority',
-	'user'					=> 'User',
-	'client'				=> 'Client',
+	'priority'				=> 'Prioriteit',
+	'user'					=> 'Gebruiker',
+	'client'				=> 'Klant',
 	'project'				=> 'Project',
 	'timeslot'				=> 'Timeslot',
 	'type'					=> 'Type',
-
+	'issue'					=> 'Issue',
 ];
