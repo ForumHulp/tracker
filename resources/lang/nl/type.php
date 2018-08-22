@@ -13,18 +13,20 @@ return [
     |
     */
 
-    'overview'            	=> 'Type overview',
-	'add'					=> 'Add new type',
-	'edit_type'				=> 'Edit type',
-	'create_type'			=> 'Create new type',
-	'edit'					=> 'Edit',
-	'save'					=> 'Save',
-    'cancel'				=> 'Cancel',
-	'dell'					=> 'Delete',
-	'update_title'			=> 'Update type title',
-	'title'					=> 'Type',
-	'options'				=> 'Options',
-	'create'				=> 'A new type has been added!',
-	'update'				=> 'A type has been updated!',
-	'destroy'				=> 'A type has been deleted!',
+    'overview'            	=> 'Type overzicht',
+    'add'					=> 'Nieuwe type toevoegen',
+    'edit_type'			    => 'Wijzig type',
+    'create_type'			=> 'Nieuwe type toevoegen',
+    'edit'					=> 'Wijzig',
+    'save'					=> 'Opslaan',
+    'cancel'				=> 'Annuleer',
+    'dell'					=> 'Verwijder',
+    'update_title'			=> 'Wijzig type titel',
+    'title'					=> 'Type',
+    'options'				=> 'Opties',
+    'create'				=> 'Een nieuwe type is toegevoegd!',
+    'update'				=> 'Type opgeslagen!',
+    'destroy'				=> 'Type verwijderd!',
 ];
+
+

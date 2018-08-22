@@ -13,20 +13,22 @@ return [
     |
     */
 
-    'overview'            	=> 'Project overview',
-	'add'					=> 'Add new project',
-	'edit_project'			=> 'Edit project',
-	'create_project'		=> 'Create new project',
-	'edit'					=> 'Edit',
-	'save'					=> 'Save',
-    'cancel'				=> 'Cancel',
-	'dell'					=> 'Delete',
-	'update_title'			=> 'Update project',
-	'title'					=> 'Title',
-	'client'				=> 'Client',
-	'description'			=> 'Description',
-	'options'				=> 'Options',
-	'create'				=> 'A new project has been added!',
-	'update'				=> 'A project has been updated!',
-	'destroy'				=> 'A project has been deleted!',	
+    'overview'            	=> 'Project overzicht',
+    'add'					=> 'Nieuwe project toevoegen',
+    'edit_project'			=> 'Wijzig project',
+    'create_project'		=> 'Nieuwe project toevoegen',
+    'edit'					=> 'Wijzig',
+    'save'					=> 'Opslaan',
+    'cancel'				=> 'Annuleer',
+    'dell'					=> 'Verwijder',
+    'update_title'			=> 'Wijzig project',
+    'title'					=> 'Titel',
+	'client'				=> 'Klant',
+	'description'			=> 'Omschrijving',
+    'options'				=> 'Opties',
+    'create'				=> 'Een nieuwe project is toegevoegd!',
+    'update'				=> 'Project opgeslagen!',
+    'destroy'				=> 'Project verwijderd!',
 ];
+
+

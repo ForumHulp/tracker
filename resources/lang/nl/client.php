@@ -19,7 +19,7 @@ return [
 	'create_client'		    => 'Nieuwe klant toevoegen',
 	'edit'					=> 'Wijzig',
 	'save'					=> 'Opslaan',
-    'cancel'				=> 'Cancel',
+    'cancel'				=> 'Annuleer',
 	'dell'					=> 'Verwijder',
 	'name'					=> 'Naam',
     'email'                 => 'Email',
