@@ -3,7 +3,7 @@
 <head>
     @include('includes.head')
 </head>
-    <body>
+    <body class="open">
 
 
                     @include('includes.sidebar')

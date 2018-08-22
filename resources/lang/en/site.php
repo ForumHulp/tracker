@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'tracker'            	=> 'Tracker',
+    'welcome'				=> 'Welcome',
+	'tracker'            	=> 'Tracker',
 	'issue_tracker'			=> 'Issue Tracker',
 	'dashboard'				=> 'Dashboard',
 	'planning'				=> 'Planning',
