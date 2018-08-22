@@ -22,7 +22,7 @@
                                 <thead>
                                 <tr>
                                     <th>@lang('status.title')</th>
-                                    @if (auth()->user()->hasRole('manager'))<th>@lang('status.options')</th>@endif
+                                    @if (auth()->user()->hasRole('manager'))<th class="no-sort">@lang('status.options')</th>@endif
                                 </tr>
                                 </thead>
                                 <tbody>

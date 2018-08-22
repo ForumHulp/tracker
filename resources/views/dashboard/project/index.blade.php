@@ -23,7 +23,7 @@
                                 <tr>
                                     <th>@lang('project.title')</th>
                                     <th>@lang('project.client')</th>
-                                    @if (auth()->user()->hasRole('manager'))<th>@lang('project.options')</th>@endif
+                                    @if (auth()->user()->hasRole('manager'))<th class="no-sort">@lang('project.options')</th>@endif
                                 </tr>
                                 </thead>
                                 <tbody>
