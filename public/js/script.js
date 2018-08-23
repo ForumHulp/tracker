@@ -14,12 +14,13 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 		}
 	});
 
+    $(document).on('click', '.collapse-all', function() {
+		$('.issue-info').removeClass('show');
+		return false;
+    });
+
     $(document).on('click', '.change-remark', function() {
        var url = $(this).data('url');
-       var track_ids = '#s' + this.id;
-       $(track_ids).find('.progresses .fileinput').remove();
-
-       //alert(track_id);
         $.ajax({
             type: "POST",
             url: url,
@@ -27,13 +28,13 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				_token: CSRF_TOKEN,
 				},
             success: function(json) {
-              $(track_ids).find('.remark').val(json.track.remark);
-              $(track_ids).find('.datepicker').val(json.track.datum);
-              $(track_ids).find('.timepicker').val(json.track.used_time);
-              $(track_ids).find('.progress').val(json.track.progress);
-              $('<input>').attr({type: 'hidden',id: 'track_id', name: 'track_id', value: json.track.id}).appendTo('#trackform-tr' + json.track.id);
-              $(track_ids).find('.trackinfo').attr('action', json.route);
-              $(track_ids).find('.progresses #btn_save').val('Save again');
+				 $('#fileinput' + json.track.id).remove();
+				 $('#trackform' + json.track.id + ' input[name=remark]').val(json.track.remark);
+				 $('#trackform' + json.track.id + ' input[name=date]').val(json.track.datum);
+				 $('#trackform' + json.track.id + ' input[name=used_time]').val(json.track.used_time);
+ 				 $('<input>').attr({type: 'hidden',id: 'track_id', name: 'track_id', value: json.track.id}).appendTo('#trackform' + json.track.id);
+				 $('#trackform' + json.track.id).attr('action', json.route);
+                 $('#trackform' + json.track.id + ' input[id=btn_save]').val('Save again');
             },
             dataType: 'json',
         });
@@ -65,20 +66,16 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 	var startDate = new Date();
 	$('.timepicker').durationpicker();
-	$('.datepicker').datepicker({
+	$('.datepick').datepicker({
     	language: 'en',
 		dateFormat: 'dd-mm-yyyy',
-		onShow: function(dp, animationCompleted){
-			if ($('.datepicker').val() !== '')
+		onShow: function(id, dp, animationCompleted){
+			if ($('#' + id.el.id).val() !== '')
 			{
-				var from = $('#datepicker'+json.track.id).val().split('-');
+				var from = $('#' + id.el.id).val().split('-');
 				startDate = new Date(from[2], parseInt(from[1] - 1), parseInt(from[0]));
 			}
-      else
-      {
-        $('.datepicker').val('00-00-0000');
-      }
-			dp = $('#datepicker').datepicker({startDate: startDate}).data('datepicker');
+			dp = $('#' + id.el.id).datepicker({startDate: startDate}).data('datepicker');
 			dp.selectDate(startDate);
 		}
 	});
