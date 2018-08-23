@@ -28,13 +28,13 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				_token: CSRF_TOKEN,
 				},
             success: function(json) {
-				 $('#fileinput' + json.track.id).remove();
-				 $('#trackform' + json.track.id + ' input[name=remark]').val(json.track.remark);
-				 $('#trackform' + json.track.id + ' input[name=date]').val(json.track.datum);
-				 $('#trackform' + json.track.id + ' input[name=used_time]').val(json.track.used_time);
- 				 $('<input>').attr({type: 'hidden',id: 'track_id', name: 'track_id', value: json.track.id}).appendTo('#trackform' + json.track.id);
-				 $('#trackform' + json.track.id).attr('action', json.route);
-                 $('#trackform' + json.track.id + ' input[id=btn_save]').val('Save again');
+				 $('#fileinput' + json.track.issue_id).remove();
+				 $('#trackform' + json.track.issue_id + ' input[name=remark]').val(json.track.remark);
+				 $('#trackform' + json.track.issue_id + ' input[name=date]').val(json.track.datum);
+				 $('#trackform' + json.track.issue_id + ' input[name=used_time]').val(json.track.used_time);
+ 				 $('<input>').attr({type: 'hidden',id: 'track_id', name: 'track_id', value: json.track.id}).appendTo('#trackform' + json.track.issue_id);
+				 $('#trackform' + json.track.issue_id).attr('action', json.route);
+                 $('#trackform' + json.track.issue_id + ' input[id=btn_save]').val('Save again');
             },
             dataType: 'json',
         });
