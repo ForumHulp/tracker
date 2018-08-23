@@ -88,3 +88,28 @@ td.col-md-12 {
   margin-top: 0;
   border: none;
 }
+
+.pagination {
+    display: none;
+}
+
+.dataTables_length {
+    display: none;
+}
+
+.dataTables_info {
+    display: none;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+.no-sort::after, .no-sort::before {
+    display: none!important;
+}
+
+.no-sort {
+    pointer-events: none!important;
+    cursor: default!important;
+}

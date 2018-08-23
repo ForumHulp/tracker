@@ -25,7 +25,7 @@
                                     <th>@lang('user.email')</th>
                                     <th>@lang('user.role')</th>
                                     <th>@lang('user.registered')</th>
-                                    @if (auth()->user()->hasRole('manager'))<th>@lang('user.options')</th>@endif
+                                    @if (auth()->user()->hasRole('manager'))<th class="no-sort">@lang('user.options')</th>@endif
                                 </tr>
                                 </thead>
                                 <tbody>

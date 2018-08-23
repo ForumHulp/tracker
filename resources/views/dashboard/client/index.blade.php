@@ -27,7 +27,7 @@
                                     <th>@lang('client.country')</th>
                                     <th>@lang('client.city')</th>
                                     <th>@lang('client.address')</th>
-                                    @if (auth()->user()->hasRole('manager'))<th>@lang('client.options')</th>@endif
+                                    @if (auth()->user()->hasRole('manager'))<th class="no-sort">@lang('client.options')</th>@endif
                                 </tr>
                                 </thead>
                                 <tbody>

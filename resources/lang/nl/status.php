@@ -13,18 +13,20 @@ return [
     |
     */
 
-    'overview'            	=> 'Status overview',
-	'add'					=> 'Add new status',
-	'edit_status'			=> 'Edit status',
-	'create_status'			=> 'Create new status',
-	'edit'					=> 'Edit',
-	'save'					=> 'Save',
-    'cancel'				=> 'Cancel',
-	'dell'					=> 'Delete',
-	'update_title'			=> 'Update status title',
-	'title'					=> 'Title',
-	'options'				=> 'Options',
-	'create'				=> 'A new status has been added!',
-	'update'				=> 'A status has been updated!',
-	'destroy'				=> 'A status has been deleted!',
+    'overview'            	=> 'Status overzicht',
+	'add'					=> 'Nieuwe status toevoegen',
+	'edit_status'			=> 'Wijzig status',
+	'create_status'			=> 'Nieuwe status toevoegen',
+    'edit'					=> 'Wijzig',
+    'save'					=> 'Opslaan',
+    'cancel'				=> 'Annuleer',
+    'dell'					=> 'Verwijder',
+	'update_title'			=> 'Wijzig status titel',
+	'title'					=> 'Titel',
+    'options'				=> 'Opties',
+    'create'				=> 'Een nieuwe status is toegevoegd!',
+    'update'				=> 'Status opgeslagen!',
+    'destroy'				=> 'Status verwijderd!',
 ];
+
+

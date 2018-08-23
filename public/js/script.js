@@ -80,4 +80,25 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 		}
 	});
 
+    if ( $("#bootstrap-data-table").find('tr').not(':first').length <= 10)
+    {
+        $('.sorting, .sorting_asc, .sorting_desc').click(function() {
+            $(".pagination").css("display", "none")
+        });
+        $(".pagination").css("display", "none");
+        $(".dataTables_length").css("display", "none");
+        $(".dataTables_info").css("display", "none");
+        $(".dataTables_filter").css("display", "none");
+    }
+    else
+	{
+        $('.sorting, .sorting_asc, .sorting_desc').click(function() {
+            $(".pagination").css("display", "flex")
+        });
+        $(".pagination").css("display", "flex");
+        $(".dataTables_length").css("display", "block");
+        $(".dataTables_info").css("display", "block");
+        $(".dataTables_filter").css("display", "block");
+	}
+
 });

@@ -18,7 +18,7 @@ return [
 	'issue_tracker'			=> 'Issue Tracker',
 	'dashboard'				=> 'Dashboard',
 	'planning'				=> 'Planning',
-	'logout'				=> 'Log off',
+	'logout'				=> 'Log uit',
 	'login'					=> 'Log in',
 	'pay'					=> 'Betaal voor dit issue'
 ];

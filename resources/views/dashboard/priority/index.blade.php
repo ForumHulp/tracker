@@ -22,7 +22,7 @@
                                 <thead>
                                 <tr>
                                     <th>@lang('priority.title')</th>
-                                    @if (auth()->user()->hasRole('manager'))<th>@lang('priority.options')</th>@endif
+                                    @if (auth()->user()->hasRole('manager'))<th class="no-sort">@lang('priority.options')</th>@endif
                                 </tr>
                                 </thead>
                                 <tbody>
