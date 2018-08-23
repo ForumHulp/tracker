@@ -40,12 +40,13 @@
 	                                @if (!$issue->isChild())
                                     <tr class="issue-main @if ($loop->iteration % 2 == 0) even @else odd @endif" style="border-top:1px black solid;">
                                         <td><a href="#i{{ $issue->id }}" data-toggle="collapse" class="collapse-all">{{ $issue->id }}</a></td>
+                                        <td>{{ $issue->project->client->name }}</td>
                                         <td>
-                                            @if (auth()->check() && auth()->user()->hasRole('manager'))
-                                                <a href="{{ route('issue.edit', $issue->id) }}" title="Update issue">{{ $issue->project->client->name }}</a>@else{{ $issue->project->client->name }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $issue->project->title }}</td>
+                                         @if (auth()->check() && auth()->user()->hasRole('manager'))
+                                              <a href="{{ route('issue.edit', $issue->id) }}" title="Update issue">{{ $issue->project->title }}</a>
+                                          @else
+                                          {{ $issue->project->title }}
+                                          @endif</td>
                                         <td>{{ $issue->status->title }}</td>
                                         <td>{{ $issue->type->title }}</td>
                                         <td>{{ $issue->title }}</td>
@@ -91,7 +92,12 @@
                                         @endif
                                         <tr>
                                             <td><a href="#r{{ $issue->id }}" data-toggle="collapse">{{ $issue->id }}</a></td>
-                                            <td>{{ $issue->title }}</td>
+                                            <td>
+                                             @if (auth()->check() && auth()->user()->hasRole('manager'))
+                                             	<a href="{{ route('issue.edit', $issue->id) }}" title="Update issue">{{ $issue->title }}</a>
+                                             @else
+                                             {{ $issue->title }}
+                                             @endif</td>
                                             <td>{{ $issue->status->title }}</td>
                                             <td>{{ $issue->type->title }}</td>
                                             <td>@if($issue->user){{ $issue->user->name }}@endif</td>
@@ -125,19 +131,19 @@
                                             <hr>
                                             @if ($loop->last)
                                             @if (auth()->check() && $issue->status_id != 3 && $issue->user->id == auth()->user()->id )
-                                            {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform' . $track->id, 'class' => 'col-sm-12', 'files' => true]) !!}
+                                            {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform' . $issue->id, 'class' => 'col-sm-12', 'files' => true]) !!}
 
 											<div class="row">
                                             	{!! \Form::hidden('issue_id', $issue->id) !!}
                                             	{!! \Form::hidden('user_id', $issue->user->id) !!}
                                             	<div class="col-md-5">{!! \Form::text('remark', null, ['class' => 'form-control', 'id' => 'remark']) !!}</div>
-                                            	<div class="col-md-2">{!! Form::text('date', null, ['class' => 'form-control datepick', 'id' => 'datepicker' . $track->id]) !!}</div>
+                                            	<div class="col-md-2">{!! Form::text('date', null, ['class' => 'form-control datepick', 'id' => 'datepicker' . $issue->id]) !!}</div>
                                             	<div class="col-md-2">
-                                                	<input id="timepicker{{ $track->id }}" name="used_time" class="form-control timepicker" value="0:0" type="text"/>
-                                                	<a class="start-timer" href="#" data-target="{{ $track->id }}">Start</a> <a class="stop-timer" href="#" dta-target="{{ $track->id }}">Stop</a>
+                                                	<input id="timepicker{{ $issue->id }}" name="used_time" class="form-control timepicker" value="0:0" type="text"/>
+                                                	<a class="start-timer" href="#" data-target="{{ $issue->id }}">Start</a> <a class="stop-timer" href="#" data-target="{{ $issue->id }}">Stop</a>
                                               	</div>
                                               	<div class="col-md-3">
-                                                	<div class="fileinput" id="fileinput{{ $track->id }}">@lang('issue.upload')
+                                                	<div class="fileinput" id="fileinput{{ $issue->id }}">@lang('issue.upload')
                                                 	  <input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
                                                 	</div>
                                                 	{!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}

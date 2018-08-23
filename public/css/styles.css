@@ -60,7 +60,8 @@
 .btn-create_issue{
     right: 0px;
     position: absolute;
-    top: 30px;
+    top: 20px;
+	z-index:100;
 }
 .form-group label {display:block;clear:both;width:100%;}
 .select-small {float:left;width:32%;margin-right:10px;}
