@@ -74,7 +74,9 @@
 }
 .stop-timer {display:none;}
 
-
+#bootstrap-data-tables {margin:0 auto;}
+.odd {background-color:rgba(0,0,0,.05)!important;}
+.even {background-color: #fff!important;}
 
 td.col-md-12 {
   padding-bottom: 0;

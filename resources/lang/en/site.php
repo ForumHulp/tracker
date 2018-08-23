@@ -20,4 +20,5 @@ return [
 	'planning'				=> 'Planning',
 	'logout'				=> 'Log off',
 	'login'					=> 'Log in',
+	'pay'					=> 'Pay this issue'
 ];

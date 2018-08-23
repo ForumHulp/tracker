@@ -50,7 +50,6 @@ class TrackController extends Controller
             'remark'	=> 'required',
             'date'		=> 'required',
             'used_time'	=> 'required',
-            'progress'	=> 'required'
         ]);
 
         $track = Track::where('id', $request->get('track_id'))->first();
@@ -93,7 +92,6 @@ class TrackController extends Controller
             'remark'	=> 'required',
             'date'		=> 'required',
             'used_time'	=> 'required',
-            'progress'	=> 'required'
         ]);
 
         $attributes = $request->all();
