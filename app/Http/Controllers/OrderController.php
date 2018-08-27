@@ -52,29 +52,22 @@ class OrderController extends Controller
 				'currency' => 'EUR',
 				'value' => (string) $order->total(), // You must send the correct number of decimals, thus we enforce the use of strings
 		    ],
-    	'description' => $order->title,
-    	'redirectUrl'   => route('homepost'),
+            'description' => $order->title,
+            'redirectUrl' => route('issue.order.return-from-payment', [$order->id]),
     	];
 		
 		$payment = \Mollie::api()->payments()->create($mollie_data);
 		$attributes['payment_id'] = $payment->id;
         $order->update($attributes);
-		
-		header('Location: ' . $payment->getCheckoutUrl(), true, 303);
-//		$payment = \Mollie::api()->payments()->get($payment->id);
-        
 
-dump($payment);
-/*
+        return redirect()->to($payment->getCheckoutUrl());
+    }
 
-        exit;
-        // TODO: Mollie
-        // Return naar 'orders.return-from-payment'
-*/    }
-
-    public function returnFromPayment(Request $request)
+    public function returnFromPayment(Request $request, $id)
     {
-        // TODO: payment status opvragen
-        dd('return from payment', $request->all());
+        $order = Order::find($id);
+        $payment = \Mollie::api()->payments()->get($order->payment_id);
+
+        return view('pages.payment-status', ['payment' => $payment]);
     }
 }
