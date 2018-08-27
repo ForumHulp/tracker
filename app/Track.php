@@ -14,7 +14,6 @@ class Track extends Model
         'issue_id',
         'remark',
         'used_time',
-		'progress',
 		'date',
 		'attachment'
     ];

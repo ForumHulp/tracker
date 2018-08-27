@@ -133,6 +133,11 @@ class TypeController extends Controller
             'message' => __('type.destroy'),
             'alert-class' => 'alert-success',
         ];
+
+        if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
         return redirect()->route('status.index')->with($data);
     }
 }

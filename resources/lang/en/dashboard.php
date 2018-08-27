@@ -21,5 +21,6 @@ return [
 	'project'				=> 'Project',
 	'timeslot'				=> 'Timeslot',
 	'type'					=> 'Type',
+	'issue'					=> 'Issue',
 
 ];

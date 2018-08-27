@@ -13,9 +13,14 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				},
             success: function(json) {
 				$('#project_id').empty(); // remove old options
-				$.each(json.selects, function(key, value) {
+				$.each(json.combo1, function(key, value) {
 				  $('#project_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
+				});
+				$('#parent_id').empty(); // remove old options
+				$.each(json.combo2, function(key, value) {
+				  $('#parent_id').append($("<option></option>")
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
             },
             dataType: 'json',
@@ -35,15 +40,15 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 				},
             success: function(json) {
 				$('#client_id').empty(); // remove old options
-				$.each(json.selects, function(key, value) {
+				$.each(json.combo1, function(key, value) {
 				  $('#client_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
 				$('#client_id option:eq(1)').attr('selected', 'selected');
 				$('#parent_id').empty(); // remove old options
-				$.each(json.issue, function(key, value) {
+				$.each(json.combo2, function(key, value) {
 				  $('#parent_id').append($("<option></option>")
-					 .attr("value", value.key).text(value.value));
+					 .attr("value", (!key) ? '' : key).text(value));
 				});
             },
             dataType: 'json',
@@ -52,6 +57,35 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         return false;
     });
 	
+    $(document).on('change', '#parent_id', function() {
+        $.ajax({
+            type: "POST",
+            url: '/issue/select',
+			data: {
+				_token: CSRF_TOKEN,
+				id: $(this).val(),
+				type: 'parent_id'
+				},
+            success: function(json) {
+				$('#client_id').empty(); // remove old options
+				$.each(json.combo1, function(key, value) {
+				  $('#client_id').append($("<option></option>")
+					 .attr("value", (!key) ? '' : key).text(value));
+				});
+				$('#client_id option:eq(1)').attr('selected', 'selected');
+				$('#project_id').empty(); // remove old options
+				$.each(json.combo2, function(key, value) {
+				  $('#project_id').append($("<option></option>")
+					 .attr("value", (!key) ? '' : key).text(value));
+				});
+				$('#project_id option:eq(1)').attr('selected', 'selected');
+            },
+            dataType: 'json',
+        });
+
+        return false;
+    });
+
 	var startDate = new Date();
 	$('#plan_time').durationpicker();
 	$('#start_date').datepicker({

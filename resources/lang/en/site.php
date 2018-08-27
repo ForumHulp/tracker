@@ -13,10 +13,13 @@ return [
     |
     */
 
-    'tracker'            	=> 'Tracker',
+    'welcome'				=> 'Welcome',
+	'tracker'            	=> 'Tracker',
 	'issue_tracker'			=> 'Issue Tracker',
 	'dashboard'				=> 'Dashboard',
 	'planning'				=> 'Planning',
 	'logout'				=> 'Log off',
 	'login'					=> 'Log in',
+	'pay'					=> 'Pay this issue',
+	'payed'					=> 'Payed'
 ];

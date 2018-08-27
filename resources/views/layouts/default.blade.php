@@ -1,35 +1,23 @@
 <!doctype html>
-<html>
+<html class="no-js" lang="">
 <head>
     @include('includes.head')
 </head>
-    <body>
+    <body class="open">
 
-        <div id="navbar">
+
+                    @include('includes.sidebar')
+
+        <div id="right-panel" class="right-panel">
+
             @include('includes.navbar')
-        </div>
-        
-        <div class="container content">
-        	<div class="row">
 
-            @if(auth()->check() && \Request::getPathInfo() != '/'  && \Request::getPathInfo() != '/issue/create')
-                @if (auth()->user()->hasRole('manager') && !\Request::is('issue/edit*') && !\Request::is('planning*'))
-               <div id="dashboard" class="col-md-2">
-                    @include('dashboard.sidebar')
-                </div>
-                @endif
-            @endif
-        
-            <div class="@if(auth()->check() && auth()->user()->hasRole('manager') && \Request::getPathInfo() != '/') col-md-10 @else col-md-12 @endif" id="content">
-                @yield('content')
-            </div>
+            @yield('content')
 
-			</div>
-	    </div>
+        </div><!-- /#right-panel -->
 
-        <div id="footer">
-            @include('includes.footer')
-        </div>
+
+        @include('includes.footer')
 
     @if( Session::has('message') || $errors->any())
 	<script type="text/javascript">
@@ -37,6 +25,7 @@
 		$('#myModal').modal();
 	});
     </script>
+    @endif 
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -67,6 +56,8 @@
             </div>
         </div>
     </div>
-    @endif 
     </body>
 </html>
+
+
+

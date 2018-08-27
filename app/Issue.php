@@ -64,4 +64,9 @@ class Issue extends \Baum\Node
     {
         return $this->hasMany(Track::class);
     }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

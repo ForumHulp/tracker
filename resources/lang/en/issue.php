@@ -20,7 +20,6 @@ return [
 	'priority'				=> 'Priority',
 	'project'				=> 'Project',
 	'title'					=> 'Title',
-	'type'					=> 'Type',
 	'assigned'				=> 'Assigned',
 	'progress'				=> 'Progress',
 	'plan_time'				=> 'Plan time',
@@ -30,12 +29,16 @@ return [
 	'date'					=> 'Date',
 	'time'					=> 'Time',
 	'add_remark'			=> 'Add',
-	
+
+    'overview'            	=> 'Issue overview',
 	'add'					=> 'Add new issue',
 	'save'					=> 'Save this issue',
-	'create_issue'			=> 'Create a new issue',
+    'cancel'				=> 'Cancel',
+    'create_issue'			=> 'Create a new issue',
 	'created_issue'			=> 'A new issue is added!',
 	'update_issue'			=> 'Update a issue',
+	'delete'				=> 'Delete issue',
+	'destroy'				=> 'Issue deleted',
 	'update'				=> 'This issue is updated succesfully',
 	'parent_id'				=> 'Parent issue',
 	'description'			=> 'Description',
@@ -55,4 +58,9 @@ return [
 	'create.track'			=> 'A new track has been added!',
 	'updated.track'			=> 'A track has been updated!',
 
+	//email
+	'issue_added'			=> 'is added to your issuelist.',
+	'should'				=> 'You should start on',
+	'have'					=> 'and you have',
+	'hours_minutes'			=> 'hours and minutes for this issue.'
 ];

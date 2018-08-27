@@ -64,8 +64,24 @@ class UserController extends Controller
         ]);
 
         $attributes = $request->all();
-		
+		$attributes['password'] = bcrypt($attributes['password']);
+
         $user = User::create($attributes);
+
+        if ($request->file('image'))
+        {
+            $imgName = $user->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/images/avatar/', $imgName);
+
+            $user = User::where('id', $user->id)->first();
+
+            if(is_null($user)) {
+                abort(404);
+            }
+            $attributes['attachment'] = $imgName;
+
+            $user->update($attributes);
+        }
 
 		$role = $request->get('role');
 	    $user->roles()->attach($role);
@@ -128,7 +144,7 @@ class UserController extends Controller
         }
 
         $attributes = $request->all();
-		
+
 		if (empty($request->get('password', '')))
 		{
 			$attributes = $request->except('password');
@@ -136,6 +152,14 @@ class UserController extends Controller
 		{
 			$attributes['password'] = bcrypt($attributes['password']);
 		}
+
+        if ($request->file('image'))
+        {
+            $imgName = $user->id . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/images/avatar/', $imgName);
+
+            $attributes['attachment'] = $imgName;
+        }
 
         $user->update($attributes);
 		
@@ -174,6 +198,11 @@ class UserController extends Controller
             'message' => __('user.destroy'),
             'alert-class' => 'alert-success',
         ];
+
+        if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
         return redirect()->route('user.index')->with($data);
     }
 }

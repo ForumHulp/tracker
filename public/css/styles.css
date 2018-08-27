@@ -29,6 +29,7 @@
   color:white;
 }
 
+.modal {display:none;}
 .d-inline-block.float-right {
 	position:relative;
 	right:0;
@@ -46,6 +47,7 @@
     margin-bottom: 12px;
 }
 
+.btn-delete {margin-left:10px;}
 #btn_save {float:left;margin-left:5px;}
 
 .alert {color:red;}
@@ -58,7 +60,8 @@
 .btn-create_issue{
     right: 0px;
     position: absolute;
-    top: 30px;
+    top: 20px;
+	z-index:100;
 }
 .form-group label {display:block;clear:both;width:100%;}
 .select-small {float:left;width:32%;margin-right:10px;}
@@ -71,3 +74,45 @@
     vertical-align: bottom;
 }
 .stop-timer {display:none;}
+
+#bootstrap-data-tables {margin:0 auto;}
+.odd {background-color:rgba(0,0,0,.05)!important;}
+.even {background-color: #fff!important;}
+#bootstrap-data-tables td {max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+
+td.col-md-12 {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.table .table {
+  margin-bottom: 0;
+  margin-top: 0;
+  border: none;
+}
+
+.subissue th, .subissue td {padding: .2em}
+.pagination {
+    display: none;
+}
+
+.dataTables_length {
+    display: none;
+}
+
+.dataTables_info {
+    display: none;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+.no-sort::after, .no-sort::before {
+    display: none!important;
+}
+
+.no-sort {
+    pointer-events: none!important;
+    cursor: default!important;
+}

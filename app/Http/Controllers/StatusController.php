@@ -142,6 +142,11 @@ class StatusController extends Controller
             'message' => __('status.destroy'),
             'alert-class' => 'alert-success',
         ];
-        return redirect()->route('status.index')->with($data);
+ 
+         if($request->wantsJson()) {
+            return response()->json($data);
+        }
+
+       return redirect()->route('status.index')->with($data);
     }
 }

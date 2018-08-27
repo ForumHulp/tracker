@@ -18,15 +18,14 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-	//	Issue::rebuild();
         $data = [
-            'issues'	=> Issue::with('project.client', 'status', 'type', 'project', 'user', 'tracks')->orderBy('lft')->paginate(10),
+            'issues' => Issue::with('project.client', 'status', 'type', 'project', 'user', 'tracks', 'order')->orderBy('lft')->paginate(20),
         ];
 
         return view('pages.home')->with($data);
