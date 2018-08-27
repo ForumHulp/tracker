@@ -20,22 +20,22 @@
                             @endif
                         </div>
                         <div class="card-body col-md-12">
-                            <table id="bootstrap-data-tables" class="table table-striped table-bordered row">
+                            <table id="bootstrap-data-tables" class="table table-striped table-bordered">
 
-                                <thead class="col-md-12">
-                                  <tr class="">
-                                      <th class="md-1">@lang('issue.number')</th>
-                                      <th class="md-2">@lang('issue.client')</th>
-                                      <th class="md-2">@lang('issue.project')</th>
-                                      <th class="md-1">@lang('issue.status')</th>
-                                      <th class="md-1">@lang('issue.type')</th>
-                                      <th class="md-3">@lang('issue.title')</th>
-                                      <th class="md-1">@lang('issue.assigned')</th>
-                                      <th class="md-1">@lang('issue.progress')</th>
+                                <thead>
+                                  <tr>
+                                      <th width="5%">@lang('issue.number')</th>
+                                      <th width="12%">@lang('issue.client')</th>
+                                      <th width="12%">@lang('issue.project')</th>
+                                      <th width="12%">@lang('issue.status')</th>
+                                      <th width="12%">@lang('issue.type')</th>
+                                      <th width="20%">@lang('issue.title')</th>
+                                      <th width="12%">@lang('issue.assigned')</th>
+                                      <th width="15%">@lang('issue.progress')</th>
                                   </tr>
                                 </thead>
 
-                                <tbody class="col-md-12">
+                                <tbody>
                                 @foreach($issues as $issue)
 	                                @if (!$issue->isChild())
                                     <tr class="issue-main @if ($loop->iteration % 2 == 0) even @else odd @endif" style="border-top:1px black solid;">
@@ -73,7 +73,7 @@
                                         </td>
                                     </tr>
                                     <tr id="i{{ $issue->id }}" class="issue-info panel-collapse collapse">
-                                        <td colspan="8" style="width:100%;">
+                                        <td colspan="8">
                                         @lang('issue.date'): {{ $issue->start_date->format('d-m-Y') }}, @lang('issue.plan_time'): <?php echo sprintf("%d:%02d", floor($issue->plan_time / 60), $issue->plan_time % 60); ?>
                                         <br />{{ $issue->description }}
                                     @else
