@@ -125,32 +125,30 @@
                                                 <div class="col-md-2">{{ $track->date->format('d-m-Y') }}</div>
                                                 <div class="col-md-2"><?php echo sprintf("%d:%02d", floor($track->used_time / 60), $track->used_time % 60); ?></div>
                                             </div>
-                                            <hr>
-                                            @if ($loop->last)
-                                            @if (auth()->check() && $issue->status_id != 3 && $issue->user->id == auth()->user()->id )
-                                            {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform' . $issue->id, 'class' => 'col-sm-12', 'files' => true]) !!}
-
-											<div class="row">
-                                            	{!! \Form::hidden('issue_id', $issue->id) !!}
-                                            	{!! \Form::hidden('user_id', $issue->user->id) !!}
-                                            	<div class="col-md-5">{!! \Form::text('remark', null, ['class' => 'form-control', 'id' => 'remark']) !!}</div>
-                                            	<div class="col-md-2">{!! Form::text('date', null, ['class' => 'form-control datepick', 'id' => 'datepicker' . $issue->id]) !!}</div>
-                                            	<div class="col-md-2">
-                                                	<input id="timepicker{{ $issue->id }}" name="used_time" class="form-control timepicker" value="0:0" type="text"/>
-                                                	<a class="start-timer" href="#" data-target="{{ $issue->id }}">Start</a> <a class="stop-timer" href="#" data-target="{{ $issue->id }}">Stop</a>
-                                              	</div>
-                                              	<div class="col-md-3">
-                                                	<div class="fileinput" id="fileinput{{ $issue->id }}">@lang('issue.upload')
-                                                	  <input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
-                                                	</div>
-                                                	{!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
-                                              	</div>
-                                            </div>
-                                            
-                                            {!! \Form::close() !!}
-                                            @endif
-                                            @endif
                                             @endforeach
+                                                <hr>
+                                                @if (auth()->check() && $issue->status_id != 3 && $issue->user->id == auth()->user()->id )
+                                                    {!! \Form::open(['route' => 'tracker.store', 'id' => 'trackform' . $issue->id, 'class' => 'col-sm-12', 'files' => true]) !!}
+
+                                                    <div class="row">
+                                                        {!! \Form::hidden('issue_id', $issue->id) !!}
+                                                        {!! \Form::hidden('user_id', $issue->user->id) !!}
+                                                        <div class="col-md-5">{!! \Form::text('remark', null, ['class' => 'form-control', 'id' => 'remark']) !!}</div>
+                                                        <div class="col-md-2">{!! Form::text('date', null, ['class' => 'form-control datepick', 'id' => 'datepicker' . $issue->id]) !!}</div>
+                                                        <div class="col-md-2">
+                                                            <input id="timepicker{{ $issue->id }}" name="used_time" class="form-control timepicker" value="0:0" type="text"/>
+                                                            <a class="start-timer" href="#" data-target="{{ $issue->id }}">Start</a> <a class="stop-timer" href="#" data-target="{{ $issue->id }}">Stop</a>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="fileinput" id="fileinput{{ $issue->id }}">@lang('issue.upload')
+                                                                <input type="file" name="document" id="document" class="hide_file" size="10" accept=".pdf" />
+                                                            </div>
+                                                            {!! \Form::submit(__('issue.add_remark'), ['class' => 'btn btn-sm btn-outline-secondary', 'id' => 'btn_save']) !!}
+                                                        </div>
+                                                    </div>
+
+                                                    {!! \Form::close() !!}
+                                                @endif
                                        		</td>
                                        </tr>
                                         </table>
